@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FREE-ISH · A Juneteenth Estate Activation</title>
+  <meta name="description" content="June 19 · 2PM–11PM · Private Estate · Atlanta, GA · A Juneteenth celebration of Black excellence">
+  <meta property="og:title" content="FREE-ISH · A Juneteenth Estate Activation">
+  <meta property="og:description" content="June 19 · 2PM–11PM · Private Estate · The ancestors made a way. We're making memories.">
+  <meta property="og:image" content="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:       #07070A;
+      --gold:        #C9A84C;
+      --gold-bright: #F2C94C;
+      --gold-muted:  #7A6030;
+      --green-deep:  #091C12;
+      --green-mid:   #1E4D35;
+      --cream:       #F5EFE6;
+      --cream-dim:   #9E9080;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── STARFIELD ────────────────────────────── */
+    #starfield {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      background: #fff;
+      animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: var(--a, 0.15); transform: scale(1); }
+      to   { opacity: calc(var(--a, 0.15) * 3); transform: scale(1.5); }
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200') center 55% / cover no-repeat;
+      transform: scale(1.06);
+      filter: brightness(0.55) saturate(0.8);
+      transition: transform 10s ease-out;
+    }
+    .hero__bg.loaded { transform: scale(1); }
+
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(7,7,10,0.25) 0%,
+        rgba(7,7,10,0.05) 35%,
+        rgba(7,7,10,0.55) 75%,
+        rgba(7,7,10,1)    100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 24px;
+      max-width: 760px;
+    }
+
+    .hero__eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 0.4s;
+    }
+
+    .hero__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(72px, 22vw, 148px);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      background: linear-gradient(100deg,
+        #7A6030 0%,
+        #F2C94C 22%,
+        #FFF8E1 48%,
+        #F2C94C 72%,
+        #C9A84C 88%,
+        #7A6030 100%
+      );
+      background-size: 250%;
+      background-position: 0%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: riseIn 0.9s ease forwards 0.6s, goldShimmer 6s ease-in-out 1.8s infinite;
+      opacity: 0;
+      margin-bottom: 20px;
+    }
+
+    @keyframes goldShimmer {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+
+    .hero__sub {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(14px, 3.5vw, 22px);
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 0.8s;
+    }
+
+    .hero__meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 1.0s;
+    }
+    .hero__meta span { color: var(--gold-muted); }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    .hero__scroll-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1; }
+    }
+
+    /* ── SECTION DIVIDER ─────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      max-width: 540px;
+      margin: 0 auto 52px;
+      padding: 0 24px;
+    }
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-muted), transparent);
+    }
+    .divider__mark {
+      font-size: 14px;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    /* ── INFO STRIP ──────────────────────────── */
+    .info {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+    .info__grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .info__item {
+      flex: 0 0 50%;
+      padding: 24px 16px;
+      border: 1px solid rgba(201,168,76,0.1);
+    }
+    @media (min-width: 600px) {
+      .info__item { flex: 0 0 25%; }
+    }
+    .info__label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 8px;
+    }
+    .info__value {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    /* ── VIBE COPY ───────────────────────────── */
+    .vibe {
+      position: relative;
+      z-index: 1;
+      padding: 72px 24px;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .vibe__copy {
+      font-size: clamp(15px, 2.8vw, 19px);
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cream);
+    }
+    .vibe__copy strong {
+      font-weight: 600;
+      color: var(--gold);
+    }
+    .vibe__copy em {
+      font-style: italic;
+      color: var(--cream-dim);
+    }
+    .vibe__tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 44px;
+    }
+    .tag {
+      padding: 9px 20px;
+      border: 1px solid var(--gold-muted);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── GALLERY ─────────────────────────────── */
+    .gallery {
+      position: relative;
+      z-index: 1;
+      padding: 72px 16px;
+    }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 8px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .gallery__item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery__item--wide { grid-column: 1 / -1; }
+    .gallery__item--tall { grid-row: span 2; }
+
+    .gallery__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.75) brightness(0.82);
+      transition: filter 0.5s ease, transform 0.6s ease;
+    }
+    .gallery__item--wide .gallery__img { min-height: 260px; max-height: 460px; }
+    .gallery__item:not(.gallery__item--wide) .gallery__img { aspect-ratio: 4/3; }
+    .gallery__item--tall .gallery__img { aspect-ratio: unset; }
+
+    .gallery__item:hover .gallery__img {
+      filter: saturate(1) brightness(1);
+      transform: scale(1.03);
+    }
+
+    /* ── CTA ─────────────────────────────────── */
+    .cta {
+      position: relative;
+      z-index: 1;
+      padding: 96px 24px 112px;
+      text-align: center;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        var(--green-deep) 20%,
+        var(--green-deep) 80%,
+        transparent 100%
+      );
+    }
+    .cta__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 7vw, 56px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .cta__sub {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 52px;
+    }
+    .cta__btn {
+      display: inline-block;
+      padding: 20px 58px;
+      background: linear-gradient(135deg, #B8902E 0%, #F2C94C 45%, #C9A84C 100%);
+      color: #07070A;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      box-shadow: 0 0 48px rgba(201,168,76,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .cta__btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 64px rgba(201,168,76,0.45);
+    }
+    .cta__note {
+      margin-top: 24px;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--green-mid);
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px 52px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      opacity: 0.6;
+    }
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ── REVEAL ──────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── UTILS ───────────────────────────────── */
+    @keyframes riseIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- STARFIELD -->
+  <div id="starfield" aria-hidden="true"></div>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Event hero">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Dell Harris &amp; Extra Terrestrial Solutions Present</p>
+      <h1 class="hero__title">FREE&#8209;ISH</h1>
+      <p class="hero__sub">A Juneteenth Estate Activation</p>
+      <div class="hero__meta">
+        <span>June 19, 2026</span>
+        &nbsp;·&nbsp;
+        <span>2PM – 11PM</span>
+        &nbsp;·&nbsp;
+        <span>Atlanta, GA</span>
+      </div>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      <span class="hero__scroll-label">Scroll</span>
+    </div>
+  </section>
+
+  <!-- INFO STRIP -->
+  <section class="info" aria-label="Event details">
+    <div class="divider reveal">
+      <div class="divider__line"></div>
+      <div class="divider__mark">✦</div>
+      <div class="divider__line"></div>
+    </div>
+    <div class="info__grid reveal reveal-d1">
+      <div class="info__item">
+        <div class="info__label">Date</div>
+        <div class="info__value">June 19<br>2026</div>
+      </div>
+      <div class="info__item">
+        <div class="info__label">Hours</div>
+        <div class="info__value">2PM<br>– 11PM</div>
+      </div>
+      <div class="info__item">
+        <div class="info__label">Venue</div>
+        <div class="info__value">Private<br>Estate</div>
+      </div>
+      <div class="info__item">
+        <div class="info__label">Entry</div>
+        <div class="info__value">By<br>Invite</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIBE COPY -->
+  <section class="vibe" aria-label="About the event">
+    <div class="divider reveal">
+      <div class="divider__line"></div>
+      <div class="divider__mark">✦</div>
+      <div class="divider__line"></div>
+    </div>
+    <div class="vibe__copy reveal reveal-d1">
+      <p>Brick walls. Wood-paneled rooms<br>that hold history.</p>
+      <br>
+      <p>A pool surrounded by trees.<br>
+      A lawn wide enough to finally exhale.</p>
+      <br>
+      <p>The ancestors made a way.<br>
+      <strong>We're making memories.</strong></p>
+      <br>
+      <p>An intimate, curated experience for the culture —<br>
+      indoors and out. All day. All ages. All love.</p>
+      <br>
+      <p><em>Details unlocked when you RSVP.</em></p>
+    </div>
+    <div class="vibe__tags reveal reveal-d2">
+      <span class="tag">🖤 Black Excellence</span>
+      <span class="tag">🌿 Afro-Futurist</span>
+      <span class="tag">🏊🏾 Pool Party</span>
+      <span class="tag">👶🏾 Family Friendly</span>
+      <span class="tag">☀️ Day Party</span>
+      <span class="tag">✨ Private Estate</span>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" aria-label="Estate photos">
+    <div class="divider reveal">
+      <div class="divider__line"></div>
+      <div class="divider__mark">✦</div>
+      <div class="divider__line"></div>
+    </div>
+    <div class="gallery__grid reveal">
+      <!-- Night shot — hero of gallery -->
+      <div class="gallery__item gallery__item--wide">
+        <img class="gallery__img" loading="lazy"
+          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200"
+          alt="The estate at night — golden light glowing on the pool">
+      </div>
+      <!-- Aerial: shows scale -->
+      <div class="gallery__item">
+        <img class="gallery__img" loading="lazy"
+          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f981b4ec-93b0-4105-8596-bbe652da55ca.jpeg?im_w=720"
+          alt="Aerial view of the estate and pool">
+      </div>
+      <!-- Pool day -->
+      <div class="gallery__item">
+        <img class="gallery__img" loading="lazy"
+          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/5f59699c-1281-467b-a872-6ca4f42deb8a.jpeg?im_w=720"
+          alt="Private pool surrounded by trees">
+      </div>
+      <!-- Screened porch -->
+      <div class="gallery__item">
+        <img class="gallery__img" loading="lazy"
+          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f64e11b1-27b7-4588-88b0-4550a9ac3ff5.jpeg?im_w=720"
+          alt="Screened porch overlooking the pool">
+      </div>
+      <!-- Interior / library -->
+      <div class="gallery__item">
+        <img class="gallery__img" loading="lazy"
+          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/ddb1c633-1ff6-4bc8-90cf-b81630b70780.jpeg?im_w=720"
+          alt="Wood-paneled library with leather furniture">
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" aria-label="RSVP">
+    <h2 class="cta__heading reveal">This is the inheritance.<br>Come claim it.</h2>
+    <p class="cta__sub reveal reveal-d1">Address revealed upon RSVP &nbsp;·&nbsp; June 19 &nbsp;·&nbsp; 2PM – 11PM</p>
+    <a class="cta__btn reveal reveal-d2"
+       href="https://partiful.com/e/5yykgP38z6AKZtzAUcq8"
+       target="_blank"
+       rel="noopener noreferrer">
+      Secure Your Spot
+    </a>
+    <p class="cta__note reveal reveal-d3">Family friendly · All ages welcome · Free event</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>FREE&#8209;ISH &nbsp;·&nbsp; JUNETEENTH 2026 &nbsp;·&nbsp; ATLANTA, GA</p>
+  </footer>
+
+  <script>
+    // Starfield
+    const field = document.getElementById('starfield');
+    for (let i = 0; i < 140; i++) {
+      const s = document.createElement('div');
+      const size = Math.random() * 1.8 + 0.4;
+      s.className = 'star';
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%; left:${Math.random()*100}%;
+        --a:${(Math.random()*0.35+0.05).toFixed(2)};
+        --d:${(Math.random()*3+2).toFixed(1)}s;
+        animation-delay:${(Math.random()*4).toFixed(1)}s;
+      `;
+      field.appendChild(s);
+    }
+
+    // Hero parallax zoom
+    const heroBg = document.getElementById('heroBg');
+    const img = new Image();
+    img.onload = () => heroBg.classList.add('loaded');
+    img.src = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200';
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
