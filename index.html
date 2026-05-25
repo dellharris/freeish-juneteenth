@@ -70,15 +70,24 @@
       z-index: 1;
     }
 
-    .hero__bg {
+    .hero__video-wrap {
       position: absolute;
       inset: 0;
-      background: url('hero.jpg') center 55% / cover no-repeat;
-      transform: scale(1.06);
-      filter: brightness(0.55) saturate(0.8);
-      transition: transform 10s ease-out;
+      overflow: hidden;
+      z-index: 0;
     }
-    .hero__bg.loaded { transform: scale(1); }
+    .hero__video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 56.25vw;   /* 16:9 */
+      min-height: 100%;
+      min-width: 177.78vh; /* 16/9 × 100vh */
+      pointer-events: none;
+      filter: brightness(0.55) saturate(0.8);
+    }
 
     .hero__overlay {
       position: absolute;
@@ -727,7 +736,15 @@
 
   <!-- HERO -->
   <section class="hero" aria-label="Event hero">
-    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__video-wrap">
+      <iframe
+        src="https://www.youtube.com/embed/PJV1l3-QmFM?autoplay=1&mute=1&loop=1&playlist=PJV1l3-QmFM&controls=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        aria-hidden="true"
+        title=""></iframe>
+    </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <p class="hero__eyebrow">In And Out Podcast Presents</p>
@@ -993,12 +1010,6 @@
       `;
       field.appendChild(s);
     }
-
-    // Hero parallax zoom
-    const heroBg = document.getElementById('heroBg');
-    const img = new Image();
-    img.onload = () => heroBg.classList.add('loaded');
-    img.src = 'hero.jpg';
 
     // Scroll reveal
     const io = new IntersectionObserver((entries) => {
