@@ -428,6 +428,134 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
+
+    /* ── RSVP FORM ───────────────────────────── */
+    .rsvp {
+      position: relative;
+      z-index: 1;
+      padding: 96px 24px 112px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        var(--green-deep) 20%,
+        var(--green-deep) 80%,
+        transparent 100%
+      );
+    }
+    .rsvp__inner {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .rsvp__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 7vw, 56px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 14px;
+    }
+    .rsvp__sub {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 48px;
+    }
+    .rsvp__form { text-align: left; }
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .form__group { margin-bottom: 18px; }
+    .form__label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 8px;
+    }
+    .form__input {
+      width: 100%;
+      padding: 15px 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.22);
+      border-radius: 2px;
+      color: var(--cream);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form__input::placeholder { color: rgba(245,239,230,0.2); }
+    .form__input:focus {
+      border-color: var(--gold);
+      background: rgba(255,255,255,0.07);
+    }
+    .form__select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      padding-right: 44px;
+    }
+    .form__select option { background: #0f1f14; color: var(--cream); }
+    .form__error {
+      color: #ff7b7b;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      text-align: center;
+      display: none;
+    }
+    .form__submit {
+      width: 100%;
+      padding: 20px;
+      background: linear-gradient(135deg, #B8902E 0%, #F2C94C 45%, #C9A84C 100%);
+      color: #07070A;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      box-shadow: 0 0 48px rgba(201,168,76,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      margin-top: 8px;
+    }
+    .form__submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 64px rgba(201,168,76,0.45);
+    }
+    .form__submit:disabled {
+      opacity: 0.55;
+      transform: none;
+      cursor: not-allowed;
+    }
+    .rsvp__success {
+      padding: 40px 0;
+      animation: riseIn 0.7s ease forwards;
+    }
+    .success__icon {
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .rsvp__note {
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.9;
+      color: var(--cream-dim);
+      margin-top: 18px;
+    }
   </style>
 </head>
 
@@ -557,17 +685,66 @@
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="cta" aria-label="RSVP">
-    <h2 class="cta__heading reveal">This is the inheritance.<br>Come claim it.</h2>
-    <p class="cta__sub reveal reveal-d1">Address revealed upon RSVP &nbsp;·&nbsp; June 19 &nbsp;·&nbsp; 2PM – 11PM</p>
-    <a class="cta__btn reveal reveal-d2"
-       href="https://partiful.com/e/5yykgP38z6AKZtzAUcq8"
-       target="_blank"
-       rel="noopener noreferrer">
-      Secure Your Spot
-    </a>
-    <p class="cta__note reveal reveal-d3">Family friendly · All ages welcome · Free event</p>
+  <!-- RSVP FORM -->
+  <section class="rsvp" id="rsvp" aria-label="RSVP">
+    <div class="rsvp__inner">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+
+      <!-- Form -->
+      <div id="rsvpFormWrap">
+        <h2 class="rsvp__heading reveal">Claim Your Spot</h2>
+        <p class="rsvp__sub reveal reveal-d1">Address revealed upon RSVP &nbsp;·&nbsp; June 19 &nbsp;·&nbsp; 2PM – 11PM</p>
+
+        <form id="rsvpFormEl" class="rsvp__form reveal reveal-d2" novalidate>
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="firstName">First Name</label>
+              <input class="form__input" type="text" id="firstName" name="firstName" placeholder="First" autocomplete="given-name" required>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="lastName">Last Name</label>
+              <input class="form__input" type="text" id="lastName" name="lastName" placeholder="Last" autocomplete="family-name" required>
+            </div>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="phone">Phone Number</label>
+            <input class="form__input" type="tel" id="phone" name="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="partySize">How many in your party?</label>
+            <select class="form__input form__select" id="partySize" name="partySize" required>
+              <option value="" disabled selected>Select guests</option>
+              <option value="1">Just me</option>
+              <option value="2">2 people</option>
+              <option value="3">3 people</option>
+              <option value="4">4 people</option>
+              <option value="5">5 people</option>
+              <option value="6+">6 or more</option>
+            </select>
+          </div>
+          <p class="form__error" id="formError"></p>
+          <button type="submit" class="form__submit">
+            <span id="submitText">Secure Your Spot</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success -->
+      <div id="rsvpSuccess" style="display:none" class="rsvp__success">
+        <div class="success__icon">✦</div>
+        <h2 class="rsvp__heading" id="successName"></h2>
+        <p class="rsvp__sub">You're on the list.</p>
+        <p class="rsvp__note">The address will be texted to you before June 19th.<br>See you there.</p>
+      </div>
+    </div>
   </section>
 
   <!-- FOOTER -->
@@ -608,6 +785,57 @@
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ── RSVP FORM ──────────────────────────────────────
+    // Paste your Google Apps Script Web App URL below after setup
+    const APPS_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';
+
+    document.getElementById('rsvpFormEl').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn  = form.querySelector('.form__submit');
+      const err  = document.getElementById('formError');
+
+      const firstName = form.firstName.value.trim();
+      const lastName  = form.lastName.value.trim();
+      const email     = form.email.value.trim();
+      const phone     = form.phone.value.trim();
+      const partySize = form.partySize.value;
+
+      err.style.display = 'none';
+
+      if (!firstName || !lastName || !email || !phone || !partySize) {
+        err.textContent = 'Please fill out all fields.';
+        err.style.display = 'block';
+        return;
+      }
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        err.textContent = 'Please enter a valid email address.';
+        err.style.display = 'block';
+        return;
+      }
+
+      btn.disabled = true;
+      document.getElementById('submitText').textContent = 'Saving…';
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ firstName, lastName, email, phone, partySize, timestamp: new Date().toISOString() })
+        });
+        document.getElementById('rsvpFormWrap').style.display = 'none';
+        const success = document.getElementById('rsvpSuccess');
+        document.getElementById('successName').textContent = `${firstName}, you're confirmed.`;
+        success.style.display = 'block';
+      } catch {
+        btn.disabled = false;
+        document.getElementById('submitText').textContent = 'Secure Your Spot';
+        err.textContent = 'Something went wrong. Please try again.';
+        err.style.display = 'block';
+      }
+    });
   </script>
 
 </body>
