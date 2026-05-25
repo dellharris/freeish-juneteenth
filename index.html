@@ -7,7 +7,7 @@
   <meta name="description" content="June 19 · 2PM–11PM · Private Estate · Atlanta, GA · A Juneteenth celebration of Black excellence">
   <meta property="og:title" content="FREE-ISH · A Juneteenth Estate Activation">
   <meta property="og:description" content="June 19 · 2PM–11PM · Private Estate · The ancestors made a way. We're making memories.">
-  <meta property="og:image" content="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200">
+  <meta property="og:image" content="hero.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -73,7 +73,7 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background: url('https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200') center 55% / cover no-repeat;
+      background: url('hero.jpg') center 55% / cover no-repeat;
       transform: scale(1.06);
       filter: brightness(0.55) saturate(0.8);
       transition: transform 10s ease-out;
@@ -596,7 +596,7 @@
     const heroBg = document.getElementById('heroBg');
     const img = new Image();
     img.onload = () => heroBg.classList.add('loaded');
-    img.src = 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200';
+    img.src = 'hero.jpg';
 
     // Scroll reveal
     const io = new IntersectionObserver((entries) => {
