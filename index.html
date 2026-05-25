@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FREE-ISH · A Juneteenth Estate Activation</title>
-  <meta name="description" content="June 19 · 2PM–11PM · Private Estate · Atlanta, GA · A Juneteenth celebration of Black excellence">
-  <meta property="og:title" content="FREE-ISH · A Juneteenth Estate Activation">
-  <meta property="og:description" content="June 19 · 2PM–11PM · Private Estate · The ancestors made a way. We're making memories.">
+  <title>FREE-ISH · Juneteenth Weekend Freedom Celebration</title>
+  <meta name="description" content="June 19–21 · Atlanta, GA · Three days. The Mansion. The Mural. The culture. Presented by In And Out Podcast.">
+  <meta property="og:title" content="FREE-ISH · Juneteenth Weekend Freedom Celebration">
+  <meta property="og:description" content="June 19–21 · Atlanta, GA · Three days of freedom. Presented by In And Out Podcast. Sponsored by UmmaSonoma.">
   <meta property="og:image" content="hero.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
@@ -196,7 +196,168 @@
       50%       { opacity: 1; }
     }
 
-    /* ── SECTION DIVIDER ─────────────────────── */
+    /* ── SECTION LABELS ─────────────────────── */
+    .section__eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 52px;
+    }
+
+    /* ── WEEKEND SCHEDULE ───────────────────── */
+    .schedule {
+      position: relative;
+      z-index: 1;
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .schedule__days {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    @media (min-width: 640px) {
+      .schedule__days { grid-template-columns: repeat(3, 1fr); }
+    }
+    .schedule__day {
+      padding: 32px 24px;
+      border: 1px solid rgba(201,168,76,0.12);
+      text-align: center;
+    }
+    .schedule__day--featured {
+      border-color: rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.04);
+    }
+    .schedule__day-date {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 14px;
+    }
+    .schedule__day-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .schedule__day-detail {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+    .schedule__day-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 14px;
+      border: 1px solid var(--gold-muted);
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── LINEUP ──────────────────────────────── */
+    .lineup {
+      position: relative;
+      z-index: 1;
+      padding: 72px 24px;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(9,28,18,0.6) 50%, transparent 100%);
+    }
+    .lineup__artists {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .lineup__artist {
+      width: 100%;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .lineup__artist:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
+    .lineup__artist-role {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 8px;
+    }
+    .lineup__artist-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .lineup__artist--headliner .lineup__artist-name {
+      font-size: clamp(36px, 8vw, 58px);
+    }
+    .lineup__artist:not(.lineup__artist--headliner) .lineup__artist-name {
+      font-size: clamp(22px, 5vw, 34px);
+    }
+    .lineup__artist-credit {
+      margin-top: 8px;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--cream-dim);
+    }
+    .lineup__artist-tbc {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 12px;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+    }
+
+    /* ── SPONSOR ─────────────────────────────── */
+    .sponsor {
+      position: relative;
+      z-index: 1;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .sponsor__label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 12px;
+    }
+    .sponsor__name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 5vw, 32px);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+    }
     .divider {
       display: flex;
       align-items: center;
@@ -569,13 +730,13 @@
     <div class="hero__bg" id="heroBg"></div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <p class="hero__eyebrow">Dell Harris &amp; Extra Terrestrial Solutions Present</p>
+      <p class="hero__eyebrow">In And Out Podcast Presents</p>
       <h1 class="hero__title">FREE&#8209;ISH</h1>
-      <p class="hero__sub">A Juneteenth Estate Activation</p>
+      <p class="hero__sub">Juneteenth Weekend Freedom Celebration</p>
       <div class="hero__meta">
-        <span>June 19, 2026</span>
+        <span>June 19–21, 2026</span>
         &nbsp;·&nbsp;
-        <span>2PM – 11PM</span>
+        <span>3 Days</span>
         &nbsp;·&nbsp;
         <span>Atlanta, GA</span>
       </div>
@@ -595,16 +756,16 @@
     </div>
     <div class="info__grid reveal reveal-d1">
       <div class="info__item">
-        <div class="info__label">Date</div>
-        <div class="info__value">June 19<br>2026</div>
+        <div class="info__label">Dates</div>
+        <div class="info__value">June 19–21<br>2026</div>
       </div>
       <div class="info__item">
-        <div class="info__label">Hours</div>
-        <div class="info__value">2PM<br>– 11PM</div>
+        <div class="info__label">Duration</div>
+        <div class="info__value">3 Day<br>Weekend</div>
       </div>
       <div class="info__item">
-        <div class="info__label">Venue</div>
-        <div class="info__value">Private<br>Estate</div>
+        <div class="info__label">Location</div>
+        <div class="info__value">Atlanta<br>GA</div>
       </div>
       <div class="info__item">
         <div class="info__label">Entry</div>
@@ -621,16 +782,17 @@
       <div class="divider__line"></div>
     </div>
     <div class="vibe__copy reveal reveal-d1">
-      <p>Brick walls. Wood-paneled rooms<br>that hold history.</p>
+      <p>Three days. Three experiences.<br>One weekend that belongs to us.</p>
       <br>
-      <p>A pool surrounded by trees.<br>
-      A lawn wide enough to finally exhale.</p>
+      <p>It starts at the Mansion on Juneteenth —<br>
+      a pool, a lawn wide enough to finally exhale,<br>
+      and a DJ set that doesn't stop.</p>
+      <br>
+      <p>Then the weekend keeps going.<br>
+      <strong>The Mural Event, Saturday and Sunday.</strong></p>
       <br>
       <p>The ancestors made a way.<br>
       <strong>We're making memories.</strong></p>
-      <br>
-      <p>An intimate, curated experience for the culture —<br>
-      indoors and out. All day. All ages. All love.</p>
       <br>
       <p><em>Details unlocked when you RSVP.</em></p>
     </div>
@@ -639,7 +801,7 @@
       <span class="tag">🌿 Afro-Futurist</span>
       <span class="tag">🏊🏾 Pool Party</span>
       <span class="tag">👶🏾 Family Friendly</span>
-      <span class="tag">☀️ Day Party</span>
+      <span class="tag">🎨 Mural Event</span>
       <span class="tag">✨ Private Estate</span>
     </div>
   </section>
@@ -685,6 +847,68 @@
     </div>
   </section>
 
+  <!-- WEEKEND SCHEDULE -->
+  <section class="schedule" aria-label="Weekend schedule">
+    <div class="divider reveal">
+      <div class="divider__line"></div>
+      <div class="divider__mark">✦</div>
+      <div class="divider__line"></div>
+    </div>
+    <p class="section__eyebrow reveal">The Weekend</p>
+    <h2 class="section__heading reveal reveal-d1">Three Days of Freedom</h2>
+    <div class="schedule__days reveal reveal-d2">
+      <div class="schedule__day schedule__day--featured">
+        <div class="schedule__day-date">Friday · June 19</div>
+        <div class="schedule__day-name">The Mansion</div>
+        <div class="schedule__day-detail">Private Estate<br>2PM – 11PM</div>
+        <div class="schedule__day-badge">Juneteenth Day</div>
+      </div>
+      <div class="schedule__day">
+        <div class="schedule__day-date">Saturday · June 20</div>
+        <div class="schedule__day-name">The Mural Event</div>
+        <div class="schedule__day-detail">Details coming soon</div>
+      </div>
+      <div class="schedule__day">
+        <div class="schedule__day-date">Sunday · June 21</div>
+        <div class="schedule__day-name">The Mural Event</div>
+        <div class="schedule__day-detail">Details coming soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEUP -->
+  <section class="lineup" aria-label="DJ Lineup">
+    <div class="divider reveal">
+      <div class="divider__line"></div>
+      <div class="divider__mark">✦</div>
+      <div class="divider__line"></div>
+    </div>
+    <p class="section__eyebrow reveal">The Sound</p>
+    <h2 class="section__heading reveal reveal-d1">The Lineup</h2>
+    <div class="lineup__artists reveal reveal-d2">
+      <div class="lineup__artist lineup__artist--headliner">
+        <div class="lineup__artist-role">Main DJ</div>
+        <div class="lineup__artist-name">Dell Harris</div>
+      </div>
+      <div class="lineup__artist">
+        <div class="lineup__artist-role">Guest Set</div>
+        <div class="lineup__artist-name">DJ Ray G</div>
+        <div class="lineup__artist-credit">Cardi B's DJ</div>
+      </div>
+      <div class="lineup__artist">
+        <div class="lineup__artist-role">Guest Set</div>
+        <div class="lineup__artist-name">Dun Deal</div>
+        <div class="lineup__artist-tbc">Pending Confirmation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPONSOR -->
+  <section class="sponsor" aria-label="Sponsors">
+    <div class="sponsor__label">Primary Sponsor</div>
+    <div class="sponsor__name">UmmaSonoma</div>
+  </section>
+
   <!-- RSVP FORM -->
   <section class="rsvp" id="rsvp" aria-label="RSVP">
     <div class="rsvp__inner">
@@ -696,8 +920,8 @@
 
       <!-- Form -->
       <div id="rsvpFormWrap">
-        <h2 class="rsvp__heading reveal">Claim Your Spot</h2>
-        <p class="rsvp__sub reveal reveal-d1">Address revealed upon RSVP &nbsp;·&nbsp; June 19 &nbsp;·&nbsp; 2PM – 11PM</p>
+        <h2 class="rsvp__heading reveal">Claim Your Weekend</h2>
+        <p class="rsvp__sub reveal reveal-d1">Address & details revealed upon RSVP &nbsp;·&nbsp; June 19–21</p>
 
         <form id="rsvpFormEl" class="rsvp__form reveal reveal-d2" novalidate>
           <div class="form__row">
@@ -749,7 +973,8 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>FREE&#8209;ISH &nbsp;·&nbsp; JUNETEENTH 2026 &nbsp;·&nbsp; ATLANTA, GA</p>
+    <p>FREE&#8209;ISH &nbsp;·&nbsp; JUNETEENTH WEEKEND 2026 &nbsp;·&nbsp; ATLANTA, GA</p>
+    <p style="margin-top:8px">In And Out Podcast &nbsp;·&nbsp; Presented by UmmaSonoma</p>
   </footer>
 
   <script>
