@@ -321,7 +321,7 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 24px rgba(232,0,138,0.22);
     }
-    .spotlight__wall-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px 88px; }
+    .spotlight__wall-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px 0; }
     .spotlight__wall-inner { position: relative; overflow: hidden; }
     .spotlight__wall-img {
       width: 100%;
@@ -345,6 +345,39 @@
       text-align: center;
       opacity: 0.75;
     }
+    /* Event info block */
+    .spotlight__event {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 52px 24px 40px;
+      border-top: 1px solid rgba(232,0,138,0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .spotlight__event-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .spotlight__event-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      margin-bottom: 8px;
+    }
+    .spotlight__event-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.3;
+    }
+    .spotlight__event-links { display: flex; flex-wrap: wrap; gap: 10px; }
 
     /* ── HERO (video) ─────────────────────────── */
     .hero {
@@ -778,6 +811,38 @@
       </div>
     </div>
 
+    <!-- MURAL MOCK-UP — TOP -->
+    <div class="spotlight__wall-wrap reveal">
+      <div class="spotlight__wall-inner">
+        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
+          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
+      </div>
+      <p class="spotlight__wall-caption">Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026</p>
+    </div>
+
+    <!-- EVENT INFO + UMMA SONOMA -->
+    <div class="spotlight__event reveal">
+      <div class="spotlight__event-info">
+        <div>
+          <div class="spotlight__event-label">Venue</div>
+          <div class="spotlight__event-value">Book Store Gallery<br>Atlanta, GA</div>
+        </div>
+        <div>
+          <div class="spotlight__event-label">Mural Dates</div>
+          <div class="spotlight__event-value">June 20–21<br>2026</div>
+        </div>
+        <div>
+          <div class="spotlight__event-label">Presented By</div>
+          <div class="spotlight__event-value">UmmaSonoma</div>
+        </div>
+      </div>
+      <div class="spotlight__event-links">
+        <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/ummasonoma" target="_blank" rel="noopener">IG @ummasonoma</a>
+        <a class="spotlight__link spotlight__link--outline" href="https://www.ummasonoma.com/" target="_blank" rel="noopener">ummasonoma.com</a>
+      </div>
+    </div>
+
+    <!-- ARTIST INFO — BOTTOM -->
     <div class="spotlight__content reveal">
       <div class="spotlight__name-block">
         <h2 class="spotlight__name">Lisette<br>Correa</h2>
@@ -808,10 +873,6 @@
             <div class="spotlight__stat-num">ATL</div>
             <div class="spotlight__stat-label">Based</div>
           </div>
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">8×8</div>
-            <div class="spotlight__stat-label">Mural Scale</div>
-          </div>
         </div>
         <div class="spotlight__links">
           <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">IG @arrrtaddict</a>
@@ -820,14 +881,6 @@
           <a class="spotlight__link spotlight__link--outline" href="https://www.artsy.net/artist/arrrtaddict" target="_blank" rel="noopener">Artsy</a>
         </div>
       </div>
-    </div>
-
-    <div class="spotlight__wall-wrap reveal">
-      <div class="spotlight__wall-inner">
-        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
-          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
-      </div>
-      <p class="spotlight__wall-caption">Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026</p>
     </div>
 
   </section>
