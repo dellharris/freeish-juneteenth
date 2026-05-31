@@ -7,7 +7,7 @@
   <meta name="description" content="June 19–20 · Atlanta, GA · Two nights. The Mansion. The Mural. The culture. Presented by In And Out Podcast.">
   <meta property="og:title" content="FREE-ISH · Juneteenth Weekend Freedom Celebration">
   <meta property="og:description" content="June 19–20 · Atlanta, GA · Two nights of freedom. Presented by In And Out Podcast. Sponsored by UmmaSonoma.">
-  <meta property="og:image" content="hero.jpg">
+  <meta property="og:image" content="mural.jpg">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,17 +18,19 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:       #07070A;
-      --gold:        #C9A84C;
-      --gold-bright: #F2C94C;
-      --gold-muted:  #7A6030;
-      --green-deep:  #091C12;
-      --green-mid:   #1E4D35;
-      --cream:       #F5EFE6;
-      --cream-dim:   #9E9080;
+      --black:       #080010;
+      --magenta:     #E8008A;
+      --magenta-dim: #7A003D;
+      --purple:      #7C3AED;
+      --lime:        #BBFF00;
+      --deep:        #0D0020;
+      --mid:         #220044;
+      --cream:       #FFF0F8;
+      --cream-dim:   #C8A0B8;
       --neon-pink:   #FF1F8F;
-      --neon-teal:   #00D4FF;
       --neon-purple: #BF5FFF;
+      --neon-teal:   #00D4FF;
+      --neon-green:  #BBFF00;
     }
 
     html { scroll-behavior: smooth; }
@@ -51,555 +53,11 @@
     .star {
       position: absolute;
       border-radius: 50%;
-      background: #fff;
       animation: twinkle var(--d, 3s) ease-in-out infinite alternate;
     }
     @keyframes twinkle {
       from { opacity: var(--a, 0.15); transform: scale(1); }
       to   { opacity: calc(var(--a, 0.15) * 3); transform: scale(1.5); }
-    }
-
-    /* ── HERO ─────────────────────────────────── */
-    .hero {
-      position: relative;
-      height: 100svh;
-      min-height: 620px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    .hero__video-wrap {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .hero__video-wrap iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw;
-      height: 56.25vw;   /* 16:9 */
-      min-height: 100%;
-      min-width: 177.78vh; /* 16/9 × 100vh */
-      pointer-events: none;
-      filter: brightness(0.55) saturate(0.8);
-    }
-
-    .hero__overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(7,7,10,0.25) 0%,
-        rgba(7,7,10,0.05) 35%,
-        rgba(7,7,10,0.55) 75%,
-        rgba(7,7,10,1)    100%
-      );
-    }
-
-    .hero__content {
-      position: relative;
-      z-index: 2;
-      padding: 0 24px;
-      max-width: 760px;
-    }
-
-    .hero__eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 22px;
-      opacity: 0;
-      animation: riseIn 0.9s ease forwards 0.4s;
-    }
-
-    .hero__title {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(72px, 22vw, 148px);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -0.025em;
-      background: linear-gradient(100deg,
-        #7A6030 0%,
-        #F2C94C 22%,
-        #FFF8E1 48%,
-        #F2C94C 72%,
-        #C9A84C 88%,
-        #7A6030 100%
-      );
-      background-size: 250%;
-      background-position: 0%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: riseIn 0.9s ease forwards 0.6s, goldShimmer 6s ease-in-out 1.8s infinite;
-      opacity: 0;
-      margin-bottom: 20px;
-    }
-
-    @keyframes goldShimmer {
-      0%   { background-position: 0%; }
-      50%  { background-position: 100%; }
-      100% { background-position: 0%; }
-    }
-
-    .hero__sub {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: clamp(14px, 3.5vw, 22px);
-      font-style: italic;
-      color: var(--cream);
-      letter-spacing: 0.06em;
-      margin-bottom: 32px;
-      opacity: 0;
-      animation: riseIn 0.9s ease forwards 0.8s;
-    }
-
-    .hero__meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--gold);
-      opacity: 0;
-      animation: riseIn 0.9s ease forwards 1.0s;
-    }
-    .hero__meta span { color: var(--gold-muted); }
-
-    .hero__scroll {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeIn 1s ease forwards 2s;
-    }
-    .hero__scroll-line {
-      width: 1px;
-      height: 52px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: pulse 2.2s ease-in-out infinite;
-    }
-    .hero__scroll-label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.3; }
-      50%       { opacity: 1; }
-    }
-
-    /* ── SECTION LABELS ─────────────────────── */
-    .section__eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 14px;
-    }
-    .section__heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(26px, 5vw, 42px);
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.2;
-      margin-bottom: 52px;
-    }
-
-    /* ── WEEKEND SCHEDULE ───────────────────── */
-    .schedule {
-      position: relative;
-      z-index: 1;
-      padding: 72px 24px;
-      text-align: center;
-    }
-    .schedule__days {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2px;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    @media (min-width: 560px) {
-      .schedule__days { grid-template-columns: repeat(2, 1fr); }
-    }
-    .schedule__day {
-      padding: 32px 24px;
-      border: 1px solid rgba(201,168,76,0.12);
-      text-align: center;
-    }
-    .schedule__day--featured {
-      border-color: rgba(201,168,76,0.35);
-      background: rgba(201,168,76,0.04);
-    }
-    .schedule__day-date {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      margin-bottom: 14px;
-    }
-    .schedule__day-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--cream);
-      margin-bottom: 10px;
-    }
-    .schedule__day-detail {
-      font-size: 12px;
-      font-weight: 300;
-      color: var(--cream-dim);
-      line-height: 1.7;
-    }
-    .schedule__day-badge {
-      display: inline-block;
-      margin-top: 14px;
-      padding: 5px 14px;
-      border: 1px solid var(--gold-muted);
-      border-radius: 100px;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* ── LINEUP ──────────────────────────────── */
-    .lineup {
-      position: relative;
-      z-index: 1;
-      padding: 72px 24px;
-      text-align: center;
-      background: linear-gradient(180deg, transparent 0%, rgba(9,28,18,0.6) 50%, transparent 100%);
-    }
-    .lineup__artists {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-      max-width: 540px;
-      margin: 0 auto;
-    }
-    .lineup__artist {
-      width: 100%;
-      padding: 28px 0;
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-    }
-    .lineup__artist:first-child { border-top: 1px solid rgba(201,168,76,0.1); }
-    .lineup__artist-role {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      margin-bottom: 8px;
-    }
-    .lineup__artist-name {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1;
-    }
-    .lineup__artist--headliner .lineup__artist-name {
-      font-size: clamp(36px, 8vw, 58px);
-    }
-    .lineup__artist:not(.lineup__artist--headliner) .lineup__artist-name {
-      font-size: clamp(22px, 5vw, 34px);
-    }
-    .lineup__artist-credit {
-      margin-top: 8px;
-      font-size: 11px;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--cream-dim);
-    }
-    .lineup__artist-tbc {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 4px 12px;
-      border: 1px solid rgba(201,168,76,0.25);
-      border-radius: 100px;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-    }
-
-    /* ── SPONSOR ─────────────────────────────── */
-    .sponsor {
-      position: relative;
-      z-index: 1;
-      padding: 48px 24px;
-      text-align: center;
-    }
-    .sponsor__label {
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      margin-bottom: 12px;
-    }
-    .sponsor__name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(20px, 5vw, 32px);
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.05em;
-    }
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      max-width: 540px;
-      margin: 0 auto 52px;
-      padding: 0 24px;
-    }
-    .divider__line {
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--gold-muted), transparent);
-    }
-    .divider__mark {
-      font-size: 14px;
-      color: var(--gold);
-      line-height: 1;
-    }
-
-    /* ── INFO STRIP ──────────────────────────── */
-    .info {
-      position: relative;
-      z-index: 1;
-      padding: 80px 24px 72px;
-      text-align: center;
-    }
-    .info__grid {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
-      max-width: 680px;
-      margin: 0 auto;
-    }
-    .info__item {
-      flex: 0 0 50%;
-      padding: 24px 16px;
-      border: 1px solid rgba(201,168,76,0.1);
-    }
-    @media (min-width: 600px) {
-      .info__item { flex: 0 0 25%; }
-    }
-    .info__label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      margin-bottom: 8px;
-    }
-    .info__value {
-      font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.2;
-    }
-
-    /* ── VIBE COPY ───────────────────────────── */
-    .vibe {
-      position: relative;
-      z-index: 1;
-      padding: 72px 24px;
-      max-width: 580px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .vibe__copy {
-      font-size: clamp(15px, 2.8vw, 19px);
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--cream);
-    }
-    .vibe__copy strong {
-      font-weight: 600;
-      color: var(--gold);
-    }
-    .vibe__copy em {
-      font-style: italic;
-      color: var(--cream-dim);
-    }
-    .vibe__tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 44px;
-    }
-    .tag {
-      padding: 9px 20px;
-      border: 1px solid var(--gold-muted);
-      border-radius: 100px;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-
-    /* ── GALLERY ─────────────────────────────── */
-    .gallery {
-      position: relative;
-      z-index: 1;
-      padding: 72px 16px;
-    }
-    .gallery__grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto auto;
-      gap: 8px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .gallery__item {
-      overflow: hidden;
-      position: relative;
-    }
-    .gallery__item--wide { grid-column: 1 / -1; }
-    .gallery__item--tall { grid-row: span 2; }
-
-    .gallery__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.75) brightness(0.82);
-      transition: filter 0.5s ease, transform 0.6s ease;
-    }
-    .gallery__item--wide .gallery__img { min-height: 260px; max-height: 460px; }
-    .gallery__item:not(.gallery__item--wide) .gallery__img { aspect-ratio: 4/3; }
-    .gallery__item--tall .gallery__img { aspect-ratio: unset; }
-
-    .gallery__item:hover .gallery__img {
-      filter: saturate(1) brightness(1);
-      transform: scale(1.03);
-    }
-
-    /* ── CTA ─────────────────────────────────── */
-    .cta {
-      position: relative;
-      z-index: 1;
-      padding: 96px 24px 112px;
-      text-align: center;
-      background: linear-gradient(180deg,
-        transparent 0%,
-        var(--green-deep) 20%,
-        var(--green-deep) 80%,
-        transparent 100%
-      );
-    }
-    .cta__heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(30px, 7vw, 56px);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--cream);
-      margin-bottom: 14px;
-    }
-    .cta__sub {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-      margin-bottom: 52px;
-    }
-    .cta__btn {
-      display: inline-block;
-      padding: 20px 58px;
-      background: linear-gradient(135deg, #B8902E 0%, #F2C94C 45%, #C9A84C 100%);
-      color: #07070A;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      box-shadow: 0 0 48px rgba(201,168,76,0.2);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .cta__btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 64px rgba(201,168,76,0.45);
-    }
-    .cta__note {
-      margin-top: 24px;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      color: var(--green-mid);
-    }
-
-    /* ── FOOTER ──────────────────────────────── */
-    footer {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      padding: 32px 24px 52px;
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      opacity: 0.6;
-    }
-    footer a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* ── REVEAL ──────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(36px);
-      transition: opacity 0.9s ease, transform 0.9s ease;
-    }
-    .reveal.in { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
-
-    /* ── UTILS ───────────────────────────────── */
-    @keyframes riseIn {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
     }
 
     /* ── ARTIST SPOTLIGHT ────────────────────── */
@@ -608,11 +66,10 @@
       z-index: 1;
       overflow: hidden;
     }
-
     .spotlight__hero {
       position: relative;
-      height: 88vh;
-      min-height: 520px;
+      height: 100svh;
+      min-height: 620px;
       overflow: hidden;
     }
     .spotlight__hero-img {
@@ -620,22 +77,20 @@
       height: 100%;
       object-fit: cover;
       object-position: center 18%;
-      filter: saturate(1.2) brightness(0.72);
+      filter: saturate(1.3) brightness(0.78);
       transform: scale(1.06);
       transition: transform 10s ease;
     }
-    .spotlight__hero:hover .spotlight__hero-img {
-      transform: scale(1);
-    }
+    .spotlight__hero:hover .spotlight__hero-img { transform: scale(1); }
     .spotlight__hero-overlay {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(7,7,10,0.08) 0%,
-        rgba(7,7,10,0.0)  25%,
-        rgba(7,7,10,0.7)  72%,
-        rgba(7,7,10,1)    100%
+        rgba(8,0,16,0.02) 0%,
+        rgba(8,0,16,0.0)  18%,
+        rgba(8,0,16,0.6)  70%,
+        rgba(8,0,16,1)    100%
       );
     }
     .spotlight__hero-tag {
@@ -651,7 +106,7 @@
       padding: 9px 22px;
       border: 1px solid rgba(255,31,143,0.5);
       border-radius: 100px;
-      background: rgba(7,7,10,0.55);
+      background: rgba(8,0,16,0.55);
       backdrop-filter: blur(10px);
       white-space: nowrap;
     }
@@ -671,7 +126,7 @@
       line-height: 0.88;
       letter-spacing: -0.02em;
       color: var(--cream);
-      text-shadow: 0 0 80px rgba(255,31,143,0.35);
+      text-shadow: 0 0 80px rgba(232,0,138,0.55), 0 0 160px rgba(124,58,237,0.3);
     }
     .spotlight__hero-handle {
       margin-top: 14px;
@@ -685,7 +140,7 @@
     /* Marquee */
     .spotlight__marquee-wrap {
       overflow: hidden;
-      background: var(--neon-pink);
+      background: var(--magenta);
       padding: 15px 0;
     }
     .spotlight__marquee {
@@ -698,7 +153,7 @@
       font-weight: 700;
       letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: #07070A;
+      color: #080010;
       white-space: nowrap;
     }
     @keyframes marqueeScroll {
@@ -722,10 +177,7 @@
         align-items: start;
       }
     }
-    .spotlight__name-block {
-      position: sticky;
-      top: 40px;
-    }
+    .spotlight__name-block { position: sticky; top: 40px; }
     .spotlight__name {
       font-family: 'Playfair Display', serif;
       font-size: clamp(42px, 8vw, 72px);
@@ -747,11 +199,7 @@
       border-radius: 100px;
       margin-bottom: 24px;
     }
-    .spotlight__disciplines {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+    .spotlight__disciplines { display: flex; flex-direction: column; gap: 8px; }
     .spotlight__discipline {
       font-size: 10px;
       font-weight: 600;
@@ -767,11 +215,9 @@
       display: block;
       width: 20px;
       height: 1px;
-      background: var(--neon-pink);
+      background: var(--magenta);
       flex-shrink: 0;
     }
-
-    /* Right column */
     .spotlight__quote {
       font-family: 'Playfair Display', serif;
       font-size: clamp(20px, 3.8vw, 28px);
@@ -780,7 +226,7 @@
       line-height: 1.45;
       color: var(--cream);
       padding-left: 24px;
-      border-left: 3px solid var(--neon-pink);
+      border-left: 3px solid var(--magenta);
       margin-bottom: 40px;
     }
     .spotlight__bio-text {
@@ -790,27 +236,22 @@
       color: var(--cream-dim);
       margin-bottom: 44px;
     }
-    .spotlight__bio-text strong {
-      color: var(--cream);
-      font-weight: 600;
-    }
-
-    /* Stats */
+    .spotlight__bio-text strong { color: var(--cream); font-weight: 600; }
     .spotlight__stats {
       display: flex;
       gap: 40px;
       margin-bottom: 44px;
       flex-wrap: wrap;
       padding: 32px 0;
-      border-top: 1px solid rgba(255,31,143,0.15);
-      border-bottom: 1px solid rgba(255,31,143,0.15);
+      border-top: 1px solid rgba(232,0,138,0.18);
+      border-bottom: 1px solid rgba(232,0,138,0.18);
     }
     .spotlight__stat-num {
       font-family: 'Playfair Display', serif;
       font-size: 44px;
       font-weight: 900;
       line-height: 1;
-      background: linear-gradient(135deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+      background: linear-gradient(135deg, var(--magenta) 0%, var(--neon-purple) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -823,13 +264,7 @@
       text-transform: uppercase;
       color: var(--cream-dim);
     }
-
-    /* Links */
-    .spotlight__links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
+    .spotlight__links { display: flex; flex-wrap: wrap; gap: 10px; }
     .spotlight__link {
       display: inline-block;
       padding: 11px 22px;
@@ -842,46 +277,31 @@
       border-radius: 100px;
       transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
     }
-    .spotlight__link--ig {
-      background: #833ab4;
-      color: #fff;
-    }
+    .spotlight__link--ig { background: #833ab4; color: #fff; }
     .spotlight__link--ig:hover {
       background: #9f45d8;
       transform: translateY(-2px);
       box-shadow: 0 6px 24px rgba(131,58,180,0.45);
     }
-    .spotlight__link--outline {
-      border: 1px solid rgba(255,31,143,0.35);
-      color: var(--neon-pink);
-    }
+    .spotlight__link--outline { border: 1px solid rgba(232,0,138,0.4); color: var(--magenta); }
     .spotlight__link--outline:hover {
-      background: rgba(255,31,143,0.08);
-      border-color: var(--neon-pink);
+      background: rgba(232,0,138,0.1);
+      border-color: var(--magenta);
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(255,31,143,0.18);
+      box-shadow: 0 6px 24px rgba(232,0,138,0.22);
     }
-
-    /* Wall / mock-up photo */
-    .spotlight__wall-wrap {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 24px 88px;
-    }
-    .spotlight__wall-inner {
-      position: relative;
-      overflow: hidden;
-    }
+    .spotlight__wall-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px 88px; }
+    .spotlight__wall-inner { position: relative; overflow: hidden; }
     .spotlight__wall-img {
       width: 100%;
       display: block;
       max-height: 560px;
       object-fit: cover;
-      filter: saturate(1.05) brightness(0.88);
+      filter: saturate(1.1) brightness(0.88);
       transition: filter 0.5s ease, transform 0.6s ease;
     }
     .spotlight__wall-inner:hover .spotlight__wall-img {
-      filter: saturate(1.2) brightness(1);
+      filter: saturate(1.3) brightness(1);
       transform: scale(1.02);
     }
     .spotlight__wall-caption {
@@ -890,65 +310,344 @@
       font-weight: 600;
       letter-spacing: 0.35em;
       text-transform: uppercase;
-      color: var(--neon-pink);
+      color: var(--magenta);
       text-align: center;
-      opacity: 0.7;
+      opacity: 0.75;
     }
+
+    /* ── HERO (video) ─────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 620px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hero__video-wrap {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .hero__video-wrap iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      height: 56.25vw;
+      min-height: 100%;
+      min-width: 177.78vh;
+      pointer-events: none;
+      filter: brightness(0.45) saturate(0.65);
+    }
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(8,0,16,0.3)  0%,
+        rgba(8,0,16,0.05) 35%,
+        rgba(8,0,16,0.6)  75%,
+        rgba(8,0,16,1)    100%
+      );
+    }
+    .hero__content { position: relative; z-index: 2; padding: 0 24px; max-width: 760px; }
+    .hero__eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 22px;
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 0.4s;
+    }
+    .hero__title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(72px, 22vw, 148px);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.025em;
+      background: linear-gradient(100deg,
+        #7A003D 0%,
+        #E8008A 20%,
+        #FFB0D8 46%,
+        #BF5FFF 68%,
+        #7C3AED 88%,
+        #7A003D 100%
+      );
+      background-size: 250%;
+      background-position: 0%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: riseIn 0.9s ease forwards 0.6s, muralShimmer 6s ease-in-out 1.8s infinite;
+      opacity: 0;
+      margin-bottom: 20px;
+    }
+    @keyframes muralShimmer {
+      0%   { background-position: 0%; }
+      50%  { background-position: 100%; }
+      100% { background-position: 0%; }
+    }
+    .hero__sub {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(14px, 3.5vw, 22px);
+      font-style: italic;
+      color: var(--cream);
+      letter-spacing: 0.06em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 0.8s;
+    }
+    .hero__meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      opacity: 0;
+      animation: riseIn 0.9s ease forwards 1.0s;
+    }
+    .hero__meta span { color: var(--magenta-dim); }
+    .hero__scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s;
+    }
+    .hero__scroll-line {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, var(--magenta), transparent);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    .hero__scroll-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+    }
+    @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    /* ── SECTION LABELS ─────────────────────── */
+    .section__eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 14px;
+    }
+    .section__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 42px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 52px;
+    }
+
+    /* ── DIVIDER ─────────────────────────────── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      max-width: 540px;
+      margin: 0 auto 52px;
+      padding: 0 24px;
+    }
+    .divider__line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--magenta-dim), transparent);
+    }
+    .divider__mark { font-size: 14px; color: var(--magenta); line-height: 1; }
+
+    /* ── INFO STRIP ──────────────────────────── */
+    .info { position: relative; z-index: 1; padding: 80px 24px 72px; text-align: center; }
+    .info__grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .info__item { flex: 0 0 50%; padding: 24px 16px; border: 1px solid rgba(232,0,138,0.12); }
+    @media (min-width: 600px) { .info__item { flex: 0 0 25%; } }
+    .info__label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      margin-bottom: 8px;
+    }
+    .info__value {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    /* ── VIBE COPY ───────────────────────────── */
+    .vibe {
+      position: relative;
+      z-index: 1;
+      padding: 72px 24px;
+      max-width: 580px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .vibe__copy { font-size: clamp(15px, 2.8vw, 19px); font-weight: 300; line-height: 1.9; color: var(--cream); }
+    .vibe__copy strong { font-weight: 600; color: var(--magenta); }
+    .vibe__copy em { font-style: italic; color: var(--cream-dim); }
+    .vibe__tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 44px; }
+    .tag {
+      padding: 9px 20px;
+      border: 1px solid var(--magenta-dim);
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--magenta);
+    }
+
+    /* ── GALLERY ─────────────────────────────── */
+    .gallery { position: relative; z-index: 1; padding: 72px 16px; }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 8px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .gallery__item { overflow: hidden; position: relative; }
+    .gallery__item--wide { grid-column: 1 / -1; }
+    .gallery__item--tall { grid-row: span 2; }
+    .gallery__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.7) brightness(0.78);
+      transition: filter 0.5s ease, transform 0.6s ease;
+    }
+    .gallery__item--wide .gallery__img { min-height: 260px; max-height: 460px; }
+    .gallery__item:not(.gallery__item--wide) .gallery__img { aspect-ratio: 4/3; }
+    .gallery__item--tall .gallery__img { aspect-ratio: unset; }
+    .gallery__item:hover .gallery__img { filter: saturate(1.1) brightness(1); transform: scale(1.03); }
+
+    /* ── WEEKEND SCHEDULE ───────────────────── */
+    .schedule { position: relative; z-index: 1; padding: 72px 24px; text-align: center; }
+    .schedule__days { display: grid; grid-template-columns: 1fr; gap: 2px; max-width: 680px; margin: 0 auto; }
+    @media (min-width: 560px) { .schedule__days { grid-template-columns: repeat(2, 1fr); } }
+    .schedule__day { padding: 32px 24px; border: 1px solid rgba(232,0,138,0.15); text-align: center; }
+    .schedule__day--featured { border-color: rgba(232,0,138,0.4); background: rgba(232,0,138,0.05); }
+    .schedule__day-date {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      margin-bottom: 14px;
+    }
+    .schedule__day-name { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--cream); margin-bottom: 10px; }
+    .schedule__day-detail { font-size: 12px; font-weight: 300; color: var(--cream-dim); line-height: 1.7; }
+    .schedule__day-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 14px;
+      border: 1px solid var(--magenta-dim);
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--magenta);
+    }
+
+    /* ── LINEUP ──────────────────────────────── */
+    .lineup {
+      position: relative;
+      z-index: 1;
+      padding: 72px 24px;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(13,0,32,0.7) 50%, transparent 100%);
+    }
+    .lineup__artists { display: flex; flex-direction: column; align-items: center; gap: 0; max-width: 540px; margin: 0 auto; }
+    .lineup__artist { width: 100%; padding: 28px 0; border-bottom: 1px solid rgba(232,0,138,0.12); }
+    .lineup__artist:first-child { border-top: 1px solid rgba(232,0,138,0.12); }
+    .lineup__artist-role {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      margin-bottom: 8px;
+    }
+    .lineup__artist-name { font-family: 'Playfair Display', serif; font-weight: 700; color: var(--cream); line-height: 1; }
+    .lineup__artist--headliner .lineup__artist-name { font-size: clamp(36px, 8vw, 58px); }
+    .lineup__artist:not(.lineup__artist--headliner) .lineup__artist-name { font-size: clamp(22px, 5vw, 34px); }
+    .lineup__artist-credit { margin-top: 8px; font-size: 11px; font-weight: 300; letter-spacing: 0.15em; color: var(--cream-dim); }
+    .lineup__artist-tbc {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 12px;
+      border: 1px solid rgba(232,0,138,0.25);
+      border-radius: 100px;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+    }
+
+    /* ── SPONSOR ─────────────────────────────── */
+    .sponsor { position: relative; z-index: 1; padding: 48px 24px; text-align: center; }
+    .sponsor__label { font-size: 9px; font-weight: 600; letter-spacing: 0.4em; text-transform: uppercase; color: var(--magenta-dim); margin-bottom: 12px; }
+    .sponsor__name { font-family: 'Playfair Display', serif; font-size: clamp(20px, 5vw, 32px); font-weight: 700; color: var(--magenta); letter-spacing: 0.05em; }
 
     /* ── RSVP FORM ───────────────────────────── */
     .rsvp {
       position: relative;
       z-index: 1;
       padding: 96px 24px 112px;
-      background: linear-gradient(180deg,
-        transparent 0%,
-        var(--green-deep) 20%,
-        var(--green-deep) 80%,
-        transparent 100%
-      );
+      background: linear-gradient(180deg, transparent 0%, var(--deep) 20%, var(--deep) 80%, transparent 100%);
     }
-    .rsvp__inner {
-      max-width: 500px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .rsvp__heading {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(30px, 7vw, 56px);
-      font-weight: 700;
-      line-height: 1.15;
-      color: var(--cream);
-      margin-bottom: 14px;
-    }
-    .rsvp__sub {
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-      margin-bottom: 48px;
-    }
+    .rsvp__inner { max-width: 500px; margin: 0 auto; text-align: center; }
+    .rsvp__heading { font-family: 'Playfair Display', serif; font-size: clamp(30px, 7vw, 56px); font-weight: 700; line-height: 1.15; color: var(--cream); margin-bottom: 14px; }
+    .rsvp__sub { font-size: 12px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cream-dim); margin-bottom: 48px; }
     .rsvp__form { text-align: left; }
-    .form__row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .form__group { margin-bottom: 18px; }
-    .form__label {
-      display: block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold-muted);
-      margin-bottom: 8px;
-    }
+    .form__label { display: block; font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--magenta-dim); margin-bottom: 8px; }
     .form__input {
       width: 100%;
       padding: 15px 18px;
       background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(201,168,76,0.22);
+      border: 1px solid rgba(232,0,138,0.25);
       border-radius: 2px;
       color: var(--cream);
       font-family: 'Space Grotesk', sans-serif;
@@ -959,32 +658,22 @@
       -webkit-appearance: none;
       appearance: none;
     }
-    .form__input::placeholder { color: rgba(245,239,230,0.2); }
-    .form__input:focus {
-      border-color: var(--gold);
-      background: rgba(255,255,255,0.07);
-    }
+    .form__input::placeholder { color: rgba(255,240,248,0.2); }
+    .form__input:focus { border-color: var(--magenta); background: rgba(232,0,138,0.06); }
     .form__select {
       cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E8008A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 18px center;
       padding-right: 44px;
     }
-    .form__select option { background: #0f1f14; color: var(--cream); }
-    .form__error {
-      color: #ff7b7b;
-      font-size: 12px;
-      letter-spacing: 0.05em;
-      margin-bottom: 14px;
-      text-align: center;
-      display: none;
-    }
+    .form__select option { background: #0D0020; color: var(--cream); }
+    .form__error { color: #ff7b7b; font-size: 12px; letter-spacing: 0.05em; margin-bottom: 14px; text-align: center; display: none; }
     .form__submit {
       width: 100%;
       padding: 20px;
-      background: linear-gradient(135deg, #B8902E 0%, #F2C94C 45%, #C9A84C 100%);
-      color: #07070A;
+      background: linear-gradient(135deg, #A80060 0%, #E8008A 50%, #BF5FFF 100%);
+      color: #FFF0F8;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 12px;
       font-weight: 700;
@@ -993,35 +682,41 @@
       border: none;
       border-radius: 2px;
       cursor: pointer;
-      box-shadow: 0 0 48px rgba(201,168,76,0.2);
+      box-shadow: 0 0 48px rgba(232,0,138,0.25);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
       margin-top: 8px;
     }
-    .form__submit:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 64px rgba(201,168,76,0.45);
+    .form__submit:hover { transform: translateY(-3px); box-shadow: 0 10px 64px rgba(232,0,138,0.5); }
+    .form__submit:disabled { opacity: 0.55; transform: none; cursor: not-allowed; }
+    .rsvp__success { padding: 40px 0; animation: riseIn 0.7s ease forwards; }
+    .success__icon { font-size: 28px; color: var(--magenta); margin-bottom: 20px; }
+    .rsvp__note { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--cream-dim); margin-top: 18px; }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px 52px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      opacity: 0.7;
     }
-    .form__submit:disabled {
-      opacity: 0.55;
-      transform: none;
-      cursor: not-allowed;
-    }
-    .rsvp__success {
-      padding: 40px 0;
-      animation: riseIn 0.7s ease forwards;
-    }
-    .success__icon {
-      font-size: 28px;
-      color: var(--gold);
-      margin-bottom: 20px;
-    }
-    .rsvp__note {
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 1.9;
-      color: var(--cream-dim);
-      margin-top: 18px;
-    }
+    footer a { color: inherit; text-decoration: none; }
+
+    /* ── REVEAL ──────────────────────────────── */
+    .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── UTILS ───────────────────────────────── */
+    @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   </style>
 </head>
 
@@ -1030,7 +725,82 @@
   <!-- STARFIELD -->
   <div id="starfield" aria-hidden="true"></div>
 
-  <!-- HERO -->
+  <!-- ARTIST SPOTLIGHT — lands first -->
+  <section class="spotlight" aria-label="Artist Spotlight: Lisette Correa">
+
+    <div class="spotlight__hero">
+      <img class="spotlight__hero-img" src="mural.jpg"
+        alt="Mural artwork by Lisette Correa — ARRRTADDICT — for FREE-ISH Juneteenth 2026">
+      <div class="spotlight__hero-overlay"></div>
+      <div class="spotlight__hero-tag">Artist Spotlight</div>
+      <div class="spotlight__hero-name">
+        <div class="spotlight__hero-title">ARRRT<br>ADDICT</div>
+        <div class="spotlight__hero-handle">Lisette Correa</div>
+      </div>
+    </div>
+
+    <div class="spotlight__marquee-wrap" aria-hidden="true">
+      <div class="spotlight__marquee">
+        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
+        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
+      </div>
+    </div>
+
+    <div class="spotlight__content reveal">
+      <div class="spotlight__name-block">
+        <h2 class="spotlight__name">Lisette<br>Correa</h2>
+        <div class="spotlight__tag-handle">@arrrtaddict</div>
+        <div class="spotlight__disciplines">
+          <div class="spotlight__discipline">Muralist</div>
+          <div class="spotlight__discipline">Graphic Designer</div>
+          <div class="spotlight__discipline">Apparel Graphics</div>
+          <div class="spotlight__discipline">Branding</div>
+          <div class="spotlight__discipline">Storyteller</div>
+        </div>
+      </div>
+      <div>
+        <p class="spotlight__quote">
+          "I use my background in branding and production to create impactful installations that connect with both communities and consumers."
+        </p>
+        <p class="spotlight__bio-text">
+          Hello, I'm a <strong>passionate and dynamic creative</strong> with <strong>15 years of experience</strong> in graphic apparel design and a deep-rooted love for storytelling through art. My journey started in the fashion industry, where I honed my skills in apparel graphics, licensing, and production — skills that later set me apart when I transitioned into <strong>large-scale mural work.</strong>
+          <br><br>
+          During my time as a freelance artist, I expanded my creative perspective, combining <strong>fashion, branding, and community</strong> into installations that live on walls and in culture. Now she brings that full-circle energy to FREE-ISH — painting the story of freedom right here in Atlanta.
+        </p>
+        <div class="spotlight__stats">
+          <div class="spotlight__stat">
+            <div class="spotlight__stat-num">15</div>
+            <div class="spotlight__stat-label">Years Creative</div>
+          </div>
+          <div class="spotlight__stat">
+            <div class="spotlight__stat-num">ATL</div>
+            <div class="spotlight__stat-label">Based</div>
+          </div>
+          <div class="spotlight__stat">
+            <div class="spotlight__stat-num">8×8</div>
+            <div class="spotlight__stat-label">Mural Scale</div>
+          </div>
+        </div>
+        <div class="spotlight__links">
+          <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">IG @arrrtaddict</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.arrrtaddict.com/" target="_blank" rel="noopener">arrrtaddict.com</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.lisettecorrea.com/" target="_blank" rel="noopener">lisettecorrea.com</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.artsy.net/artist/arrrtaddict" target="_blank" rel="noopener">Artsy</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="spotlight__wall-wrap reveal">
+      <div class="spotlight__wall-inner">
+        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
+          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
+      </div>
+      <p class="spotlight__wall-caption">Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026</p>
+    </div>
+
+  </section>
+
+  <!-- HERO — video follows the art -->
   <section class="hero" aria-label="Event hero">
     <div class="hero__video-wrap">
       <iframe
@@ -1128,31 +898,26 @@
       <div class="divider__line"></div>
     </div>
     <div class="gallery__grid reveal">
-      <!-- Night shot — hero of gallery -->
       <div class="gallery__item gallery__item--wide">
         <img class="gallery__img" loading="lazy"
           src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200"
-          alt="The estate at night — golden light glowing on the pool">
+          alt="The estate at night">
       </div>
-      <!-- Aerial: shows scale -->
       <div class="gallery__item">
         <img class="gallery__img" loading="lazy"
           src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f981b4ec-93b0-4105-8596-bbe652da55ca.jpeg?im_w=720"
           alt="Aerial view of the estate and pool">
       </div>
-      <!-- Pool day -->
       <div class="gallery__item">
         <img class="gallery__img" loading="lazy"
           src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/5f59699c-1281-467b-a872-6ca4f42deb8a.jpeg?im_w=720"
           alt="Private pool surrounded by trees">
       </div>
-      <!-- Screened porch -->
       <div class="gallery__item">
         <img class="gallery__img" loading="lazy"
           src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f64e11b1-27b7-4588-88b0-4550a9ac3ff5.jpeg?im_w=720"
           alt="Screened porch overlooking the pool">
       </div>
-      <!-- Interior / library -->
       <div class="gallery__item">
         <img class="gallery__img" loading="lazy"
           src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/ddb1c633-1ff6-4bc8-90cf-b81630b70780.jpeg?im_w=720"
@@ -1184,107 +949,6 @@
         <div class="schedule__day-badge">Mural Weekend</div>
       </div>
     </div>
-  </section>
-
-  <!-- ARTIST SPOTLIGHT -->
-  <section class="spotlight" aria-label="Artist Spotlight: Lisette Correa">
-
-    <!-- Full-bleed hero artwork -->
-    <div class="spotlight__hero">
-      <img class="spotlight__hero-img" src="mural.jpg"
-        alt="Mural artwork by Lisette Correa — ARRRTADDICT — for FREE-ISH Juneteenth 2026">
-      <div class="spotlight__hero-overlay"></div>
-      <div class="spotlight__hero-tag">Artist Spotlight</div>
-      <div class="spotlight__hero-name">
-        <div class="spotlight__hero-title">ARRRT<br>ADDICT</div>
-        <div class="spotlight__hero-handle">Lisette Correa</div>
-      </div>
-    </div>
-
-    <!-- Neon marquee bar -->
-    <div class="spotlight__marquee-wrap" aria-hidden="true">
-      <div class="spotlight__marquee">
-        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
-        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
-      </div>
-    </div>
-
-    <!-- Bio section -->
-    <div class="spotlight__content reveal">
-
-      <!-- Left column: name + disciplines -->
-      <div class="spotlight__name-block">
-        <h2 class="spotlight__name">Lisette<br>Correa</h2>
-        <div class="spotlight__tag-handle">@arrrtaddict</div>
-        <div class="spotlight__disciplines">
-          <div class="spotlight__discipline">Muralist</div>
-          <div class="spotlight__discipline">Graphic Designer</div>
-          <div class="spotlight__discipline">Apparel Graphics</div>
-          <div class="spotlight__discipline">Branding</div>
-          <div class="spotlight__discipline">Storyteller</div>
-        </div>
-      </div>
-
-      <!-- Right column: quote + bio + stats + links -->
-      <div>
-        <p class="spotlight__quote">
-          "I use my background in branding and production to create impactful installations that connect with both communities and consumers."
-        </p>
-        <p class="spotlight__bio-text">
-          Hello, I'm a <strong>passionate and dynamic creative</strong> with <strong>15 years of experience</strong> in graphic apparel design and a deep-rooted love for storytelling through art. My journey started in the fashion industry, where I honed my skills in apparel graphics, licensing, and production — skills that later set me apart when I transitioned into <strong>large-scale mural work.</strong>
-          <br><br>
-          During my time as a freelance artist, I expanded my creative perspective, combining <strong>fashion, branding, and community</strong> into installations that live on walls and in culture. Now she brings that full-circle energy to FREE-ISH — painting the story of freedom right here in Atlanta.
-        </p>
-
-        <!-- Stats -->
-        <div class="spotlight__stats">
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">15</div>
-            <div class="spotlight__stat-label">Years Creative</div>
-          </div>
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">ATL</div>
-            <div class="spotlight__stat-label">Based</div>
-          </div>
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">8×8</div>
-            <div class="spotlight__stat-label">Mural Scale</div>
-          </div>
-        </div>
-
-        <!-- Links -->
-        <div class="spotlight__links">
-          <a class="spotlight__link spotlight__link--ig"
-            href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">
-            IG @arrrtaddict
-          </a>
-          <a class="spotlight__link spotlight__link--outline"
-            href="https://www.arrrtaddict.com/" target="_blank" rel="noopener">
-            arrrtaddict.com
-          </a>
-          <a class="spotlight__link spotlight__link--outline"
-            href="https://www.lisettecorrea.com/" target="_blank" rel="noopener">
-            lisettecorrea.com
-          </a>
-          <a class="spotlight__link spotlight__link--outline"
-            href="https://www.artsy.net/artist/arrrtaddict" target="_blank" rel="noopener">
-            Artsy
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Wall mock-up photo -->
-    <div class="spotlight__wall-wrap reveal">
-      <div class="spotlight__wall-inner">
-        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
-          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
-      </div>
-      <p class="spotlight__wall-caption">
-        Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026
-      </p>
-    </div>
-
   </section>
 
   <!-- LINEUP -->
@@ -1328,12 +992,9 @@
         <div class="divider__mark">✦</div>
         <div class="divider__line"></div>
       </div>
-
-      <!-- Form -->
       <div id="rsvpFormWrap">
         <h2 class="rsvp__heading reveal">Claim Your Weekend</h2>
         <p class="rsvp__sub reveal reveal-d1">Address & details revealed upon RSVP &nbsp;·&nbsp; June 19–20</p>
-
         <form id="rsvpFormEl" class="rsvp__form reveal reveal-d2" novalidate>
           <div class="form__row">
             <div class="form__group">
@@ -1371,8 +1032,6 @@
           </button>
         </form>
       </div>
-
-      <!-- Success -->
       <div id="rsvpSuccess" style="display:none" class="rsvp__success">
         <div class="success__icon">✦</div>
         <h2 class="rsvp__heading" id="successName"></h2>
@@ -1390,15 +1049,17 @@
   </footer>
 
   <script>
-    // Starfield
+    // Starfield — neon particles pulled from the mural palette
     const field = document.getElementById('starfield');
-    for (let i = 0; i < 140; i++) {
+    const starColors = ['#fff','#fff','#fff','#E8008A','#BF5FFF','#BBFF00','#FF1F8F'];
+    for (let i = 0; i < 160; i++) {
       const s = document.createElement('div');
       const size = Math.random() * 1.8 + 0.4;
       s.className = 'star';
       s.style.cssText = `
         width:${size}px; height:${size}px;
         top:${Math.random()*100}%; left:${Math.random()*100}%;
+        background:${starColors[Math.floor(Math.random()*starColors.length)]};
         --a:${(Math.random()*0.35+0.05).toFixed(2)};
         --d:${(Math.random()*3+2).toFixed(1)}s;
         animation-delay:${(Math.random()*4).toFixed(1)}s;
@@ -1409,62 +1070,45 @@
     // Scroll reveal
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ── RSVP FORM ──────────────────────────────────────
-    // Paste your Google Apps Script Web App URL below after setup
+    // RSVP
     const APPS_SCRIPT_URL = 'YOUR_SCRIPT_URL_HERE';
-
     document.getElementById('rsvpFormEl').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const btn  = form.querySelector('.form__submit');
       const err  = document.getElementById('formError');
-
       const firstName = form.firstName.value.trim();
       const lastName  = form.lastName.value.trim();
       const email     = form.email.value.trim();
       const phone     = form.phone.value.trim();
       const partySize = form.partySize.value;
-
       err.style.display = 'none';
-
       if (!firstName || !lastName || !email || !phone || !partySize) {
-        err.textContent = 'Please fill out all fields.';
-        err.style.display = 'block';
-        return;
+        err.textContent = 'Please fill out all fields.'; err.style.display = 'block'; return;
       }
       if (!/\S+@\S+\.\S+/.test(email)) {
-        err.textContent = 'Please enter a valid email address.';
-        err.style.display = 'block';
-        return;
+        err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return;
       }
-
       btn.disabled = true;
       document.getElementById('submitText').textContent = 'Saving…';
-
       try {
         await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
+          method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
           body: JSON.stringify({ firstName, lastName, email, phone, partySize, timestamp: new Date().toISOString() })
         });
         document.getElementById('rsvpFormWrap').style.display = 'none';
-        const success = document.getElementById('rsvpSuccess');
         document.getElementById('successName').textContent = `${firstName}, you're confirmed.`;
-        success.style.display = 'block';
+        document.getElementById('rsvpSuccess').style.display = 'block';
       } catch {
         btn.disabled = false;
         document.getElementById('submitText').textContent = 'Secure Your Spot';
-        err.textContent = 'Something went wrong. Please try again.';
-        err.style.display = 'block';
+        err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
   </script>
