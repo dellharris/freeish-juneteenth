@@ -119,17 +119,43 @@
       width: 100%;
       padding: 0 24px;
     }
-    .spotlight__hero-title {
+    .spotlight__hero-juneteenth {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(56px, 16vw, 130px);
-      font-weight: 900;
-      line-height: 0.88;
-      letter-spacing: -0.02em;
+      font-size: clamp(22px, 5.5vw, 52px);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.08em;
       color: var(--cream);
-      text-shadow: 0 0 80px rgba(232,0,138,0.55), 0 0 160px rgba(124,58,237,0.3);
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+    .spotlight__hero-atl {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(120px, 32vw, 320px);
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg,
+        #E8008A 0%,
+        #FF80C8 28%,
+        #FFF0F8 50%,
+        #BF5FFF 72%,
+        #7C3AED 100%
+      );
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      filter: drop-shadow(0 0 40px rgba(232,0,138,0.6)) drop-shadow(0 0 100px rgba(124,58,237,0.4));
+      animation: atlPulse 4s ease-in-out infinite;
+    }
+    @keyframes atlPulse {
+      0%, 100% { filter: drop-shadow(0 0 40px rgba(232,0,138,0.6)) drop-shadow(0 0 100px rgba(124,58,237,0.35)); }
+      50%       { filter: drop-shadow(0 0 70px rgba(232,0,138,0.9)) drop-shadow(0 0 160px rgba(124,58,237,0.6)); }
     }
     .spotlight__hero-handle {
-      margin-top: 14px;
+      margin-top: 18px;
       font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.45em;
@@ -734,8 +760,9 @@
       <div class="spotlight__hero-overlay"></div>
       <div class="spotlight__hero-tag">Artist Spotlight</div>
       <div class="spotlight__hero-name">
-        <div class="spotlight__hero-title">ARRRT<br>ADDICT</div>
-        <div class="spotlight__hero-handle">Lisette Correa</div>
+        <div class="spotlight__hero-juneteenth">Juneteenth</div>
+        <div class="spotlight__hero-atl">ATL</div>
+        <div class="spotlight__hero-handle">Lisette Correa &nbsp;·&nbsp; @arrrtaddict</div>
       </div>
     </div>
 
