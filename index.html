@@ -76,27 +76,26 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: 22% top;
-      filter: saturate(1.3) brightness(0.82);
-      transform: scale(1.04);
+      object-position: center 15%;
+      filter: saturate(1.15) brightness(0.92);
+      transform: scale(1.02);
       transition: transform 12s ease;
     }
-    .spotlight__hero:hover .spotlight__hero-img { transform: scale(1.01); }
+    .spotlight__hero:hover .spotlight__hero-img { transform: scale(1); }
     .spotlight__hero-overlay {
       position: absolute;
       inset: 0;
       background:
         linear-gradient(to right,
-          rgba(8,0,16,0.0)  0%,
-          rgba(8,0,16,0.0)  28%,
-          rgba(8,0,16,0.82) 55%,
-          rgba(8,0,16,0.97) 72%,
-          rgba(8,0,16,1)    100%
+          rgba(8,0,16,0.62) 0%,
+          rgba(8,0,16,0.35) 22%,
+          rgba(8,0,16,0.0)  42%,
+          rgba(8,0,16,0.0)  100%
         ),
         linear-gradient(180deg,
           rgba(8,0,16,0)   0%,
-          rgba(8,0,16,0)   40%,
-          rgba(8,0,16,0.5) 72%,
+          rgba(8,0,16,0)   60%,
+          rgba(8,0,16,0.7) 82%,
           rgba(8,0,16,1)   100%
         );
     }
@@ -116,71 +115,23 @@
       backdrop-filter: blur(10px);
       white-space: nowrap;
     }
-    /* Mystery tease — right side veil */
-    .spotlight__veil-tease {
-      position: absolute;
-      top: 50%;
-      right: 48px;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-    .spotlight__veil-line {
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to bottom, transparent, var(--magenta));
-    }
-    .spotlight__veil-eyebrow {
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: var(--magenta-dim);
-      writing-mode: vertical-rl;
-    }
-    .spotlight__veil-reveal {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 900;
-      font-style: italic;
-      color: var(--cream);
-      opacity: 0.12;
-      writing-mode: vertical-rl;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      text-shadow: 0 0 60px rgba(232,0,138,0.4);
-    }
-    .spotlight__veil-date {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--neon-pink);
-      opacity: 0.7;
-    }
-    .spotlight__veil-line2 {
-      width: 1px;
-      height: 80px;
-      background: linear-gradient(to top, transparent, var(--magenta));
-    }
     .spotlight__hero-name {
       position: absolute;
-      bottom: 52px;
-      left: 36px;
+      top: 50%;
+      left: 5vw;
+      transform: translateY(-50%);
       text-align: left;
       padding: 0;
     }
     .spotlight__hero-juneteenth {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(18px, 4vw, 40px);
-      font-weight: 700;
+      font-size: clamp(52px, 10vw, 110px);
+      font-weight: 900;
       font-style: italic;
-      letter-spacing: 0.08em;
+      letter-spacing: -0.02em;
+      line-height: 1;
       color: var(--cream);
-      opacity: 0.85;
-      margin-bottom: 2px;
+      text-shadow: 0 2px 40px rgba(8,0,16,0.8);
     }
     .spotlight__hero-atl {
       font-family: 'Playfair Display', serif;
@@ -808,23 +759,13 @@
   <section class="spotlight" aria-label="Artist Spotlight: Lisette Correa">
 
     <div class="spotlight__hero">
-      <img class="spotlight__hero-img" src="mural.jpg"
+      <img class="spotlight__hero-img" src="girl-hero.png"
         alt="Mural artwork by Lisette Correa — ARRRTADDICT — for FREE-ISH Juneteenth 2026">
       <div class="spotlight__hero-overlay"></div>
       <div class="spotlight__hero-tag">Artist Spotlight</div>
 
-      <!-- Mystery tease on the veiled right side -->
-      <div class="spotlight__veil-tease" aria-hidden="true">
-        <div class="spotlight__veil-line"></div>
-        <div class="spotlight__veil-eyebrow">The Mural</div>
-        <div class="spotlight__veil-reveal">Unveil</div>
-        <div class="spotlight__veil-date">June 20</div>
-        <div class="spotlight__veil-line2"></div>
-      </div>
-
       <div class="spotlight__hero-name">
         <div class="spotlight__hero-juneteenth">Juneteenth</div>
-        <div class="spotlight__hero-atl">ATL</div>
         <div class="spotlight__hero-handle">Lisette Correa &nbsp;·&nbsp; @arrrtaddict</div>
       </div>
     </div>
