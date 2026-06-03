@@ -766,9 +766,12 @@
     .billboard__screen {
       position: relative;
       width: 100%;
-      aspect-ratio: 16/9;
+      max-width: 380px;
+      margin: 0 auto;
+      aspect-ratio: 9/16;
       background: #000;
       overflow: hidden;
+      border-radius: 12px;
       box-shadow:
         0 0 0 1px rgba(232,0,138,0.5),
         0 0 40px rgba(232,0,138,0.22),
@@ -780,7 +783,6 @@
       width: 100%;
       height: 100%;
       border: none;
-      pointer-events: none;
     }
     .billboard__badge {
       position: absolute;
@@ -1315,13 +1317,12 @@
         err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
-    // ── BILLBOARD — rotating reels ─────────────────
-    // Drop in your YouTube video IDs below.
-    // A random reel plays on each page visit, then cycles every 45s.
+    // ── BILLBOARD — Instagram Reels ────────────────
+    // Paste your reel codes below (the ID from instagram.com/reel/CODE/)
     const REELS = [
-      { id: 'PJV1l3-QmFM', label: 'FREE-ISH · Summer Vibes' },
-      { id: 'PJV1l3-QmFM', label: 'ATL · Juneteenth Energy' },
-      { id: 'PJV1l3-QmFM', label: 'The Mansion · Pool Party' },
+      { code: 'REEL_CODE_1', label: '@ummathebrand' },
+      { code: 'REEL_CODE_2', label: '@ummathebrand' },
+      { code: 'REEL_CODE_3', label: '@ummathebrand' },
     ];
     let currentReel = Math.floor(Math.random() * REELS.length);
     const bbFrame = document.getElementById('billboardFrame');
@@ -1331,7 +1332,7 @@
     function showReel(i) {
       currentReel = i;
       const r = REELS[i];
-      bbFrame.src = `https://www.youtube.com/embed/${r.id}?autoplay=1&mute=1&loop=1&playlist=${r.id}&controls=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`;
+      bbFrame.src = `https://www.instagram.com/reel/${r.code}/embed/`;
       bbLabel.textContent = r.label;
       bbDots.querySelectorAll('.billboard__dot-btn').forEach((b, idx) => b.classList.toggle('active', idx === i));
     }
@@ -1345,7 +1346,7 @@
     });
 
     showReel(currentReel);
-    setInterval(() => showReel((currentReel + 1) % REELS.length), 45000);
+    setInterval(() => showReel((currentReel + 1) % REELS.length), 30000);
 
   </script>
 
