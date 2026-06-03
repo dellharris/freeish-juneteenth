@@ -761,27 +761,26 @@
     .event-block__header { padding: 72px 24px 0; text-align: center; }
 
     /* ── BILLBOARD ───────────────────────────── */
-    .billboard { position: relative; z-index: 1; padding: 52px 24px 72px; text-align: center; }
-    .billboard__inner { max-width: 980px; margin: 0 auto; }
+    .billboard { position: relative; z-index: 1; padding: 52px 0 72px; text-align: center; }
+    .billboard__inner { max-width: 100%; margin: 0 auto; }
     .billboard__screen {
       position: relative;
       width: 100%;
-      max-width: 380px;
-      margin: 0 auto;
-      aspect-ratio: 9/16;
+      aspect-ratio: 16/9;
       background: #000;
       overflow: hidden;
-      border-radius: 12px;
       box-shadow:
         0 0 0 1px rgba(232,0,138,0.5),
-        0 0 40px rgba(232,0,138,0.22),
-        0 0 90px rgba(124,58,237,0.14);
+        0 0 60px rgba(232,0,138,0.28),
+        0 0 120px rgba(124,58,237,0.18);
     }
     .billboard__screen iframe {
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: calc(100% * 256 / 81);
+      transform: translateY(-50%);
       border: none;
     }
     .billboard__badge {
@@ -881,103 +880,7 @@
   <!-- STARFIELD -->
   <div id="starfield" aria-hidden="true"></div>
 
-  <!-- ARTIST SPOTLIGHT — lands first -->
-  <section class="spotlight" aria-label="Artist Spotlight: Lisette Correa">
-
-    <div class="spotlight__hero">
-      <img class="spotlight__hero-img" src="girl-hero.png"
-        alt="Mural artwork by Lisette Correa — ARRRTADDICT — for FREE-ISH Juneteenth 2026">
-      <div class="spotlight__hero-overlay"></div>
-      <div class="spotlight__hero-tag">Artist Spotlight</div>
-
-      <div class="spotlight__hero-name">
-        <div class="spotlight__hero-juneteenth">Juneteenth</div>
-        <div class="spotlight__hero-handle">Lisette Correa &nbsp;·&nbsp; @arrrtaddict</div>
-      </div>
-    </div>
-
-    <div class="spotlight__marquee-wrap" aria-hidden="true">
-      <div class="spotlight__marquee">
-        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
-        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
-      </div>
-    </div>
-
-    <!-- MURAL MOCK-UP — TOP -->
-    <div class="spotlight__wall-wrap reveal">
-      <div class="spotlight__wall-inner">
-        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
-          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
-      </div>
-      <p class="spotlight__wall-caption">Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026</p>
-    </div>
-
-    <!-- EVENT INFO + UMMA SONOMA -->
-    <div class="spotlight__event reveal">
-      <div class="spotlight__event-info">
-        <div>
-          <div class="spotlight__event-label">Venue</div>
-          <div class="spotlight__event-value">Book Store Gallery<br>Atlanta, GA</div>
-        </div>
-        <div>
-          <div class="spotlight__event-label">Mural Activation</div>
-          <div class="spotlight__event-value">June 20–21<br>Daily</div>
-        </div>
-        <div>
-          <div class="spotlight__event-label">Presented By</div>
-          <div class="spotlight__event-value">UmmaSonoma</div>
-        </div>
-      </div>
-      <div class="spotlight__event-links">
-        <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/ummasonoma" target="_blank" rel="noopener">IG @ummasonoma</a>
-        <a class="spotlight__link spotlight__link--outline" href="https://www.ummasonoma.com/" target="_blank" rel="noopener">ummasonoma.com</a>
-      </div>
-    </div>
-
-    <!-- ARTIST INFO — BOTTOM -->
-    <div class="spotlight__content reveal">
-      <div class="spotlight__name-block">
-        <h2 class="spotlight__name">Lisette<br>Correa</h2>
-        <div class="spotlight__tag-handle">@arrrtaddict</div>
-        <div class="spotlight__disciplines">
-          <div class="spotlight__discipline">Muralist</div>
-          <div class="spotlight__discipline">Graphic Designer</div>
-          <div class="spotlight__discipline">Apparel Graphics</div>
-          <div class="spotlight__discipline">Branding</div>
-          <div class="spotlight__discipline">Storyteller</div>
-        </div>
-      </div>
-      <div>
-        <p class="spotlight__quote">
-          "I use my background in branding and production to create impactful installations that connect with both communities and consumers."
-        </p>
-        <p class="spotlight__bio-text">
-          Hello, I'm a <strong>passionate and dynamic creative</strong> with <strong>15 years of experience</strong> in graphic apparel design and a deep-rooted love for storytelling through art. My journey started in the fashion industry, where I honed my skills in apparel graphics, licensing, and production — skills that later set me apart when I transitioned into <strong>large-scale mural work.</strong>
-          <br><br>
-          During my time as a freelance artist, I expanded my creative perspective, combining <strong>fashion, branding, and community</strong> into installations that live on walls and in culture. Now she brings that full-circle energy to FREE-ISH — painting the story of freedom right here in Atlanta.
-        </p>
-        <div class="spotlight__stats">
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">15</div>
-            <div class="spotlight__stat-label">Years Creative</div>
-          </div>
-          <div class="spotlight__stat">
-            <div class="spotlight__stat-num">ATL</div>
-            <div class="spotlight__stat-label">Based</div>
-          </div>
-        </div>
-        <div class="spotlight__links">
-          <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">IG @arrrtaddict</a>
-          <a class="spotlight__link spotlight__link--outline" href="https://www.arrrtaddict.com/" target="_blank" rel="noopener">arrrtaddict.com</a>
-          <a class="spotlight__link spotlight__link--outline" href="https://www.lisettecorrea.com/" target="_blank" rel="noopener">lisettecorrea.com</a>
-          <a class="spotlight__link spotlight__link--outline" href="https://www.artsy.net/artist/arrrtaddict" target="_blank" rel="noopener">Artsy</a>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- HERO — video follows the art -->
+  <!-- HERO -->
   <section class="hero" aria-label="Event hero">
     <div class="hero__video-wrap">
       <iframe
@@ -1151,7 +1054,7 @@
   <!-- ═══════════════════════════════════════════ -->
   <!-- JUNE 20–21 · THE MURAL                     -->
   <!-- ═══════════════════════════════════════════ -->
-  <section class="event-block" aria-label="June 20-21 — The Mural">
+  <section class="event-block spotlight" aria-label="June 20-21 — The Mural">
 
     <div class="event-block__header">
       <div class="divider reveal">
@@ -1163,24 +1066,93 @@
       <h2 class="section__heading reveal reveal-d1">The Mural</h2>
     </div>
 
-    <section class="vibe" aria-label="Mural activation info">
-      <div class="vibe__copy reveal reveal-d1">
-        <p>The weekend keeps going.<br>
-        <strong>Daily activation at Book Store Gallery, Atlanta.</strong></p>
-        <br>
-        <p>Artist Lisette Correa — <strong>ARRRTADDICT</strong> —<br>
-        paints live on the wall for the culture.<br>
-        Two consecutive days. Watch it come to life.</p>
-        <br>
-        <p><em>Details unlocked when you RSVP.</em></p>
+    <!-- Girl hero -->
+    <div class="spotlight__hero">
+      <img class="spotlight__hero-img" src="girl-hero.png"
+        alt="Mural artwork by Lisette Correa — ARRRTADDICT — for FREE-ISH Juneteenth 2026">
+      <div class="spotlight__hero-overlay"></div>
+      <div class="spotlight__hero-tag">Artist Spotlight</div>
+      <div class="spotlight__hero-name">
+        <div class="spotlight__hero-juneteenth">Juneteenth</div>
+        <div class="spotlight__hero-handle">Lisette Correa &nbsp;·&nbsp; @arrrtaddict</div>
       </div>
-      <div class="vibe__tags reveal reveal-d2">
-        <span class="tag">🎨 Live Mural</span>
-        <span class="tag">🖤 ATL Culture</span>
-        <span class="tag">🌿 Afro-Futurist</span>
-        <span class="tag">✦ Daily Activation</span>
+    </div>
+
+    <div class="spotlight__marquee-wrap" aria-hidden="true">
+      <div class="spotlight__marquee">
+        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
+        <span>ARRRTADDICT &nbsp;✦&nbsp; LISETTE CORREA &nbsp;✦&nbsp; MURALIST &nbsp;✦&nbsp; GRAPHIC DESIGNER &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; 15 YEARS &nbsp;✦&nbsp; BRANDING &nbsp;✦&nbsp; LARGE-SCALE MURALS &nbsp;✦&nbsp; </span>
       </div>
-    </section>
+    </div>
+
+    <div class="spotlight__wall-wrap reveal">
+      <div class="spotlight__wall-inner">
+        <img class="spotlight__wall-img" src="bookstore-wall.jpg"
+          alt="Mural mock-up on the Book Store Gallery wall, Atlanta">
+      </div>
+      <p class="spotlight__wall-caption">Book Store Gallery &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; June 20–21, 2026</p>
+    </div>
+
+    <div class="spotlight__event reveal">
+      <div class="spotlight__event-info">
+        <div>
+          <div class="spotlight__event-label">Venue</div>
+          <div class="spotlight__event-value">Book Store Gallery<br>Atlanta, GA</div>
+        </div>
+        <div>
+          <div class="spotlight__event-label">Mural Activation</div>
+          <div class="spotlight__event-value">June 20–21<br>Daily</div>
+        </div>
+        <div>
+          <div class="spotlight__event-label">Presented By</div>
+          <div class="spotlight__event-value">UmmaSonoma</div>
+        </div>
+      </div>
+      <div class="spotlight__event-links">
+        <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/ummasonoma" target="_blank" rel="noopener">IG @ummasonoma</a>
+        <a class="spotlight__link spotlight__link--outline" href="https://www.ummasonoma.com/" target="_blank" rel="noopener">ummasonoma.com</a>
+      </div>
+    </div>
+
+    <div class="spotlight__content reveal">
+      <div class="spotlight__name-block">
+        <h2 class="spotlight__name">Lisette<br>Correa</h2>
+        <div class="spotlight__tag-handle">@arrrtaddict</div>
+        <div class="spotlight__disciplines">
+          <div class="spotlight__discipline">Muralist</div>
+          <div class="spotlight__discipline">Graphic Designer</div>
+          <div class="spotlight__discipline">Apparel Graphics</div>
+          <div class="spotlight__discipline">Branding</div>
+          <div class="spotlight__discipline">Storyteller</div>
+        </div>
+      </div>
+      <div>
+        <p class="spotlight__quote">
+          "I use my background in branding and production to create impactful installations that connect with both communities and consumers."
+        </p>
+        <p class="spotlight__bio-text">
+          Hello, I'm a <strong>passionate and dynamic creative</strong> with <strong>15 years of experience</strong> in graphic apparel design and a deep-rooted love for storytelling through art. My journey started in the fashion industry, where I honed my skills in apparel graphics, licensing, and production — skills that later set me apart when I transitioned into <strong>large-scale mural work.</strong>
+          <br><br>
+          During my time as a freelance artist, she expanded her creative perspective, combining <strong>fashion, branding, and community</strong> into installations that live on walls and in culture. Now she brings that full-circle energy to FREE-ISH — painting the story of freedom right here in Atlanta.
+        </p>
+        <div class="spotlight__stats">
+          <div class="spotlight__stat">
+            <div class="spotlight__stat-num">15</div>
+            <div class="spotlight__stat-label">Years Creative</div>
+          </div>
+          <div class="spotlight__stat">
+            <div class="spotlight__stat-num">ATL</div>
+            <div class="spotlight__stat-label">Based</div>
+          </div>
+        </div>
+        <div class="spotlight__links">
+          <a class="spotlight__link spotlight__link--ig" href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">IG @arrrtaddict</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.arrrtaddict.com/" target="_blank" rel="noopener">arrrtaddict.com</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.lisettecorrea.com/" target="_blank" rel="noopener">lisettecorrea.com</a>
+          <a class="spotlight__link spotlight__link--outline" href="https://www.artsy.net/artist/arrrtaddict" target="_blank" rel="noopener">Artsy</a>
+        </div>
+      </div>
+    </div>
 
   </section>
 
@@ -1320,9 +1292,7 @@
     // ── BILLBOARD — Instagram Reels ────────────────
     // Paste your reel codes below (the ID from instagram.com/reel/CODE/)
     const REELS = [
-      { code: 'REEL_CODE_1', label: '@ummathebrand' },
-      { code: 'REEL_CODE_2', label: '@ummathebrand' },
-      { code: 'REEL_CODE_3', label: '@ummathebrand' },
+      { code: 'DXhkGIZEx2w', label: '@ummathebrand' },
     ];
     let currentReel = Math.floor(Math.random() * REELS.length);
     const bbFrame = document.getElementById('billboardFrame');
