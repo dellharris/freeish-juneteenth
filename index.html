@@ -13,6 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script async src="//www.instagram.com/embed.js"></script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -761,33 +762,27 @@
     .event-block__header { padding: 72px 24px 0; text-align: center; }
 
     /* ── BILLBOARD ───────────────────────────── */
-    .billboard { position: relative; z-index: 1; padding: 52px 0 72px; text-align: center; }
-    .billboard__inner { max-width: 100%; margin: 0 auto; }
-    .billboard__screen {
+    .billboard { position: relative; z-index: 1; padding: 52px 24px 72px; text-align: center; }
+    .billboard__inner { max-width: 600px; margin: 0 auto; }
+    .billboard__frame {
       position: relative;
+      display: inline-block;
       width: 100%;
-      aspect-ratio: 16/9;
-      background: #000;
-      overflow: hidden;
+      max-width: 540px;
+    }
+    .billboard__frame .instagram-media {
+      border-radius: 8px !important;
       box-shadow:
         0 0 0 1px rgba(232,0,138,0.5),
-        0 0 60px rgba(232,0,138,0.28),
-        0 0 120px rgba(124,58,237,0.18);
-    }
-    .billboard__screen iframe {
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 100%;
-      height: calc(100% * 256 / 81);
-      transform: translateY(-50%);
-      border: none;
+        0 0 40px rgba(232,0,138,0.22),
+        0 0 90px rgba(124,58,237,0.14) !important;
+      margin: 0 auto !important;
     }
     .billboard__badge {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      z-index: 2;
+      top: -14px;
+      left: 0;
+      z-index: 10;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -796,7 +791,7 @@
       letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--cream);
-      background: rgba(8,0,16,0.72);
+      background: rgba(8,0,16,0.85);
       backdrop-filter: blur(10px);
       padding: 7px 16px;
       border-radius: 100px;
@@ -814,38 +809,6 @@
       0%, 100% { opacity: 1; }
       50%       { opacity: 0.12; }
     }
-    .billboard__bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px;
-      background: linear-gradient(to top, rgba(8,0,16,0.9) 0%, transparent 100%);
-    }
-    .billboard__reel-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--cream-dim);
-    }
-    .billboard__dots { display: flex; gap: 8px; align-items: center; }
-    .billboard__dot-btn {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      border: 1px solid rgba(232,0,138,0.5);
-      background: transparent;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .billboard__dot-btn.active { background: var(--magenta); border-color: var(--magenta); transform: scale(1.4); }
-    .billboard__dot-btn:hover { background: rgba(232,0,138,0.4); }
 
     /* ── FOOTER ──────────────────────────────── */
     footer {
@@ -1017,21 +980,19 @@
       </div>
     </section>
 
-    <!-- Billboard — rotating reels -->
+    <!-- Billboard — Instagram Reels -->
     <section class="billboard" aria-label="The Vibes">
       <div class="billboard__inner">
-        <p class="section__eyebrow reveal" style="margin-bottom:28px">The Vibes</p>
-        <div class="billboard__screen reveal">
+        <p class="section__eyebrow reveal" style="margin-bottom:32px">The Vibes</p>
+        <div class="billboard__frame reveal">
           <div class="billboard__badge">
             <span class="billboard__live-dot"></span> Now Playing
           </div>
-          <iframe id="billboardFrame" src="" frameborder="0"
-            allow="autoplay; encrypted-media" allowfullscreen
-            aria-hidden="true" title=""></iframe>
-          <div class="billboard__bar">
-            <span id="reelLabel" class="billboard__reel-label"></span>
-            <div class="billboard__dots" id="billboardDots"></div>
-          </div>
+          <blockquote class="instagram-media" data-instgrm-captioned
+            data-instgrm-permalink="https://www.instagram.com/reel/DXhkGIZEx2w/?utm_source=ig_embed&amp;utm_campaign=loading"
+            data-instgrm-version="14"
+            style="background:#FFF;border:0;border-radius:3px;margin:1px;max-width:540px;min-width:326px;padding:0;width:99.375%;width:calc(100% - 2px);">
+          </blockquote>
         </div>
       </div>
     </section>
@@ -1303,34 +1264,8 @@
         err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
-    // ── BILLBOARD — Instagram Reels ────────────────
-    // Paste your reel codes below (the ID from instagram.com/reel/CODE/)
-    const REELS = [
-      { code: 'DXhkGIZEx2w', label: '@ummathebrand' },
-    ];
-    let currentReel = Math.floor(Math.random() * REELS.length);
-    const bbFrame = document.getElementById('billboardFrame');
-    const bbLabel = document.getElementById('reelLabel');
-    const bbDots  = document.getElementById('billboardDots');
-
-    function showReel(i) {
-      currentReel = i;
-      const r = REELS[i];
-      bbFrame.src = `https://www.instagram.com/reel/${r.code}/embed/`;
-      bbLabel.textContent = r.label;
-      bbDots.querySelectorAll('.billboard__dot-btn').forEach((b, idx) => b.classList.toggle('active', idx === i));
-    }
-
-    REELS.forEach((_, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'billboard__dot-btn' + (i === currentReel ? ' active' : '');
-      btn.setAttribute('aria-label', `Reel ${i + 1}`);
-      btn.addEventListener('click', () => showReel(i));
-      bbDots.appendChild(btn);
-    });
-
-    showReel(currentReel);
-    setInterval(() => showReel((currentReel + 1) % REELS.length), 30000);
+    // Re-process Instagram embeds after page load
+    if (window.instgrm) window.instgrm.Embeds.process();
 
   </script>
 
