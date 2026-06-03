@@ -756,6 +756,96 @@
     .success__icon { font-size: 28px; color: var(--magenta); margin-bottom: 20px; }
     .rsvp__note { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--cream-dim); margin-top: 18px; }
 
+    /* ── EVENT BLOCKS ────────────────────────── */
+    .event-block { position: relative; z-index: 1; }
+    .event-block__header { padding: 72px 24px 0; text-align: center; }
+
+    /* ── BILLBOARD ───────────────────────────── */
+    .billboard { position: relative; z-index: 1; padding: 52px 24px 72px; text-align: center; }
+    .billboard__inner { max-width: 980px; margin: 0 auto; }
+    .billboard__screen {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(232,0,138,0.5),
+        0 0 40px rgba(232,0,138,0.22),
+        0 0 90px rgba(124,58,237,0.14);
+    }
+    .billboard__screen iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      pointer-events: none;
+    }
+    .billboard__badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: rgba(8,0,16,0.72);
+      backdrop-filter: blur(10px);
+      padding: 7px 16px;
+      border-radius: 100px;
+      border: 1px solid rgba(232,0,138,0.45);
+    }
+    .billboard__live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--magenta);
+      flex-shrink: 0;
+      animation: liveBlink 1.4s ease-in-out infinite;
+    }
+    @keyframes liveBlink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.12; }
+    }
+    .billboard__bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      background: linear-gradient(to top, rgba(8,0,16,0.9) 0%, transparent 100%);
+    }
+    .billboard__reel-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+    .billboard__dots { display: flex; gap: 8px; align-items: center; }
+    .billboard__dot-btn {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(232,0,138,0.5);
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .billboard__dot-btn.active { background: var(--magenta); border-color: var(--magenta); transform: scale(1.4); }
+    .billboard__dot-btn:hover { background: rgba(232,0,138,0.4); }
+
     /* ── FOOTER ──────────────────────────────── */
     footer {
       position: relative;
@@ -942,125 +1032,154 @@
     </div>
   </section>
 
-  <!-- VIBE COPY -->
-  <section class="vibe" aria-label="About the event">
-    <div class="divider reveal">
-      <div class="divider__line"></div>
-      <div class="divider__mark">✦</div>
-      <div class="divider__line"></div>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- JUNE 19 · THE MANSION                      -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="event-block" aria-label="June 19 — The Mansion">
+
+    <div class="event-block__header">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="section__eyebrow reveal">Friday · June 19</p>
+      <h2 class="section__heading reveal reveal-d1">The Mansion</h2>
     </div>
-    <div class="vibe__copy reveal reveal-d1">
-      <p>Two nights. Two experiences.<br>One weekend that belongs to us.</p>
-      <br>
-      <p>It starts at the Mansion on Juneteenth —<br>
-      a pool, a lawn, a DJ set that doesn't stop,<br>
-      and the whole crew turning up.</p>
-      <br>
-      <p>Night two moves to the streets.<br>
-      <strong>The Mural Event at Book Store Gallery, Atlanta.</strong><br>
-      Art by <strong>Arrrt Addict</strong> — live on the wall for the culture.</p>
-      <br>
-      <p>The ancestors made a way.<br>
-      <strong>We're making memories.</strong></p>
-      <br>
-      <p><em>Details unlocked when you RSVP.</em></p>
-    </div>
-    <div class="vibe__tags reveal reveal-d2">
-      <span class="tag">🖤 Black Excellence</span>
-      <span class="tag">🌿 Afro-Futurist</span>
-      <span class="tag">🏊🏾 Pool Party</span>
-      <span class="tag">👶🏾 Family Friendly</span>
-      <span class="tag">🎨 Mural Event</span>
-      <span class="tag">✨ Private Estate</span>
-    </div>
+
+    <section class="vibe" aria-label="Mansion vibes">
+      <div class="vibe__copy reveal reveal-d1">
+        <p>It starts at the Mansion on Juneteenth —<br>
+        a pool, a lawn, a DJ set that doesn't stop,<br>
+        and the whole crew turning up.</p>
+        <br>
+        <p>Private estate. By invite only.<br>
+        <strong>Mason · Atlanta, GA · 2PM–11PM</strong></p>
+        <br>
+        <p><em>Address revealed upon RSVP.</em></p>
+      </div>
+      <div class="vibe__tags reveal reveal-d2">
+        <span class="tag">🖤 Black Excellence</span>
+        <span class="tag">🏊🏾 Pool Party</span>
+        <span class="tag">👶🏾 Family Friendly</span>
+        <span class="tag">✨ Private Estate</span>
+        <span class="tag">🌿 Afro-Futurist</span>
+      </div>
+    </section>
+
+    <!-- Estate Gallery -->
+    <section class="gallery" aria-label="Estate photos">
+      <div class="gallery__grid reveal">
+        <div class="gallery__item gallery__item--wide">
+          <img class="gallery__img" loading="lazy"
+            src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200"
+            alt="The estate at night">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" loading="lazy"
+            src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f981b4ec-93b0-4105-8596-bbe652da55ca.jpeg?im_w=720"
+            alt="Aerial view of the estate and pool">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" loading="lazy"
+            src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/5f59699c-1281-467b-a872-6ca4f42deb8a.jpeg?im_w=720"
+            alt="Private pool surrounded by trees">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" loading="lazy"
+            src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f64e11b1-27b7-4588-88b0-4550a9ac3ff5.jpeg?im_w=720"
+            alt="Screened porch overlooking the pool">
+        </div>
+        <div class="gallery__item">
+          <img class="gallery__img" loading="lazy"
+            src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/ddb1c633-1ff6-4bc8-90cf-b81630b70780.jpeg?im_w=720"
+            alt="Wood-paneled library with leather furniture">
+        </div>
+      </div>
+    </section>
+
+    <!-- Billboard — rotating reels -->
+    <section class="billboard" aria-label="The Vibes">
+      <div class="billboard__inner">
+        <p class="section__eyebrow reveal" style="margin-bottom:28px">The Vibes</p>
+        <div class="billboard__screen reveal">
+          <div class="billboard__badge">
+            <span class="billboard__live-dot"></span> Now Playing
+          </div>
+          <iframe id="billboardFrame" src="" frameborder="0"
+            allow="autoplay; encrypted-media" allowfullscreen
+            aria-hidden="true" title=""></iframe>
+          <div class="billboard__bar">
+            <span id="reelLabel" class="billboard__reel-label"></span>
+            <div class="billboard__dots" id="billboardDots"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DJ Lineup -->
+    <section class="lineup" aria-label="DJ Lineup">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="section__eyebrow reveal">The Sound</p>
+      <h2 class="section__heading reveal reveal-d1">The Lineup</h2>
+      <div class="lineup__artists reveal reveal-d2">
+        <div class="lineup__artist lineup__artist--headliner">
+          <div class="lineup__artist-role">Main DJ</div>
+          <div class="lineup__artist-name">Dell Harris</div>
+        </div>
+        <div class="lineup__artist">
+          <div class="lineup__artist-role">Guest Set</div>
+          <div class="lineup__artist-name">DJ Ray G</div>
+          <div class="lineup__artist-credit">Cardi B's DJ</div>
+        </div>
+        <div class="lineup__artist">
+          <div class="lineup__artist-role">Guest Set</div>
+          <div class="lineup__artist-name">Dun Deal</div>
+          <div class="lineup__artist-tbc">Pending Confirmation</div>
+        </div>
+      </div>
+    </section>
+
   </section>
 
-  <!-- GALLERY -->
-  <section class="gallery" aria-label="Estate photos">
-    <div class="divider reveal">
-      <div class="divider__line"></div>
-      <div class="divider__mark">✦</div>
-      <div class="divider__line"></div>
-    </div>
-    <div class="gallery__grid reveal">
-      <div class="gallery__item gallery__item--wide">
-        <img class="gallery__img" loading="lazy"
-          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/c38b894c-d7b1-485c-a1fe-71c1ce45808e.jpeg?im_w=1200"
-          alt="The estate at night">
-      </div>
-      <div class="gallery__item">
-        <img class="gallery__img" loading="lazy"
-          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f981b4ec-93b0-4105-8596-bbe652da55ca.jpeg?im_w=720"
-          alt="Aerial view of the estate and pool">
-      </div>
-      <div class="gallery__item">
-        <img class="gallery__img" loading="lazy"
-          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/5f59699c-1281-467b-a872-6ca4f42deb8a.jpeg?im_w=720"
-          alt="Private pool surrounded by trees">
-      </div>
-      <div class="gallery__item">
-        <img class="gallery__img" loading="lazy"
-          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/f64e11b1-27b7-4588-88b0-4550a9ac3ff5.jpeg?im_w=720"
-          alt="Screened porch overlooking the pool">
-      </div>
-      <div class="gallery__item">
-        <img class="gallery__img" loading="lazy"
-          src="https://a0.muscache.com/im/pictures/prohost-api/Hosting-36789341/original/ddb1c633-1ff6-4bc8-90cf-b81630b70780.jpeg?im_w=720"
-          alt="Wood-paneled library with leather furniture">
-      </div>
-    </div>
-  </section>
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- JUNE 20–21 · THE MURAL                     -->
+  <!-- ═══════════════════════════════════════════ -->
+  <section class="event-block" aria-label="June 20-21 — The Mural">
 
-  <!-- WEEKEND SCHEDULE -->
-  <section class="schedule" aria-label="Weekend schedule">
-    <div class="divider reveal">
-      <div class="divider__line"></div>
-      <div class="divider__mark">✦</div>
-      <div class="divider__line"></div>
-    </div>
-    <p class="section__eyebrow reveal">The Weekend</p>
-    <h2 class="section__heading reveal reveal-d1">Three Days of Freedom</h2>
-    <div class="schedule__days reveal reveal-d2">
-      <div class="schedule__day schedule__day--featured">
-        <div class="schedule__day-date">Friday · June 19</div>
-        <div class="schedule__day-name">The Mansion</div>
-        <div class="schedule__day-detail">Mason · Private Estate<br>2PM – 11PM</div>
-        <div class="schedule__day-badge">Juneteenth</div>
+    <div class="event-block__header">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
       </div>
-      <div class="schedule__day schedule__day--featured">
-        <div class="schedule__day-date">Sat &amp; Sun · June 20–21</div>
-        <div class="schedule__day-name">The Mural</div>
-        <div class="schedule__day-detail">Book Store Gallery · Atlanta<br>Daily Activation</div>
-        <div class="schedule__day-badge">Mural Weekend</div>
-      </div>
+      <p class="section__eyebrow reveal">Sat &amp; Sun · June 20–21</p>
+      <h2 class="section__heading reveal reveal-d1">The Mural</h2>
     </div>
-  </section>
 
-  <!-- LINEUP -->
-  <section class="lineup" aria-label="DJ Lineup">
-    <div class="divider reveal">
-      <div class="divider__line"></div>
-      <div class="divider__mark">✦</div>
-      <div class="divider__line"></div>
-    </div>
-    <p class="section__eyebrow reveal">The Sound</p>
-    <h2 class="section__heading reveal reveal-d1">The Lineup</h2>
-    <div class="lineup__artists reveal reveal-d2">
-      <div class="lineup__artist lineup__artist--headliner">
-        <div class="lineup__artist-role">Main DJ</div>
-        <div class="lineup__artist-name">Dell Harris</div>
+    <section class="vibe" aria-label="Mural activation info">
+      <div class="vibe__copy reveal reveal-d1">
+        <p>The weekend keeps going.<br>
+        <strong>Daily activation at Book Store Gallery, Atlanta.</strong></p>
+        <br>
+        <p>Artist Lisette Correa — <strong>ARRRTADDICT</strong> —<br>
+        paints live on the wall for the culture.<br>
+        Two consecutive days. Watch it come to life.</p>
+        <br>
+        <p><em>Details unlocked when you RSVP.</em></p>
       </div>
-      <div class="lineup__artist">
-        <div class="lineup__artist-role">Guest Set</div>
-        <div class="lineup__artist-name">DJ Ray G</div>
-        <div class="lineup__artist-credit">Cardi B's DJ</div>
+      <div class="vibe__tags reveal reveal-d2">
+        <span class="tag">🎨 Live Mural</span>
+        <span class="tag">🖤 ATL Culture</span>
+        <span class="tag">🌿 Afro-Futurist</span>
+        <span class="tag">✦ Daily Activation</span>
       </div>
-      <div class="lineup__artist">
-        <div class="lineup__artist-role">Guest Set</div>
-        <div class="lineup__artist-name">Dun Deal</div>
-        <div class="lineup__artist-tbc">Pending Confirmation</div>
-      </div>
-    </div>
+    </section>
+
   </section>
 
   <!-- SPONSOR -->
@@ -1196,6 +1315,38 @@
         err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
+    // ── BILLBOARD — rotating reels ─────────────────
+    // Drop in your YouTube video IDs below.
+    // A random reel plays on each page visit, then cycles every 45s.
+    const REELS = [
+      { id: 'PJV1l3-QmFM', label: 'FREE-ISH · Summer Vibes' },
+      { id: 'PJV1l3-QmFM', label: 'ATL · Juneteenth Energy' },
+      { id: 'PJV1l3-QmFM', label: 'The Mansion · Pool Party' },
+    ];
+    let currentReel = Math.floor(Math.random() * REELS.length);
+    const bbFrame = document.getElementById('billboardFrame');
+    const bbLabel = document.getElementById('reelLabel');
+    const bbDots  = document.getElementById('billboardDots');
+
+    function showReel(i) {
+      currentReel = i;
+      const r = REELS[i];
+      bbFrame.src = `https://www.youtube.com/embed/${r.id}?autoplay=1&mute=1&loop=1&playlist=${r.id}&controls=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1`;
+      bbLabel.textContent = r.label;
+      bbDots.querySelectorAll('.billboard__dot-btn').forEach((b, idx) => b.classList.toggle('active', idx === i));
+    }
+
+    REELS.forEach((_, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'billboard__dot-btn' + (i === currentReel ? ' active' : '');
+      btn.setAttribute('aria-label', `Reel ${i + 1}`);
+      btn.addEventListener('click', () => showReel(i));
+      bbDots.appendChild(btn);
+    });
+
+    showReel(currentReel);
+    setInterval(() => showReel((currentReel + 1) % REELS.length), 45000);
+
   </script>
 
 </body>
