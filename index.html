@@ -423,12 +423,14 @@
     }
     .hero__content { position: relative; z-index: 2; padding: 0 24px; max-width: 760px; }
     .hero__eyebrow {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      color: var(--magenta);
-      margin-bottom: 22px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 5vw, 48px);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      color: var(--cream);
+      margin-bottom: 16px;
       opacity: 0;
       animation: riseIn 0.9s ease forwards 0.4s;
     }
