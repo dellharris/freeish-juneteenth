@@ -16,7 +16,6 @@
       overflow: hidden;
     }
 
-    /* ── CANVAS: 1080 × 1920 ── */
     .poster {
       position: relative;
       width: 1080px;
@@ -27,60 +26,68 @@
       flex-shrink: 0;
     }
 
-    /* ══════════════════════════════════════
-       TOP HALF: Mansion hero — 0 to 960px
-    ══════════════════════════════════════ */
+    /* ══ TOP HALF: Hero 960px ══ */
     .hero {
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 960px;
       overflow: hidden;
+      /* Flex for text layers */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 56px 40px 56px;
     }
+    /* Image sits behind everything */
     .hero-img {
-      width: 100%; height: 100%;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: center 55%;
-      display: block;
-      filter: brightness(0.55);
+      filter: brightness(0.5);
+      z-index: 0;
     }
-    /* Dark overlay — heavier at edges, lighter in center */
+    /* Gradient overlay */
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg,
-          rgba(6,1,14,0.78) 0%,
-          rgba(6,1,14,0.30) 28%,
-          rgba(6,1,14,0.30) 62%,
-          rgba(6,1,14,0.85) 85%,
-          #06010E 100%
-        );
+      z-index: 1;
+      background: linear-gradient(
+        180deg,
+        rgba(6,1,14,0.65) 0%,
+        rgba(6,1,14,0.18) 30%,
+        rgba(6,1,14,0.18) 60%,
+        rgba(6,1,14,0.80) 85%,
+        #06010E 100%
+      );
     }
 
-    /* PRESENTER — top of hero */
+    /* Presenter block — top of hero */
     .h-presenter {
-      position: absolute;
-      top: 56px; left: 0; right: 0;
+      position: relative;
+      z-index: 2;
       text-align: center;
-      z-index: 5;
     }
-    .h-presented-by {
+    .h-pby {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.55em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.5);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .h-podcast-name {
+    .h-pname {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 88px;
+      font-size: 90px;
       letter-spacing: 0.06em;
       color: #FFFFFF;
       line-height: 1;
     }
-    .h-presents {
+    .h-ppresents {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 22px;
       font-weight: 700;
@@ -90,246 +97,168 @@
       margin-top: 6px;
     }
 
-    /* FREE-ISH — centered on mansion */
-    .h-freeish {
-      position: absolute;
-      top: 50%;
-      left: 0; right: 0;
-      transform: translateY(-50%);
+    /* FREE-ISH — center of hero */
+    .h-title {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      z-index: 5;
-      padding: 0 20px;
     }
-    .h-freeish-title {
+    .h-freeish {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 300px;
+      font-size: 290px;
       letter-spacing: 0.01em;
       color: #FFFFFF;
-      line-height: 0.88;
-      text-shadow: 0 0 100px rgba(232,0,138,0.65), 0 8px 60px rgba(0,0,0,0.95);
+      line-height: 1;
+      text-shadow:
+        0 0 80px rgba(232,0,138,0.7),
+        0 4px 48px rgba(0,0,0,0.95);
     }
-    .h-freeish-sub {
+    .h-subtitle {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 36px;
+      font-size: 34px;
       font-weight: 700;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.28em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-top: 14px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 8px;
     }
 
-    /* ══════════════════════════════════════
-       BOTTOM HALF: Info — 960 to 1920px
-    ══════════════════════════════════════ */
+    /* spacer for flex */
+    .h-spacer { flex: 1; }
+
+    /* ══ BOTTOM HALF: Info 960px ══ */
     .info {
       position: absolute;
       top: 960px; left: 0; right: 0;
       height: 960px;
       background: #06010E;
-      padding: 52px 80px 52px;
+      padding: 48px 80px 48px;
       display: flex;
       flex-direction: column;
       gap: 0;
     }
 
-    /* DATE LINE */
-    .i-date {
+    .i-dateline {
       display: flex;
       align-items: center;
       gap: 20px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
-    .i-date-label {
+    .i-day {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: #E8008A;
-      white-space: nowrap;
+      font-size: 20px; font-weight: 900;
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: #E8008A; white-space: nowrap;
     }
-    .i-date-rule {
-      flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(232,0,138,0.45), transparent);
-    }
-    .i-date-full {
+    .i-rule { flex: 1; height: 1px; background: linear-gradient(to right, rgba(232,0,138,0.4), transparent); }
+    .i-date {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
+      font-size: 20px; font-weight: 700;
       letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.38);
-      white-space: nowrap;
+      color: rgba(255,255,255,0.35); white-space: nowrap;
     }
 
-    /* THE MANSION */
     .i-name {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 148px;
       letter-spacing: 0.02em;
       color: #FFFFFF;
       line-height: 0.9;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
-    /* Details */
     .i-details {
       display: flex;
       align-items: center;
-      gap: 20px;
-      margin-bottom: 28px;
+      gap: 18px;
+      margin-bottom: 26px;
     }
-    .i-detail-hi {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #FFFFFF;
-    }
-    .i-detail-lo {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.38);
-    }
-    .i-dot { color: #E8008A; font-size: 12px; }
+    .i-dhi { font-family: 'Barlow Condensed', sans-serif; font-size: 27px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #FFF; }
+    .i-dlo { font-family: 'Barlow Condensed', sans-serif; font-size: 27px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+    .i-dot { color: #E8008A; font-size: 10px; }
 
-    /* Divider */
-    .i-rule {
-      height: 1px;
-      background: linear-gradient(to right, #E8008A 0%, rgba(232,0,138,0.12) 60%, transparent);
-      margin-bottom: 28px;
-    }
+    .i-hr { height: 1px; background: linear-gradient(to right, #E8008A, rgba(232,0,138,0.1) 55%, transparent); margin-bottom: 24px; }
 
-    /* TALENT 2×2 */
     .i-talent {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2px;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
     .t {
-      padding: 20px 24px;
+      padding: 18px 22px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.07);
     }
-    .t-role {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.48em;
-      text-transform: uppercase;
-      color: #E8008A;
-      margin-bottom: 5px;
-    }
-    .t-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      letter-spacing: 0.03em;
-      color: #FFFFFF;
-      line-height: 1;
-    }
-    .t-note {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.3);
-      margin-top: 3px;
-    }
+    .t-role { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 900; letter-spacing: 0.48em; text-transform: uppercase; color: #E8008A; margin-bottom: 4px; }
+    .t-name { font-family: 'Bebas Neue', sans-serif; font-size: 46px; letter-spacing: 0.03em; color: #FFF; line-height: 1; }
+    .t-note { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; color: rgba(255,255,255,0.28); margin-top: 2px; }
 
-    /* RSVP */
     .i-rsvp {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 18px;
     }
-    .i-url {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.22);
-    }
+    .i-url { font-family: 'Barlow Condensed', sans-serif; font-size: 21px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.22); }
     .i-btn {
-      display: inline-block;
-      padding: 20px 64px;
+      display: inline-block; padding: 20px 60px;
       background: linear-gradient(135deg, #A80060, #E8008A 52%, #BF5FFF);
-      color: #FFF;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
+      color: #FFF; font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 800; letter-spacing: 0.35em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
       box-shadow: 0 0 40px rgba(232,0,138,0.4);
     }
 
-    /* CREDITS */
     .i-credits {
-      display: flex;
-      justify-content: space-between;
+      display: flex; justify-content: space-between;
       padding-top: 16px;
       border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: auto;
     }
-    .i-credit {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.16);
-    }
+    .i-credit { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.16); }
   </style>
 </head>
 <body>
-
   <div class="poster" id="poster">
 
-    <!-- ═══ HERO: Mansion image with FREE-ISH over it ═══ -->
+    <!-- HERO: mansion image + all overlay text inside -->
     <div class="hero">
-      <img class="hero-img" src="mansion-night.jpg" alt="The Mansion">
+      <img class="hero-img" src="mansion-night.jpg" alt="">
       <div class="hero-overlay"></div>
+
+      <div class="h-presenter">
+        <div class="h-pby">Presented By</div>
+        <div class="h-pname">In N Out Podcast</div>
+        <div class="h-ppresents">Presents</div>
+      </div>
+
+      <div class="h-spacer"></div>
+
+      <div class="h-title">
+        <div class="h-freeish">FREE&#8209;ISH</div>
+        <div class="h-subtitle">Juneteenth Weekend Freedom Celebration</div>
+      </div>
     </div>
 
-    <!-- Presenter — top of hero -->
-    <div class="h-presenter">
-      <div class="h-presented-by">Presented By</div>
-      <div class="h-podcast-name">In N Out Podcast</div>
-      <div class="h-presents">Presents</div>
-    </div>
-
-    <!-- FREE-ISH centered on mansion -->
-    <div class="h-freeish">
-      <div class="h-freeish-title">FREE&#8209;ISH</div>
-      <div class="h-freeish-sub">Juneteenth Weekend Freedom Celebration</div>
-    </div>
-
-    <!-- ═══ INFO SECTION ═══ -->
+    <!-- INFO SECTION -->
     <div class="info">
 
-      <div class="i-date">
-        <div class="i-date-label">Friday Night</div>
-        <div class="i-date-rule"></div>
-        <div class="i-date-full">June 19 · 2026</div>
+      <div class="i-dateline">
+        <div class="i-day">Friday Night</div>
+        <div class="i-rule"></div>
+        <div class="i-date">June 19 · 2026</div>
       </div>
 
       <div class="i-name">The Mansion</div>
 
       <div class="i-details">
-        <span class="i-detail-hi">2PM – 11PM</span>
+        <span class="i-dhi">2PM – 11PM</span>
         <span class="i-dot">✦</span>
-        <span class="i-detail-lo">Private Estate</span>
+        <span class="i-dlo">Private Estate</span>
         <span class="i-dot">✦</span>
-        <span class="i-detail-lo">By Invite Only</span>
+        <span class="i-dlo">By Invite Only</span>
       </div>
 
-      <div class="i-rule"></div>
+      <div class="i-hr"></div>
 
       <div class="i-talent">
         <div class="t">
@@ -364,7 +293,6 @@
       </div>
 
     </div>
-
   </div>
 
   <script>
@@ -376,6 +304,5 @@
     fit();
     window.addEventListener('resize', fit);
   </script>
-
 </body>
 </html>
