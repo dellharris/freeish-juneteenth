@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>FREE-ISH · June 19 · The Mansion</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -16,293 +16,250 @@
       overflow: hidden;
     }
 
+    /* ── CANVAS: 1080 × 1920 ── */
     .poster {
+      position: relative;
       width: 1080px;
       height: 1920px;
-      position: relative;
       overflow: hidden;
       background: #06010E;
       transform-origin: center center;
       flex-shrink: 0;
-      font-family: 'Barlow Condensed', sans-serif;
     }
 
-    /* ════ HERO: Still image + video behind ════ */
+    /* ══════════════════════════════════════
+       TOP HALF: Mansion hero — 0 to 960px
+    ══════════════════════════════════════ */
     .hero {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1120px;
-      z-index: 1;
+      height: 960px;
       overflow: hidden;
     }
-    /* Video plays behind for screen use */
-    .hero video {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-    /* Still image on top — exports cleanly */
     .hero-img {
-      position: absolute;
-      inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: center 30%;
+      object-position: center 55%;
+      display: block;
+      filter: brightness(0.55);
     }
-    /* Heavy mask so text pops */
-    .hero-mask {
+    /* Dark overlay — heavier at edges, lighter in center */
+    .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(6,1,14,0.62) 0%,
-        rgba(6,1,14,0.35) 22%,
-        rgba(6,1,14,0.42) 55%,
-        rgba(6,1,14,0.88) 82%,
-        #06010E 100%
-      );
-      z-index: 3;
+      background:
+        linear-gradient(180deg,
+          rgba(6,1,14,0.78) 0%,
+          rgba(6,1,14,0.30) 28%,
+          rgba(6,1,14,0.30) 62%,
+          rgba(6,1,14,0.85) 85%,
+          #06010E 100%
+        );
     }
 
-    /* ════ IN N OUT PODCAST — top block ════ */
-    .presenter {
+    /* PRESENTER — top of hero */
+    .h-presenter {
       position: absolute;
-      top: 58px;
-      left: 0; right: 0;
+      top: 56px; left: 0; right: 0;
       text-align: center;
-      z-index: 10;
+      z-index: 5;
     }
-    .presenter-label {
+    .h-presented-by {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 0.38em;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.55em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 4px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 6px;
     }
-    .presenter-name {
+    .h-podcast-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 96px;
+      font-size: 88px;
       letter-spacing: 0.06em;
       color: #FFFFFF;
-      line-height: 0.9;
+      line-height: 1;
     }
-    .presenter-sub {
+    .h-presents {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 24px;
-      font-weight: 600;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.55em;
+      text-transform: uppercase;
+      color: #E8008A;
+      margin-top: 6px;
+    }
+
+    /* FREE-ISH — centered on mansion */
+    .h-freeish {
+      position: absolute;
+      top: 50%;
+      left: 0; right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 5;
+      padding: 0 20px;
+    }
+    .h-freeish-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 300px;
+      letter-spacing: 0.01em;
+      color: #FFFFFF;
+      line-height: 0.88;
+      text-shadow: 0 0 100px rgba(232,0,138,0.65), 0 8px 60px rgba(0,0,0,0.95);
+    }
+    .h-freeish-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 14px;
+    }
+
+    /* ══════════════════════════════════════
+       BOTTOM HALF: Info — 960 to 1920px
+    ══════════════════════════════════════ */
+    .info {
+      position: absolute;
+      top: 960px; left: 0; right: 0;
+      height: 960px;
+      background: #06010E;
+      padding: 52px 80px 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* DATE LINE */
+    .i-date {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 18px;
+    }
+    .i-date-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 900;
       letter-spacing: 0.5em;
       text-transform: uppercase;
       color: #E8008A;
-      margin-top: 8px;
+      white-space: nowrap;
     }
-
-    /* ════ FREE-ISH — centered on image ════ */
-    .title-block {
-      position: absolute;
-      top: 340px;
-      left: 0; right: 0;
-      text-align: center;
-      z-index: 10;
-      padding: 0 40px;
-    }
-    .title-main {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 340px;
-      letter-spacing: 0.01em;
-      color: #FFFFFF;
-      line-height: 0.85;
-      text-shadow:
-        0 0 80px rgba(232,0,138,0.7),
-        0 6px 48px rgba(0,0,0,0.9);
-    }
-    .title-sub {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 42px;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      margin-top: 12px;
-    }
-
-    /* ════ MANSION PHOTO STRIP ════ */
-    .mansion-strip {
-      position: absolute;
-      top: 1020px;
-      left: 0; right: 0;
-      height: 260px;
-      z-index: 5;
-      overflow: hidden;
-    }
-    .mansion-strip img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 45%;
-      filter: brightness(0.6) saturate(0.7);
-    }
-    .mansion-strip::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 120px;
-      background: linear-gradient(to bottom, #06010E, transparent);
-      z-index: 6;
-    }
-    .mansion-strip::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: linear-gradient(to top, #06010E, transparent);
-      z-index: 6;
-    }
-    .mansion-tag {
-      position: absolute;
-      bottom: 22px; right: 60px;
-      z-index: 7;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
-
-    /* ════ INFO SECTION ════ */
-    .info {
-      position: absolute;
-      top: 1240px;
-      left: 0; right: 0; bottom: 0;
-      padding: 0 80px 64px;
-      display: flex;
-      flex-direction: column;
-      background: #06010E;
-      z-index: 8;
-    }
-
-    /* Date header */
-    .date-row {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 16px;
-    }
-    .date-day {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 0.45em;
-      text-transform: uppercase;
-      color: #E8008A;
-    }
-    .date-line {
+    .i-date-rule {
       flex: 1; height: 1px;
-      background: linear-gradient(to right, rgba(232,0,138,0.5), transparent);
+      background: linear-gradient(to right, rgba(232,0,138,0.45), transparent);
     }
-    .date-full {
+    .i-date-full {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.25em;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.38);
+      white-space: nowrap;
     }
 
-    /* THE MANSION large */
-    .mansion-name {
+    /* THE MANSION */
+    .i-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 160px;
-      letter-spacing: 0.03em;
+      font-size: 148px;
+      letter-spacing: 0.02em;
       color: #FFFFFF;
-      line-height: 0.88;
-      margin-bottom: 20px;
+      line-height: 0.9;
+      margin-bottom: 18px;
     }
 
-    /* Time + details */
-    .details {
+    /* Details */
+    .i-details {
       display: flex;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 36px;
+      gap: 20px;
+      margin-bottom: 28px;
     }
-    .detail {
+    .i-detail-hi {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+    .i-detail-lo {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 28px;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
     }
-    .detail-hi { color: #FFFFFF; }
-    .detail-lo { color: rgba(255,255,255,0.38); }
-    .detail-sep { color: #E8008A; font-size: 12px; }
+    .i-dot { color: #E8008A; font-size: 12px; }
 
-    /* DIVIDER */
-    .divider {
+    /* Divider */
+    .i-rule {
       height: 1px;
-      background: linear-gradient(to right, #E8008A 0%, rgba(232,0,138,0.15) 55%, transparent);
-      margin-bottom: 32px;
+      background: linear-gradient(to right, #E8008A 0%, rgba(232,0,138,0.12) 60%, transparent);
+      margin-bottom: 28px;
     }
 
-    /* TALENT GRID */
-    .talent {
+    /* TALENT 2×2 */
+    .i-talent {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2px;
-      margin-bottom: auto;
+      margin-bottom: 28px;
     }
-    .t-item {
-      padding: 24px 28px;
+    .t {
+      padding: 20px 24px;
       background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.07);
     }
     .t-role {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
-      letter-spacing: 0.45em;
+      letter-spacing: 0.48em;
       text-transform: uppercase;
       color: #E8008A;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .t-name {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 52px;
-      letter-spacing: 0.04em;
+      font-size: 48px;
+      letter-spacing: 0.03em;
       color: #FFFFFF;
       line-height: 1;
     }
     .t-note {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: 0.15em;
-      color: rgba(255,255,255,0.28);
+      color: rgba(255,255,255,0.3);
       margin-top: 3px;
     }
 
     /* RSVP */
-    .rsvp-row {
+    .i-rsvp {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 28px;
+      margin-bottom: 20px;
     }
-    .rsvp-url {
+    .i-url {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 22px;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.22);
     }
-    .rsvp-btn {
+    .i-btn {
       display: inline-block;
-      padding: 22px 72px;
-      background: linear-gradient(135deg, #A80060, #E8008A 55%, #BF5FFF);
-      color: #fff;
+      padding: 20px 64px;
+      background: linear-gradient(135deg, #A80060, #E8008A 52%, #BF5FFF);
+      color: #FFF;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 20px;
       font-weight: 800;
@@ -310,22 +267,21 @@
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
-      box-shadow: 0 0 48px rgba(232,0,138,0.4);
+      box-shadow: 0 0 40px rgba(232,0,138,0.4);
     }
 
     /* CREDITS */
-    .credits {
+    .i-credits {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
-      padding-top: 20px;
+      padding-top: 16px;
       border-top: 1px solid rgba(255,255,255,0.06);
     }
-    .credit {
+    .i-credit {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.25em;
+      font-weight: 700;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.16);
     }
@@ -335,85 +291,76 @@
 
   <div class="poster" id="poster">
 
-    <!-- HERO -->
+    <!-- ═══ HERO: Mansion image with FREE-ISH over it ═══ -->
     <div class="hero">
-      <video autoplay muted loop playsinline>
-        <source src="celebration.mp4" type="video/mp4">
-      </video>
-      <img class="hero-img" src="celebration-still.jpg" alt="">
-      <div class="hero-mask"></div>
+      <img class="hero-img" src="mansion-night.jpg" alt="The Mansion">
+      <div class="hero-overlay"></div>
     </div>
 
-    <!-- IN N OUT PODCAST PRESENTS -->
-    <div class="presenter">
-      <div class="presenter-label">Presented By</div>
-      <div class="presenter-name">In N Out Podcast</div>
-      <div class="presenter-sub">Presents</div>
+    <!-- Presenter — top of hero -->
+    <div class="h-presenter">
+      <div class="h-presented-by">Presented By</div>
+      <div class="h-podcast-name">In N Out Podcast</div>
+      <div class="h-presents">Presents</div>
     </div>
 
-    <!-- FREE-ISH over the image -->
-    <div class="title-block">
-      <div class="title-main">FREE&#8209;ISH</div>
-      <div class="title-sub">Juneteenth Weekend Freedom Celebration</div>
+    <!-- FREE-ISH centered on mansion -->
+    <div class="h-freeish">
+      <div class="h-freeish-title">FREE&#8209;ISH</div>
+      <div class="h-freeish-sub">Juneteenth Weekend Freedom Celebration</div>
     </div>
 
-    <!-- MANSION PHOTO -->
-    <div class="mansion-strip">
-      <img src="mansion-night.jpg" alt="The Mansion">
-      <div class="mansion-tag">Private Estate · Mason, ATL</div>
-    </div>
-
-    <!-- INFO -->
+    <!-- ═══ INFO SECTION ═══ -->
     <div class="info">
 
-      <div class="date-row">
-        <div class="date-day">Friday Night</div>
-        <div class="date-line"></div>
-        <div class="date-full">June 19 · 2026</div>
+      <div class="i-date">
+        <div class="i-date-label">Friday Night</div>
+        <div class="i-date-rule"></div>
+        <div class="i-date-full">June 19 · 2026</div>
       </div>
 
-      <div class="mansion-name">The<br>Mansion</div>
+      <div class="i-name">The Mansion</div>
 
-      <div class="details">
-        <span class="detail detail-hi">2PM – 11PM</span>
-        <span class="detail-sep">✦</span>
-        <span class="detail detail-lo">Private Estate</span>
-        <span class="detail-sep">✦</span>
-        <span class="detail detail-lo">By Invite Only</span>
+      <div class="i-details">
+        <span class="i-detail-hi">2PM – 11PM</span>
+        <span class="i-dot">✦</span>
+        <span class="i-detail-lo">Private Estate</span>
+        <span class="i-dot">✦</span>
+        <span class="i-detail-lo">By Invite Only</span>
       </div>
 
-      <div class="divider"></div>
+      <div class="i-rule"></div>
 
-      <div class="talent">
-        <div class="t-item">
+      <div class="i-talent">
+        <div class="t">
           <div class="t-role">Hosted By</div>
           <div class="t-name">T'Challa</div>
         </div>
-        <div class="t-item">
+        <div class="t">
           <div class="t-role">Hosted By</div>
           <div class="t-name">Dun Deal</div>
           <div class="t-note">On The Track</div>
         </div>
-        <div class="t-item">
+        <div class="t">
           <div class="t-role">Main DJ</div>
           <div class="t-name">Dell Harris</div>
         </div>
-        <div class="t-item">
+        <div class="t">
           <div class="t-role">Guest Set</div>
           <div class="t-name">DJ Ray G</div>
           <div class="t-note">Cardi B's DJ</div>
         </div>
       </div>
 
-      <div class="rsvp-row">
-        <div class="rsvp-url">events.innoutww.com</div>
-        <a class="rsvp-btn">Secure Your Spot</a>
+      <div class="i-rsvp">
+        <div class="i-url">events.innoutww.com</div>
+        <a class="i-btn">Secure Your Spot</a>
       </div>
 
-      <div class="credits">
-        <span class="credit">In N Out Podcast</span>
-        <span class="credit">Sponsored by UmmaSonoma</span>
-        <span class="credit">Art · @arrrtaddict</span>
+      <div class="i-credits">
+        <span class="i-credit">In N Out Podcast</span>
+        <span class="i-credit">Sponsored by UmmaSonoma</span>
+        <span class="i-credit">Art · @arrrtaddict</span>
       </div>
 
     </div>
