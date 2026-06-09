@@ -37,12 +37,17 @@
       align-items: center;
       justify-content: space-between;
       padding: 56px 40px 56px;
-      /* Image as CSS background — most reliable for file:// */
-      background-image: url('mansion-night.jpg');
-      background-size: cover;
-      background-position: center 55%;
     }
-    /* Gradient overlay on top of bg image */
+    /* Video background */
+    #bgvid {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: 0;
+    }
+    /* Gradient overlay */
     .hero-overlay {
       position: absolute;
       inset: 0;
@@ -212,12 +217,14 @@
 <body>
   <div class="poster" id="poster">
 
-    <!-- HERO: mansion as CSS background + all text inside -->
+    <!-- HERO: celebration video background -->
     <div class="hero">
+      <video id="bgvid" muted loop playsinline poster="mansion-night.jpg">
+        <source src="celebration.mp4" type="video/mp4">
+      </video>
       <div class="hero-overlay"></div>
 
       <div class="h-presenter">
-        <div class="h-pby">Presented By</div>
         <div class="h-pname">In N Out Podcast</div>
         <div class="h-ppresents">Presents</div>
       </div>
@@ -287,6 +294,7 @@
   </div>
 
   <script>
+    // Scale poster to fit window
     function fit() {
       const el = document.getElementById('poster');
       const scale = Math.min(window.innerWidth / 1080, window.innerHeight / 1920);
@@ -294,6 +302,17 @@
     }
     fit();
     window.addEventListener('resize', fit);
+
+    // Force video play — Safari file:// needs explicit call
+    const vid = document.getElementById('bgvid');
+    vid.muted = true;
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked — poster image (mansion-night.jpg) shows as fallback
+        document.addEventListener('click', () => vid.play(), { once: true });
+      });
+    }
   </script>
 </body>
 </html>
