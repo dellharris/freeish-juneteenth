@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>FREE-ISH Poster</title>
+  <title>FREE-ISH · Juneteenth 2026</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -10,182 +10,206 @@
     body {
       width: 1080px;
       height: 1920px;
-      background: #04071A;
-      font-family: 'Space Grotesk', sans-serif;
       overflow: hidden;
+      background: #08021C;
+      font-family: 'Space Grotesk', sans-serif;
       position: relative;
     }
 
-    /* ─── TOP: Full image ─── */
-    #image-section {
+    /* ════════════════════════════════════
+       HERO IMAGE — top 55%
+    ════════════════════════════════════ */
+    #hero {
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1140px;
+      height: 1060px;
+      overflow: hidden;
+      z-index: 1;
     }
-    #image-section img {
+    #hero img {
       width: 100%;
-      height: 1080px;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
+      object-position: center 12%;
       display: block;
     }
-    /* Gradient fade: image color → deep complementary blue */
-    #image-section::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0;
-      bottom: 0;
-      height: 360px;
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        rgba(4,7,26,0.5) 40%,
-        rgba(4,7,26,0.88) 70%,
-        #04071A 100%
-      );
-    }
-
-    /* ─── BOTTOM: Info section ─── */
-    #info-section {
+    /* Gradient: image fades into the complementary purple-indigo */
+    #hero-fade {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      top: 1080px;
-      background: #04071A;
-      padding: 60px 80px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+      height: 420px;
+      background: linear-gradient(
+        to bottom,
+        transparent           0%,
+        rgba(8,2,28,0.25)    30%,
+        rgba(8,2,28,0.72)    60%,
+        rgba(8,2,28,0.95)    82%,
+        #08021C              100%
+      );
+      z-index: 2;
     }
 
-    /* Presenter */
+    /* ════════════════════════════════════
+       INFO SECTION — bottom 45%
+    ════════════════════════════════════ */
+    #info {
+      position: absolute;
+      top: 940px;
+      bottom: 0;
+      left: 0; right: 0;
+      background: #08021C;
+      z-index: 3;
+      padding: 40px 80px 72px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Presenter line */
     #presenter {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: 0.45em;
+      letter-spacing: 0.5em;
       text-transform: uppercase;
-      color: #C8FF00;
-      margin-bottom: 16px;
+      color: #C6FF00;
+      margin-bottom: 12px;
     }
 
     /* FREE-ISH */
     #title {
       font-family: 'Playfair Display', serif;
-      font-size: 220px;
+      font-size: 210px;
       font-weight: 900;
       line-height: 0.82;
       letter-spacing: -0.03em;
       color: #FFFFFF;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     /* Subtitle */
     #subtitle {
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 34px;
       font-style: italic;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 44px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 36px;
+      letter-spacing: 0.02em;
     }
 
-    /* Divider */
+    /* Lime divider */
     #divider {
       height: 1px;
-      background: linear-gradient(to right, #C8FF00, rgba(200,255,0,0.15), transparent);
-      margin-bottom: 40px;
+      background: linear-gradient(to right, #C6FF00 0%, rgba(198,255,0,0.25) 60%, transparent 100%);
+      margin-bottom: 32px;
     }
 
-    /* Date row */
+    /* Date + city */
     #dateline {
       display: flex;
       align-items: center;
-      gap: 24px;
-      margin-bottom: 44px;
+      gap: 20px;
+      margin-bottom: 36px;
     }
     #dates {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: #FFFFFF;
     }
-    .sep { color: #C8FF00; font-size: 20px; }
-    #location {
-      font-size: 32px;
+    #sep { color: #C6FF00; font-size: 18px; }
+    #city {
+      font-size: 30px;
       font-weight: 400;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.4);
     }
 
-    /* Talent */
+    /* Talent grid */
     #talent {
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 0;
-      margin-bottom: 52px;
+      margin-bottom: auto;
+      padding: 28px 0;
+      border-top: 1px solid rgba(198,255,0,0.15);
+      border-bottom: 1px solid rgba(198,255,0,0.15);
     }
     .t {
-      flex: 1;
-      padding: 0 32px 0 0;
-      margin-right: 32px;
-      border-right: 1px solid rgba(200,255,0,0.2);
+      padding-right: 24px;
+      border-right: 1px solid rgba(255,255,255,0.08);
     }
-    .t:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+    .t:last-child { border-right: none; padding-right: 0; }
     .t-role {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.4em;
       text-transform: uppercase;
-      color: #C8FF00;
+      color: #C6FF00;
       margin-bottom: 6px;
     }
     .t-name {
       font-family: 'Playfair Display', serif;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 900;
       color: #FFFFFF;
       line-height: 1;
     }
     .t-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
-      margin-top: 4px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      margin-top: 3px;
+      letter-spacing: 0.08em;
     }
 
-    /* Bottom row */
-    #bottom-row {
+    /* RSVP row */
+    #rsvp-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: auto;
+      margin-top: 36px;
     }
     #rsvp-url {
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 600;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.3);
     }
     #rsvp-btn {
-      display: block;
-      padding: 20px 60px;
-      background: #C8FF00;
-      color: #04071A;
-      font-size: 16px;
+      padding: 18px 56px;
+      background: #C6FF00;
+      color: #08021C;
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: 0.32em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       text-decoration: none;
       border-radius: 2px;
+    }
+
+    /* Credits */
+    #credits {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 24px;
+    }
+    .cred {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- IMAGE SECTION — untouched at top -->
-  <div id="image-section">
-    <img src="umma-mural-final.jpg" alt="FREE-ISH Juneteenth 2026 — Art by ARRRTADDICT">
+  <!-- ═══ HERO IMAGE ═══ -->
+  <div id="hero">
+    <img src="umma-mural-final.jpg" alt="FREE-ISH Juneteenth 2026">
+    <div id="hero-fade"></div>
   </div>
 
-  <!-- INFO SECTION — below image -->
-  <div id="info-section">
+  <!-- ═══ INFO SECTION ═══ -->
+  <div id="info">
 
     <div id="presenter">In &amp; Out Podcast Presents</div>
 
@@ -196,9 +220,9 @@
     <div id="divider"></div>
 
     <div id="dateline">
-      <div id="dates">June 19 – 21, 2026</div>
-      <div class="sep">✦</div>
-      <div id="location">Atlanta, GA</div>
+      <div id="dates">June 19 – 21 · 2026</div>
+      <div id="sep">✦</div>
+      <div id="city">Atlanta, GA</div>
     </div>
 
     <div id="talent">
@@ -222,9 +246,15 @@
       </div>
     </div>
 
-    <div id="bottom-row">
+    <div id="rsvp-row">
       <div id="rsvp-url">events.innoutww.com</div>
-      <a id="rsvp-btn" href="https://events.innoutww.com/#rsvp">Secure Your Spot</a>
+      <a id="rsvp-btn">Secure Your Spot</a>
+    </div>
+
+    <div id="credits">
+      <span class="cred">Presented by In &amp; Out Podcast</span>
+      <span class="cred">Sponsored by UmmaSonoma</span>
+      <span class="cred">Art by @arrrtaddict</span>
     </div>
 
   </div>
