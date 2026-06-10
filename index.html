@@ -1630,6 +1630,15 @@
       <h2 class="thread__heading reveal">The Thread</h2>
       <p class="thread__sub reveal reveal-d1">RSVPed guests only &nbsp;·&nbsp; Keep the vibe going</p>
 
+      <!-- Returning guest join form — shown when not yet unlocked on this device -->
+      <div id="threadJoin" style="display:none;margin-bottom:32px;">
+        <p style="font-size:14px;color:var(--cream-dim);margin-bottom:16px;letter-spacing:0.05em;">Already RSVP'd? Enter your name to join the thread.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <input id="threadJoinInput" class="form__input" type="text" placeholder="Your full name" style="flex:1;min-width:200px;padding:14px 16px;font-size:15px;">
+          <button id="threadJoinBtn" class="form__submit" style="width:auto;padding:14px 28px;margin-top:0;font-size:13px;">Join Thread</button>
+        </div>
+      </div>
+
       <!-- Compose — shown after RSVP -->
       <div class="thread__compose" id="threadCompose">
         <div class="thread__compose-name" id="threadComposeName"></div>
@@ -1873,18 +1882,33 @@
 
     function activateThread(firstName, lastName) {
       const fullName = `${firstName} ${lastName}`.trim();
-      sessionStorage.setItem('threadName', fullName);
+      localStorage.setItem('threadName', fullName);
       const compose = document.getElementById('threadCompose');
       document.getElementById('threadComposeName').textContent = `Posting as ${fullName}`;
       compose.classList.add('visible');
       setTimeout(() => document.getElementById('thread').scrollIntoView({ behavior:'smooth', block:'start' }), 600);
     }
 
-    const savedName = sessionStorage.getItem('threadName');
+    const savedName = localStorage.getItem('threadName');
     if (savedName) {
       document.getElementById('threadComposeName').textContent = `Posting as ${savedName}`;
       document.getElementById('threadCompose').classList.add('visible');
+    } else {
+      document.getElementById('threadJoin').style.display = 'block';
     }
+
+    // Returning guest join
+    document.getElementById('threadJoinBtn').addEventListener('click', () => {
+      const name = document.getElementById('threadJoinInput').value.trim();
+      if (!name) return;
+      localStorage.setItem('threadName', name);
+      document.getElementById('threadJoin').style.display = 'none';
+      document.getElementById('threadComposeName').textContent = `Posting as ${name}`;
+      document.getElementById('threadCompose').classList.add('visible');
+    });
+    document.getElementById('threadJoinInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('threadJoinBtn').click();
+    });
 
     // ── GIPHY PICKER ──────────────────────────────────
     async function fetchGifs(query) {
@@ -1951,7 +1975,7 @@
     });
 
     document.getElementById('threadSend').addEventListener('click', async () => {
-      const name  = sessionStorage.getItem('threadName');
+      const name  = localStorage.getItem('threadName');
       const text  = document.getElementById('threadText').value.trim();
       const media = selectedGifUrl;
       if (!name || (!text && !media)) return;
