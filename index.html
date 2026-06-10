@@ -1508,11 +1508,17 @@
       if (count <= 1) { container.innerHTML = ''; return; }
       let html = `<div class="guest-names-section">
         <span class="guest-names-label">Additional Guests</span>
-        <p class="guest-names-note">Please add the full name of each adult in your party (kids don't need to be listed).</p>`;
+        <p class="guest-names-note">Full name + phone for each adult (kids don't need to be listed).</p>`;
       for (let i = 2; i <= count; i++) {
-        html += `<div class="form__group">
-          <label class="form__label" for="${containerId}_g${i}">Guest ${i} Full Name</label>
-          <input class="form__input" type="text" id="${containerId}_g${i}" name="guest${i}" placeholder="Full name" required>
+        html += `<div style="margin-bottom:18px">
+          <div class="form__group" style="margin-bottom:10px">
+            <label class="form__label" for="${containerId}_name${i}">Guest ${i} Full Name</label>
+            <input class="form__input" type="text" id="${containerId}_name${i}" placeholder="Full name" required>
+          </div>
+          <div class="form__group" style="margin-bottom:0">
+            <label class="form__label" for="${containerId}_phone${i}">Guest ${i} Phone</label>
+            <input class="form__input" type="tel" id="${containerId}_phone${i}" placeholder="(404) 555-0100" required>
+          </div>
         </div>`;
       }
       html += '</div>';
@@ -1520,12 +1526,13 @@
     }
 
     function collectGuests(containerId, count) {
-      const names = [];
+      const guests = [];
       for (let i = 2; i <= count; i++) {
-        const el = document.getElementById(`${containerId}_g${i}`);
-        if (el) names.push(el.value.trim());
+        const name  = (document.getElementById(`${containerId}_name${i}`)  || {}).value || '';
+        const phone = (document.getElementById(`${containerId}_phone${i}`) || {}).value || '';
+        if (name) guests.push(`${name.trim()} (${phone.trim()})`);
       }
-      return names.join(', ');
+      return guests.join(', ');
     }
 
     // ── RSVP MODAL ─────────────────────────────────────
