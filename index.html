@@ -980,19 +980,72 @@
       transition: background 0.2s;
     }
     .thread__gif-btn:hover { background: rgba(232,0,138,0.1); }
-    .thread__gif-input {
+
+    /* Giphy picker */
+    .giphy-picker {
       display: none;
-      flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(232,0,138,0.2);
+      background: rgba(8,0,16,0.97);
+      border: 1px solid rgba(232,0,138,0.25);
+      border-radius: 4px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+    .giphy-picker.open { display: block; }
+    .giphy-search {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(232,0,138,0.3);
       border-radius: 4px;
       color: var(--cream);
-      font-size: 13px;
-      padding: 8px 12px;
-      outline: none;
       font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      padding: 10px 14px;
+      outline: none;
+      margin-bottom: 12px;
     }
-    .thread__gif-input::placeholder { color: rgba(255,240,248,0.2); }
+    .giphy-search::placeholder { color: rgba(255,240,248,0.25); }
+    .giphy-search:focus { border-color: var(--magenta); }
+    .giphy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .giphy-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 2px;
+      border: 2px solid transparent;
+      transition: border-color 0.15s;
+    }
+    .giphy-item:hover, .giphy-item.selected { border-color: var(--magenta); }
+    .giphy-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .giphy-footer {
+      text-align: right;
+      margin-top: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.18);
+    }
+    .thread__media-remove {
+      position: absolute;
+      top: 4px; right: 4px;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: rgba(8,0,16,0.8);
+      border: none;
+      color: var(--cream);
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .thread__send {
       padding: 10px 28px;
       background: linear-gradient(135deg, #A80060, #E8008A 55%, #BF5FFF);
@@ -1581,12 +1634,18 @@
       <div class="thread__compose" id="threadCompose">
         <div class="thread__compose-name" id="threadComposeName"></div>
         <textarea class="thread__textarea" id="threadText" placeholder="Drop your energy… 🔥" rows="2"></textarea>
-        <div class="thread__media-preview" id="threadMediaPreview">
-          <img id="threadMediaImg" src="" alt="">
+        <div class="thread__media-preview" id="threadMediaPreview" style="display:none;position:relative;margin:10px 0;">
+          <img id="threadMediaImg" src="" alt="" style="max-width:100%;max-height:180px;border-radius:4px;display:block;">
+          <button class="thread__media-remove" id="threadMediaRemove">×</button>
+        </div>
+        <!-- Giphy picker -->
+        <div class="giphy-picker" id="giphyPicker">
+          <input class="giphy-search" id="giphySearch" type="text" placeholder="Search GIFs and memes…">
+          <div class="giphy-grid" id="giphyGrid"></div>
+          <div class="giphy-footer">Powered by GIPHY</div>
         </div>
         <div class="thread__compose-bar">
           <button class="thread__gif-btn" id="threadGifToggle">GIF / Meme</button>
-          <input class="thread__gif-input" id="threadGifUrl" placeholder="Paste image or GIF URL…">
           <button class="thread__send" id="threadSend">Post</button>
         </div>
       </div>
@@ -1761,9 +1820,13 @@
     }
 
     // ── THE THREAD ─────────────────────────────────────
+    const GIPHY_KEY    = 'm2FIn37nVdGnxQadTpAGma6PrOfX1wZv';
     const AVATAR_COLORS = ['#E8008A','#BF5FFF','#C6FF00','#00D4FF','#FF6B35','#7C3AED'];
+    let selectedGifUrl = '';
+    let giphyLoaded    = false;
+
     function avatarColor(name) { let h=0; for(let c of name) h=(h+c.charCodeAt(0))%AVATAR_COLORS.length; return AVATAR_COLORS[h]; }
-    function initials(name) { return name.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase(); }
+    function initials(name)    { return name.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase(); }
     function timeAgo(ts) {
       const s = Math.floor((Date.now() - new Date(Number(ts)||ts).getTime()) / 1000);
       if (s < 60) return 'just now';
@@ -1789,23 +1852,22 @@
 
     async function loadComments() {
       try {
-        const res  = await fetch(APPS_SCRIPT_URL, { method: 'GET' });
+        const res  = await fetch(APPS_SCRIPT_URL);
         const data = await res.json();
-        const feed = document.getElementById('threadFeed');
+        const feed  = document.getElementById('threadFeed');
         const empty = document.getElementById('threadEmpty');
         if (!data.length) { if(empty) empty.style.display='block'; return; }
         if(empty) empty.style.display='none';
         const html = data.map(renderComment).join('');
-        // Only update if content changed
         if (feed.innerHTML !== html) feed.innerHTML = html;
-      } catch(err) { /* silent fail */ }
+      } catch(err) {}
     }
 
     async function postComment(name, text, media) {
       await fetch(APPS_SCRIPT_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain' },
-        body: JSON.stringify({ type: 'comment', name, text, media, timestamp: new Date().toISOString() })
+        body: JSON.stringify({ type:'comment', name, text, media, timestamp: new Date().toISOString() })
       });
     }
 
@@ -1813,54 +1875,97 @@
       const fullName = `${firstName} ${lastName}`.trim();
       sessionStorage.setItem('threadName', fullName);
       const compose = document.getElementById('threadCompose');
-      const label   = document.getElementById('threadComposeName');
+      document.getElementById('threadComposeName').textContent = `Posting as ${fullName}`;
       compose.classList.add('visible');
-      label.textContent = `Posting as ${fullName}`;
-      setTimeout(() => document.getElementById('thread').scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
+      setTimeout(() => document.getElementById('thread').scrollIntoView({ behavior:'smooth', block:'start' }), 600);
     }
 
-    // Restore compose if already RSVP'd this session
     const savedName = sessionStorage.getItem('threadName');
     if (savedName) {
-      const compose = document.getElementById('threadCompose');
       document.getElementById('threadComposeName').textContent = `Posting as ${savedName}`;
-      compose.classList.add('visible');
+      document.getElementById('threadCompose').classList.add('visible');
     }
 
-    // GIF/media toggle
-    document.getElementById('threadGifToggle').addEventListener('click', () => {
-      const input = document.getElementById('threadGifUrl');
-      input.style.display = input.style.display === 'none' || !input.style.display ? 'block' : 'none';
-      if (input.style.display === 'block') input.focus();
+    // ── GIPHY PICKER ──────────────────────────────────
+    async function fetchGifs(query) {
+      const url = query
+        ? `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(query)}&limit=18&rating=pg-13`
+        : `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=18&rating=pg-13`;
+      const res  = await fetch(url);
+      const data = await res.json();
+      return data.data || [];
+    }
+
+    function renderGifs(gifs) {
+      const grid = document.getElementById('giphyGrid');
+      if (!gifs.length) { grid.innerHTML = '<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px;grid-column:1/-1;font-size:13px">No results</div>'; return; }
+      grid.innerHTML = gifs.map(g => {
+        const still = g.images.fixed_height_still.url;
+        const anim  = g.images.fixed_height.url;
+        return `<div class="giphy-item" data-url="${anim}" onclick="selectGif('${anim}',this)">
+          <img src="${still}" data-anim="${anim}" loading="lazy">
+        </div>`;
+      }).join('');
+      // Animate on hover
+      grid.querySelectorAll('.giphy-item img').forEach(img => {
+        img.addEventListener('mouseenter', () => { img.src = img.dataset.anim; });
+        img.addEventListener('mouseleave', () => { if (!img.closest('.giphy-item').classList.contains('selected')) img.src = img.getAttribute('src').includes('still') ? img.getAttribute('src') : img.dataset.anim; });
+      });
+    }
+
+    function selectGif(url, el) {
+      selectedGifUrl = url;
+      document.getElementById('threadMediaImg').src = url;
+      document.getElementById('threadMediaPreview').style.display = 'block';
+      document.getElementById('giphyPicker').classList.remove('open');
+      document.querySelectorAll('.giphy-item').forEach(i => i.classList.remove('selected'));
+      if (el) el.classList.add('selected');
+    }
+
+    document.getElementById('threadGifToggle').addEventListener('click', async () => {
+      const picker = document.getElementById('giphyPicker');
+      if (picker.classList.contains('open')) { picker.classList.remove('open'); return; }
+      picker.classList.add('open');
+      if (!giphyLoaded) {
+        document.getElementById('giphyGrid').innerHTML = '<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px;grid-column:1/-1;font-size:13px">Loading trending…</div>';
+        renderGifs(await fetchGifs(''));
+        giphyLoaded = true;
+      }
     });
 
-    // Media URL preview
-    document.getElementById('threadGifUrl').addEventListener('input', function() {
-      const url = this.value.trim();
-      const preview = document.getElementById('threadMediaPreview');
-      const img     = document.getElementById('threadMediaImg');
-      if (url) { img.src = url; preview.style.display = 'block'; }
-      else { preview.style.display = 'none'; }
+    let giphyTimer;
+    document.getElementById('giphySearch').addEventListener('input', function() {
+      clearTimeout(giphyTimer);
+      const q = this.value.trim();
+      giphyTimer = setTimeout(async () => {
+        document.getElementById('giphyGrid').innerHTML = '<div style="color:rgba(255,255,255,0.3);text-align:center;padding:20px;grid-column:1/-1;font-size:13px">Searching…</div>';
+        renderGifs(await fetchGifs(q));
+      }, 400);
     });
 
-    // Post comment
+    document.getElementById('threadMediaRemove').addEventListener('click', () => {
+      selectedGifUrl = '';
+      document.getElementById('threadMediaPreview').style.display = 'none';
+      document.getElementById('threadMediaImg').src = '';
+      document.querySelectorAll('.giphy-item').forEach(i => i.classList.remove('selected'));
+    });
+
     document.getElementById('threadSend').addEventListener('click', async () => {
       const name  = sessionStorage.getItem('threadName');
       const text  = document.getElementById('threadText').value.trim();
-      const media = document.getElementById('threadGifUrl').value.trim();
+      const media = selectedGifUrl;
       if (!name || (!text && !media)) return;
       const btn = document.getElementById('threadSend');
       btn.disabled = true; btn.textContent = 'Posting…';
       await postComment(name, text, media);
       document.getElementById('threadText').value = '';
-      document.getElementById('threadGifUrl').value = '';
+      selectedGifUrl = '';
       document.getElementById('threadMediaPreview').style.display = 'none';
-      document.getElementById('threadGifUrl').style.display = 'none';
+      document.getElementById('threadMediaImg').src = '';
       btn.disabled = false; btn.textContent = 'Post';
       setTimeout(loadComments, 1500);
     });
 
-    // Load on page load + refresh every 30s
     loadComments();
     setInterval(loadComments, 30000);
 
