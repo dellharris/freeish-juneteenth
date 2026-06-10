@@ -1235,6 +1235,152 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
 
+    /* ── PHOTO GALLERY ───────────────────────── */
+    .photo-gallery {
+      position: relative;
+      z-index: 1;
+      padding: 72px 16px 80px;
+      text-align: center;
+    }
+    .photo-gallery__inner { max-width: 980px; margin: 0 auto; }
+    .photo-gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+      margin-top: 0;
+    }
+    @media (min-width: 640px) {
+      .photo-gallery__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .photo-gallery__grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    }
+    .photo-gallery__item {
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      background: var(--mid);
+      position: relative;
+    }
+    .photo-gallery__item--wide {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+    .photo-gallery__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.75) brightness(0.82);
+      transition: filter 0.45s ease, transform 0.5s ease;
+    }
+    .photo-gallery__item:hover .photo-gallery__img {
+      filter: saturate(1.15) brightness(1.05);
+      transform: scale(1.05);
+    }
+    .photo-gallery__placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--mid);
+      border: 1px dashed rgba(232,0,138,0.2);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+    }
+
+    /* ── LIGHTBOX ────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .lightbox.open { opacity: 1; visibility: visible; }
+    .lightbox__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,0,16,0.95);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      cursor: pointer;
+    }
+    .lightbox__img {
+      position: relative;
+      z-index: 2;
+      max-width: min(92vw, 1200px);
+      max-height: 90svh;
+      object-fit: contain;
+      border: 1px solid rgba(232,0,138,0.3);
+      box-shadow: 0 0 80px rgba(232,0,138,0.18), 0 0 160px rgba(124,58,237,0.1);
+      transform: scale(0.94);
+      transition: transform 0.35s ease;
+      display: block;
+    }
+    .lightbox.open .lightbox__img { transform: scale(1); }
+    .lightbox__close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      z-index: 3;
+      background: rgba(8,0,16,0.7);
+      border: 1px solid rgba(232,0,138,0.3);
+      color: var(--cream);
+      font-size: 24px;
+      line-height: 1;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lightbox__close:hover { background: var(--magenta); color: #fff; }
+    .lightbox__nav {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(8,0,16,0.65);
+      border: 1px solid rgba(232,0,138,0.3);
+      color: var(--cream);
+      font-size: 26px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .lightbox__nav:hover { background: rgba(232,0,138,0.25); }
+    .lightbox__prev { left: 16px; }
+    .lightbox__next { right: 16px; }
+    .lightbox__counter {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+    }
+
     /* ── UTILS ───────────────────────────────── */
     @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -1547,6 +1693,617 @@
     </div>
 
   </section>
+
+  <!-- PHOTO GALLERY -->
+  <section class="photo-gallery" id="photos" aria-label="Photo Gallery">
+    <div class="photo-gallery__inner">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="section__eyebrow reveal">In N Out Podcast · April 20</p>
+      <h2 class="section__heading reveal reveal-d1">The Gallery</h2>
+      <div class="photo-gallery__grid reveal reveal-d2" id="photoGrid">
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="0">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-001.jpg" alt="In N Out Podcast · April 20 · 1">
+        </div>
+        <div class="photo-gallery__item" data-index="1">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-002.jpg" alt="In N Out Podcast · April 20 · 2">
+        </div>
+        <div class="photo-gallery__item" data-index="2">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-003.jpg" alt="In N Out Podcast · April 20 · 3">
+        </div>
+        <div class="photo-gallery__item" data-index="3">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-004.jpg" alt="In N Out Podcast · April 20 · 4">
+        </div>
+        <div class="photo-gallery__item" data-index="4">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-005.jpg" alt="In N Out Podcast · April 20 · 5">
+        </div>
+        <div class="photo-gallery__item" data-index="5">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-006.jpg" alt="In N Out Podcast · April 20 · 6">
+        </div>
+        <div class="photo-gallery__item" data-index="6">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-007.jpg" alt="In N Out Podcast · April 20 · 7">
+        </div>
+        <div class="photo-gallery__item" data-index="7">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-008.jpg" alt="In N Out Podcast · April 20 · 8">
+        </div>
+        <div class="photo-gallery__item" data-index="8">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-009.jpg" alt="In N Out Podcast · April 20 · 9">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="9">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-010.jpg" alt="In N Out Podcast · April 20 · 10">
+        </div>
+        <div class="photo-gallery__item" data-index="10">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-011.jpg" alt="In N Out Podcast · April 20 · 11">
+        </div>
+        <div class="photo-gallery__item" data-index="11">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-012.jpg" alt="In N Out Podcast · April 20 · 12">
+        </div>
+        <div class="photo-gallery__item" data-index="12">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-013.jpg" alt="In N Out Podcast · April 20 · 13">
+        </div>
+        <div class="photo-gallery__item" data-index="13">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-014.jpg" alt="In N Out Podcast · April 20 · 14">
+        </div>
+        <div class="photo-gallery__item" data-index="14">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-015.jpg" alt="In N Out Podcast · April 20 · 15">
+        </div>
+        <div class="photo-gallery__item" data-index="15">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-016.jpg" alt="In N Out Podcast · April 20 · 16">
+        </div>
+        <div class="photo-gallery__item" data-index="16">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-017.jpg" alt="In N Out Podcast · April 20 · 17">
+        </div>
+        <div class="photo-gallery__item" data-index="17">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-018.jpg" alt="In N Out Podcast · April 20 · 18">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="18">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-019.jpg" alt="In N Out Podcast · April 20 · 19">
+        </div>
+        <div class="photo-gallery__item" data-index="19">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-020.jpg" alt="In N Out Podcast · April 20 · 20">
+        </div>
+        <div class="photo-gallery__item" data-index="20">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-021.jpg" alt="In N Out Podcast · April 20 · 21">
+        </div>
+        <div class="photo-gallery__item" data-index="21">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-022.jpg" alt="In N Out Podcast · April 20 · 22">
+        </div>
+        <div class="photo-gallery__item" data-index="22">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-023.jpg" alt="In N Out Podcast · April 20 · 23">
+        </div>
+        <div class="photo-gallery__item" data-index="23">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-024.jpg" alt="In N Out Podcast · April 20 · 24">
+        </div>
+        <div class="photo-gallery__item" data-index="24">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-025.jpg" alt="In N Out Podcast · April 20 · 25">
+        </div>
+        <div class="photo-gallery__item" data-index="25">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-026.jpg" alt="In N Out Podcast · April 20 · 26">
+        </div>
+        <div class="photo-gallery__item" data-index="26">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-027.jpg" alt="In N Out Podcast · April 20 · 27">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="27">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-028.jpg" alt="In N Out Podcast · April 20 · 28">
+        </div>
+        <div class="photo-gallery__item" data-index="28">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-029.jpg" alt="In N Out Podcast · April 20 · 29">
+        </div>
+        <div class="photo-gallery__item" data-index="29">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-030.jpg" alt="In N Out Podcast · April 20 · 30">
+        </div>
+        <div class="photo-gallery__item" data-index="30">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-031.jpg" alt="In N Out Podcast · April 20 · 31">
+        </div>
+        <div class="photo-gallery__item" data-index="31">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-032.jpg" alt="In N Out Podcast · April 20 · 32">
+        </div>
+        <div class="photo-gallery__item" data-index="32">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-033.jpg" alt="In N Out Podcast · April 20 · 33">
+        </div>
+        <div class="photo-gallery__item" data-index="33">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-034.jpg" alt="In N Out Podcast · April 20 · 34">
+        </div>
+        <div class="photo-gallery__item" data-index="34">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-035.jpg" alt="In N Out Podcast · April 20 · 35">
+        </div>
+        <div class="photo-gallery__item" data-index="35">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-036.jpg" alt="In N Out Podcast · April 20 · 36">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="36">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-037.jpg" alt="In N Out Podcast · April 20 · 37">
+        </div>
+        <div class="photo-gallery__item" data-index="37">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-038.jpg" alt="In N Out Podcast · April 20 · 38">
+        </div>
+        <div class="photo-gallery__item" data-index="38">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-039.jpg" alt="In N Out Podcast · April 20 · 39">
+        </div>
+        <div class="photo-gallery__item" data-index="39">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-040.jpg" alt="In N Out Podcast · April 20 · 40">
+        </div>
+        <div class="photo-gallery__item" data-index="40">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-041.jpg" alt="In N Out Podcast · April 20 · 41">
+        </div>
+        <div class="photo-gallery__item" data-index="41">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-042.jpg" alt="In N Out Podcast · April 20 · 42">
+        </div>
+        <div class="photo-gallery__item" data-index="42">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-043.jpg" alt="In N Out Podcast · April 20 · 43">
+        </div>
+        <div class="photo-gallery__item" data-index="43">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-044.jpg" alt="In N Out Podcast · April 20 · 44">
+        </div>
+        <div class="photo-gallery__item" data-index="44">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-045.jpg" alt="In N Out Podcast · April 20 · 45">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="45">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-046.jpg" alt="In N Out Podcast · April 20 · 46">
+        </div>
+        <div class="photo-gallery__item" data-index="46">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-047.jpg" alt="In N Out Podcast · April 20 · 47">
+        </div>
+        <div class="photo-gallery__item" data-index="47">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-048.jpg" alt="In N Out Podcast · April 20 · 48">
+        </div>
+        <div class="photo-gallery__item" data-index="48">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-049.jpg" alt="In N Out Podcast · April 20 · 49">
+        </div>
+        <div class="photo-gallery__item" data-index="49">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-050.jpg" alt="In N Out Podcast · April 20 · 50">
+        </div>
+        <div class="photo-gallery__item" data-index="50">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-051.jpg" alt="In N Out Podcast · April 20 · 51">
+        </div>
+        <div class="photo-gallery__item" data-index="51">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-052.jpg" alt="In N Out Podcast · April 20 · 52">
+        </div>
+        <div class="photo-gallery__item" data-index="52">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-053.jpg" alt="In N Out Podcast · April 20 · 53">
+        </div>
+        <div class="photo-gallery__item" data-index="53">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-054.jpg" alt="In N Out Podcast · April 20 · 54">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="54">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-055.jpg" alt="In N Out Podcast · April 20 · 55">
+        </div>
+        <div class="photo-gallery__item" data-index="55">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-056.jpg" alt="In N Out Podcast · April 20 · 56">
+        </div>
+        <div class="photo-gallery__item" data-index="56">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-057.jpg" alt="In N Out Podcast · April 20 · 57">
+        </div>
+        <div class="photo-gallery__item" data-index="57">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-058.jpg" alt="In N Out Podcast · April 20 · 58">
+        </div>
+        <div class="photo-gallery__item" data-index="58">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-059.jpg" alt="In N Out Podcast · April 20 · 59">
+        </div>
+        <div class="photo-gallery__item" data-index="59">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-060.jpg" alt="In N Out Podcast · April 20 · 60">
+        </div>
+        <div class="photo-gallery__item" data-index="60">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-061.jpg" alt="In N Out Podcast · April 20 · 61">
+        </div>
+        <div class="photo-gallery__item" data-index="61">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-062.jpg" alt="In N Out Podcast · April 20 · 62">
+        </div>
+        <div class="photo-gallery__item" data-index="62">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-063.jpg" alt="In N Out Podcast · April 20 · 63">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="63">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-064.jpg" alt="In N Out Podcast · April 20 · 64">
+        </div>
+        <div class="photo-gallery__item" data-index="64">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-065.jpg" alt="In N Out Podcast · April 20 · 65">
+        </div>
+        <div class="photo-gallery__item" data-index="65">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-066.jpg" alt="In N Out Podcast · April 20 · 66">
+        </div>
+        <div class="photo-gallery__item" data-index="66">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-067.jpg" alt="In N Out Podcast · April 20 · 67">
+        </div>
+        <div class="photo-gallery__item" data-index="67">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-068.jpg" alt="In N Out Podcast · April 20 · 68">
+        </div>
+        <div class="photo-gallery__item" data-index="68">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-069.jpg" alt="In N Out Podcast · April 20 · 69">
+        </div>
+        <div class="photo-gallery__item" data-index="69">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-070.jpg" alt="In N Out Podcast · April 20 · 70">
+        </div>
+        <div class="photo-gallery__item" data-index="70">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-071.jpg" alt="In N Out Podcast · April 20 · 71">
+        </div>
+        <div class="photo-gallery__item" data-index="71">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-072.jpg" alt="In N Out Podcast · April 20 · 72">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="72">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-073.jpg" alt="In N Out Podcast · April 20 · 73">
+        </div>
+        <div class="photo-gallery__item" data-index="73">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-074.jpg" alt="In N Out Podcast · April 20 · 74">
+        </div>
+        <div class="photo-gallery__item" data-index="74">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-075.jpg" alt="In N Out Podcast · April 20 · 75">
+        </div>
+        <div class="photo-gallery__item" data-index="75">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-076.jpg" alt="In N Out Podcast · April 20 · 76">
+        </div>
+        <div class="photo-gallery__item" data-index="76">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-077.jpg" alt="In N Out Podcast · April 20 · 77">
+        </div>
+        <div class="photo-gallery__item" data-index="77">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-078.jpg" alt="In N Out Podcast · April 20 · 78">
+        </div>
+        <div class="photo-gallery__item" data-index="78">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-079.jpg" alt="In N Out Podcast · April 20 · 79">
+        </div>
+        <div class="photo-gallery__item" data-index="79">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-080.jpg" alt="In N Out Podcast · April 20 · 80">
+        </div>
+        <div class="photo-gallery__item" data-index="80">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-081.jpg" alt="In N Out Podcast · April 20 · 81">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="81">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-082.jpg" alt="In N Out Podcast · April 20 · 82">
+        </div>
+        <div class="photo-gallery__item" data-index="82">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-083.jpg" alt="In N Out Podcast · April 20 · 83">
+        </div>
+        <div class="photo-gallery__item" data-index="83">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-084.jpg" alt="In N Out Podcast · April 20 · 84">
+        </div>
+        <div class="photo-gallery__item" data-index="84">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-085.jpg" alt="In N Out Podcast · April 20 · 85">
+        </div>
+        <div class="photo-gallery__item" data-index="85">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-086.jpg" alt="In N Out Podcast · April 20 · 86">
+        </div>
+        <div class="photo-gallery__item" data-index="86">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-087.jpg" alt="In N Out Podcast · April 20 · 87">
+        </div>
+        <div class="photo-gallery__item" data-index="87">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-088.jpg" alt="In N Out Podcast · April 20 · 88">
+        </div>
+        <div class="photo-gallery__item" data-index="88">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-089.jpg" alt="In N Out Podcast · April 20 · 89">
+        </div>
+        <div class="photo-gallery__item" data-index="89">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-090.jpg" alt="In N Out Podcast · April 20 · 90">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="90">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-091.jpg" alt="In N Out Podcast · April 20 · 91">
+        </div>
+        <div class="photo-gallery__item" data-index="91">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-092.jpg" alt="In N Out Podcast · April 20 · 92">
+        </div>
+        <div class="photo-gallery__item" data-index="92">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-093.jpg" alt="In N Out Podcast · April 20 · 93">
+        </div>
+        <div class="photo-gallery__item" data-index="93">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-094.jpg" alt="In N Out Podcast · April 20 · 94">
+        </div>
+        <div class="photo-gallery__item" data-index="94">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-095.jpg" alt="In N Out Podcast · April 20 · 95">
+        </div>
+        <div class="photo-gallery__item" data-index="95">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-096.jpg" alt="In N Out Podcast · April 20 · 96">
+        </div>
+        <div class="photo-gallery__item" data-index="96">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-097.jpg" alt="In N Out Podcast · April 20 · 97">
+        </div>
+        <div class="photo-gallery__item" data-index="97">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-098.jpg" alt="In N Out Podcast · April 20 · 98">
+        </div>
+        <div class="photo-gallery__item" data-index="98">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-099.jpg" alt="In N Out Podcast · April 20 · 99">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="99">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-100.jpg" alt="In N Out Podcast · April 20 · 100">
+        </div>
+        <div class="photo-gallery__item" data-index="100">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-101.jpg" alt="In N Out Podcast · April 20 · 101">
+        </div>
+        <div class="photo-gallery__item" data-index="101">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-102.jpg" alt="In N Out Podcast · April 20 · 102">
+        </div>
+        <div class="photo-gallery__item" data-index="102">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-103.jpg" alt="In N Out Podcast · April 20 · 103">
+        </div>
+        <div class="photo-gallery__item" data-index="103">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-104.jpg" alt="In N Out Podcast · April 20 · 104">
+        </div>
+        <div class="photo-gallery__item" data-index="104">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-105.jpg" alt="In N Out Podcast · April 20 · 105">
+        </div>
+        <div class="photo-gallery__item" data-index="105">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-106.jpg" alt="In N Out Podcast · April 20 · 106">
+        </div>
+        <div class="photo-gallery__item" data-index="106">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-107.jpg" alt="In N Out Podcast · April 20 · 107">
+        </div>
+        <div class="photo-gallery__item" data-index="107">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-108.jpg" alt="In N Out Podcast · April 20 · 108">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="108">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-109.jpg" alt="In N Out Podcast · April 20 · 109">
+        </div>
+        <div class="photo-gallery__item" data-index="109">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-110.jpg" alt="In N Out Podcast · April 20 · 110">
+        </div>
+        <div class="photo-gallery__item" data-index="110">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-111.jpg" alt="In N Out Podcast · April 20 · 111">
+        </div>
+        <div class="photo-gallery__item" data-index="111">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-112.jpg" alt="In N Out Podcast · April 20 · 112">
+        </div>
+        <div class="photo-gallery__item" data-index="112">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-113.jpg" alt="In N Out Podcast · April 20 · 113">
+        </div>
+        <div class="photo-gallery__item" data-index="113">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-114.jpg" alt="In N Out Podcast · April 20 · 114">
+        </div>
+        <div class="photo-gallery__item" data-index="114">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-115.jpg" alt="In N Out Podcast · April 20 · 115">
+        </div>
+        <div class="photo-gallery__item" data-index="115">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-116.jpg" alt="In N Out Podcast · April 20 · 116">
+        </div>
+        <div class="photo-gallery__item" data-index="116">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-117.jpg" alt="In N Out Podcast · April 20 · 117">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="117">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-118.jpg" alt="In N Out Podcast · April 20 · 118">
+        </div>
+        <div class="photo-gallery__item" data-index="118">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-119.jpg" alt="In N Out Podcast · April 20 · 119">
+        </div>
+        <div class="photo-gallery__item" data-index="119">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-120.jpg" alt="In N Out Podcast · April 20 · 120">
+        </div>
+        <div class="photo-gallery__item" data-index="120">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-121.jpg" alt="In N Out Podcast · April 20 · 121">
+        </div>
+        <div class="photo-gallery__item" data-index="121">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-122.jpg" alt="In N Out Podcast · April 20 · 122">
+        </div>
+        <div class="photo-gallery__item" data-index="122">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-123.jpg" alt="In N Out Podcast · April 20 · 123">
+        </div>
+        <div class="photo-gallery__item" data-index="123">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-124.jpg" alt="In N Out Podcast · April 20 · 124">
+        </div>
+        <div class="photo-gallery__item" data-index="124">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-125.jpg" alt="In N Out Podcast · April 20 · 125">
+        </div>
+        <div class="photo-gallery__item" data-index="125">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-126.jpg" alt="In N Out Podcast · April 20 · 126">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="126">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-127.jpg" alt="In N Out Podcast · April 20 · 127">
+        </div>
+        <div class="photo-gallery__item" data-index="127">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-128.jpg" alt="In N Out Podcast · April 20 · 128">
+        </div>
+        <div class="photo-gallery__item" data-index="128">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-129.jpg" alt="In N Out Podcast · April 20 · 129">
+        </div>
+        <div class="photo-gallery__item" data-index="129">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-130.jpg" alt="In N Out Podcast · April 20 · 130">
+        </div>
+        <div class="photo-gallery__item" data-index="130">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-131.jpg" alt="In N Out Podcast · April 20 · 131">
+        </div>
+        <div class="photo-gallery__item" data-index="131">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-132.jpg" alt="In N Out Podcast · April 20 · 132">
+        </div>
+        <div class="photo-gallery__item" data-index="132">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-133.jpg" alt="In N Out Podcast · April 20 · 133">
+        </div>
+        <div class="photo-gallery__item" data-index="133">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-134.jpg" alt="In N Out Podcast · April 20 · 134">
+        </div>
+        <div class="photo-gallery__item" data-index="134">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-135.jpg" alt="In N Out Podcast · April 20 · 135">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="135">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-136.jpg" alt="In N Out Podcast · April 20 · 136">
+        </div>
+        <div class="photo-gallery__item" data-index="136">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-137.jpg" alt="In N Out Podcast · April 20 · 137">
+        </div>
+        <div class="photo-gallery__item" data-index="137">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-138.jpg" alt="In N Out Podcast · April 20 · 138">
+        </div>
+        <div class="photo-gallery__item" data-index="138">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-139.jpg" alt="In N Out Podcast · April 20 · 139">
+        </div>
+        <div class="photo-gallery__item" data-index="139">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-140.jpg" alt="In N Out Podcast · April 20 · 140">
+        </div>
+        <div class="photo-gallery__item" data-index="140">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-141.jpg" alt="In N Out Podcast · April 20 · 141">
+        </div>
+        <div class="photo-gallery__item" data-index="141">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-142.jpg" alt="In N Out Podcast · April 20 · 142">
+        </div>
+        <div class="photo-gallery__item" data-index="142">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-143.jpg" alt="In N Out Podcast · April 20 · 143">
+        </div>
+        <div class="photo-gallery__item" data-index="143">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-144.jpg" alt="In N Out Podcast · April 20 · 144">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="144">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-145.jpg" alt="In N Out Podcast · April 20 · 145">
+        </div>
+        <div class="photo-gallery__item" data-index="145">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-146.jpg" alt="In N Out Podcast · April 20 · 146">
+        </div>
+        <div class="photo-gallery__item" data-index="146">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-147.jpg" alt="In N Out Podcast · April 20 · 147">
+        </div>
+        <div class="photo-gallery__item" data-index="147">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-148.jpg" alt="In N Out Podcast · April 20 · 148">
+        </div>
+        <div class="photo-gallery__item" data-index="148">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-149.jpg" alt="In N Out Podcast · April 20 · 149">
+        </div>
+        <div class="photo-gallery__item" data-index="149">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-150.jpg" alt="In N Out Podcast · April 20 · 150">
+        </div>
+        <div class="photo-gallery__item" data-index="150">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-151.jpg" alt="In N Out Podcast · April 20 · 151">
+        </div>
+        <div class="photo-gallery__item" data-index="151">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-152.jpg" alt="In N Out Podcast · April 20 · 152">
+        </div>
+        <div class="photo-gallery__item" data-index="152">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-153.jpg" alt="In N Out Podcast · April 20 · 153">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="153">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-154.jpg" alt="In N Out Podcast · April 20 · 154">
+        </div>
+        <div class="photo-gallery__item" data-index="154">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-155.jpg" alt="In N Out Podcast · April 20 · 155">
+        </div>
+        <div class="photo-gallery__item" data-index="155">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-156.jpg" alt="In N Out Podcast · April 20 · 156">
+        </div>
+        <div class="photo-gallery__item" data-index="156">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-157.jpg" alt="In N Out Podcast · April 20 · 157">
+        </div>
+        <div class="photo-gallery__item" data-index="157">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-158.jpg" alt="In N Out Podcast · April 20 · 158">
+        </div>
+        <div class="photo-gallery__item" data-index="158">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-159.jpg" alt="In N Out Podcast · April 20 · 159">
+        </div>
+        <div class="photo-gallery__item" data-index="159">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-160.jpg" alt="In N Out Podcast · April 20 · 160">
+        </div>
+        <div class="photo-gallery__item" data-index="160">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-161.jpg" alt="In N Out Podcast · April 20 · 161">
+        </div>
+        <div class="photo-gallery__item" data-index="161">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-162.jpg" alt="In N Out Podcast · April 20 · 162">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="162">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-163.jpg" alt="In N Out Podcast · April 20 · 163">
+        </div>
+        <div class="photo-gallery__item" data-index="163">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-164.jpg" alt="In N Out Podcast · April 20 · 164">
+        </div>
+        <div class="photo-gallery__item" data-index="164">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-165.jpg" alt="In N Out Podcast · April 20 · 165">
+        </div>
+        <div class="photo-gallery__item" data-index="165">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-166.jpg" alt="In N Out Podcast · April 20 · 166">
+        </div>
+        <div class="photo-gallery__item" data-index="166">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-167.jpg" alt="In N Out Podcast · April 20 · 167">
+        </div>
+        <div class="photo-gallery__item" data-index="167">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-168.jpg" alt="In N Out Podcast · April 20 · 168">
+        </div>
+        <div class="photo-gallery__item" data-index="168">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-169.jpg" alt="In N Out Podcast · April 20 · 169">
+        </div>
+        <div class="photo-gallery__item" data-index="169">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-170.jpg" alt="In N Out Podcast · April 20 · 170">
+        </div>
+        <div class="photo-gallery__item" data-index="170">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-171.jpg" alt="In N Out Podcast · April 20 · 171">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="171">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-172.jpg" alt="In N Out Podcast · April 20 · 172">
+        </div>
+        <div class="photo-gallery__item" data-index="172">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-173.jpg" alt="In N Out Podcast · April 20 · 173">
+        </div>
+        <div class="photo-gallery__item" data-index="173">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-174.jpg" alt="In N Out Podcast · April 20 · 174">
+        </div>
+        <div class="photo-gallery__item" data-index="174">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-175.jpg" alt="In N Out Podcast · April 20 · 175">
+        </div>
+        <div class="photo-gallery__item" data-index="175">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-176.jpg" alt="In N Out Podcast · April 20 · 176">
+        </div>
+        <div class="photo-gallery__item" data-index="176">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-177.jpg" alt="In N Out Podcast · April 20 · 177">
+        </div>
+        <div class="photo-gallery__item" data-index="177">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-178.jpg" alt="In N Out Podcast · April 20 · 178">
+        </div>
+        <div class="photo-gallery__item" data-index="178">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-179.jpg" alt="In N Out Podcast · April 20 · 179">
+        </div>
+        <div class="photo-gallery__item" data-index="179">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-180.jpg" alt="In N Out Podcast · April 20 · 180">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="180">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-181.jpg" alt="In N Out Podcast · April 20 · 181">
+        </div>
+        <div class="photo-gallery__item" data-index="181">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-182.jpg" alt="In N Out Podcast · April 20 · 182">
+        </div>
+        <div class="photo-gallery__item" data-index="182">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-183.jpg" alt="In N Out Podcast · April 20 · 183">
+        </div>
+        <div class="photo-gallery__item" data-index="183">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-184.jpg" alt="In N Out Podcast · April 20 · 184">
+        </div>
+        <div class="photo-gallery__item" data-index="184">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-185.jpg" alt="In N Out Podcast · April 20 · 185">
+        </div>
+        <div class="photo-gallery__item" data-index="185">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-186.jpg" alt="In N Out Podcast · April 20 · 186">
+        </div>
+        <div class="photo-gallery__item" data-index="186">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-187.jpg" alt="In N Out Podcast · April 20 · 187">
+        </div>
+        <div class="photo-gallery__item" data-index="187">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-188.jpg" alt="In N Out Podcast · April 20 · 188">
+        </div>
+        <div class="photo-gallery__item" data-index="188">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-189.jpg" alt="In N Out Podcast · April 20 · 189">
+        </div>
+        <div class="photo-gallery__item photo-gallery__item--wide" data-index="189">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-190.jpg" alt="In N Out Podcast · April 20 · 190">
+        </div>
+        <div class="photo-gallery__item" data-index="190">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-191.jpg" alt="In N Out Podcast · April 20 · 191">
+        </div>
+        <div class="photo-gallery__item" data-index="191">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-192.jpg" alt="In N Out Podcast · April 20 · 192">
+        </div>
+        <div class="photo-gallery__item" data-index="192">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-193.jpg" alt="In N Out Podcast · April 20 · 193">
+        </div>
+        <div class="photo-gallery__item" data-index="193">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-194.jpg" alt="In N Out Podcast · April 20 · 194">
+        </div>
+        <div class="photo-gallery__item" data-index="194">
+          <img class="photo-gallery__img" loading="lazy" src="photos/INNOUT-4.20.26-195.jpg" alt="In N Out Podcast · April 20 · 195">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <button class="lightbox__close" id="lightboxClose" aria-label="Close">&#215;</button>
+    <button class="lightbox__nav lightbox__prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
+    <button class="lightbox__nav lightbox__next" id="lightboxNext" aria-label="Next">&#8250;</button>
+    <div class="lightbox__counter" id="lightboxCounter"></div>
+  </div>
 
   <!-- SPONSOR -->
   <section class="sponsor" aria-label="Sponsors">
@@ -1991,6 +2748,84 @@
 
     loadComments();
     setInterval(loadComments, 30000);
+
+    // ── PHOTO GALLERY LIGHTBOX ─────────────────────────
+    const lightbox     = document.getElementById('lightbox');
+    const lightboxImg  = document.getElementById('lightboxImg');
+    const lightboxCtr  = document.getElementById('lightboxCounter');
+    let lbImages = [];
+    let lbIndex  = 0;
+
+    function buildGalleryImages() {
+      lbImages = [];
+      document.querySelectorAll('.photo-gallery__item img.photo-gallery__img').forEach(img => {
+        lbImages.push({ src: img.src, alt: img.alt });
+      });
+    }
+
+    function openLightbox(index) {
+      buildGalleryImages();
+      if (!lbImages.length) return;
+      lbIndex = index;
+      showLightboxImage();
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function showLightboxImage() {
+      const item = lbImages[lbIndex];
+      lightboxImg.src  = item.src;
+      lightboxImg.alt  = item.alt;
+      lightboxCtr.textContent = `${lbIndex + 1} / ${lbImages.length}`;
+      document.getElementById('lightboxPrev').style.display = lbImages.length > 1 ? '' : 'none';
+      document.getElementById('lightboxNext').style.display = lbImages.length > 1 ? '' : 'none';
+    }
+
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxBackdrop').addEventListener('click', closeLightbox);
+    document.getElementById('lightboxPrev').addEventListener('click', () => {
+      lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+      showLightboxImage();
+    });
+    document.getElementById('lightboxNext').addEventListener('click', () => {
+      lbIndex = (lbIndex + 1) % lbImages.length;
+      showLightboxImage();
+    });
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')  { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; showLightboxImage(); }
+      if (e.key === 'ArrowRight') { lbIndex = (lbIndex + 1) % lbImages.length; showLightboxImage(); }
+    });
+
+    // Touch swipe on lightbox
+    let lbTouchX = null;
+    lightbox.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => {
+      if (lbTouchX === null) return;
+      const dx = e.changedTouches[0].clientX - lbTouchX;
+      lbTouchX = null;
+      if (Math.abs(dx) < 40) return;
+      if (dx < 0) { lbIndex = (lbIndex + 1) % lbImages.length; }
+      else        { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; }
+      showLightboxImage();
+    }, { passive: true });
+
+    // Wire up gallery clicks once photos are added
+    document.getElementById('photoGrid').addEventListener('click', e => {
+      const item = e.target.closest('.photo-gallery__item');
+      if (!item || !item.querySelector('img')) return;
+      buildGalleryImages();
+      const allItems = [...document.querySelectorAll('.photo-gallery__item img.photo-gallery__img')];
+      const clicked  = item.querySelector('img');
+      const idx = allItems.indexOf(clicked);
+      if (idx !== -1) openLightbox(idx);
+    });
 
     // ── RSVP MODAL ─────────────────────────────────────
     const modal     = document.getElementById('rsvpModal');
