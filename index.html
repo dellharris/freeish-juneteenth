@@ -866,6 +866,88 @@
       50%       { opacity: 0.12; }
     }
 
+    /* ── RSVP MODAL ──────────────────────────── */
+    .rsvp-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .rsvp-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .rsvp-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(8,0,16,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .rsvp-modal__box {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 520px;
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--deep);
+      border: 1px solid rgba(232,0,138,0.35);
+      border-radius: 4px;
+      padding: 48px 40px 40px;
+      box-shadow: 0 0 80px rgba(232,0,138,0.2), 0 0 160px rgba(124,58,237,0.1);
+      transform: translateY(24px);
+      transition: transform 0.5s ease;
+    }
+    .rsvp-modal.open .rsvp-modal__box {
+      transform: translateY(0);
+    }
+    .rsvp-modal__close {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--cream-dim);
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .rsvp-modal__close:hover { color: var(--magenta); }
+    .rsvp-modal__hook {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--magenta);
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      opacity: 0.85;
+    }
+    .rsvp-modal__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .rsvp-modal__sub {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      margin-bottom: 36px;
+    }
+
     /* ── FOOTER ──────────────────────────────── */
     footer {
       position: relative;
@@ -1273,6 +1355,61 @@
     <p style="margin-top:8px">Mural by <a href="https://www.instagram.com/arrrtaddict" target="_blank" rel="noopener">Arrrt Addict</a> &nbsp;·&nbsp; Book Store Gallery, Atlanta</p>
   </footer>
 
+  <!-- RSVP MODAL — appears after 15s, once per session -->
+  <div class="rsvp-modal" id="rsvpModal" role="dialog" aria-modal="true" aria-label="RSVP">
+    <div class="rsvp-modal__backdrop" id="rsvpModalBackdrop"></div>
+    <div class="rsvp-modal__box">
+      <button class="rsvp-modal__close" id="rsvpModalClose" aria-label="Close">&times;</button>
+      <div class="rsvp-modal__hook">You're seeing this because someone thought of you.</div>
+      <div class="rsvp-modal__heading">Claim Your<br>Weekend</div>
+      <div class="rsvp-modal__sub">Address &amp; details revealed upon RSVP &nbsp;·&nbsp; June 19–21</div>
+
+      <form id="rsvpModalForm" class="rsvp__form" novalidate>
+        <div class="form__row">
+          <div class="form__group">
+            <label class="form__label" for="mFirstName">First Name</label>
+            <input class="form__input" type="text" id="mFirstName" name="firstName" placeholder="First" autocomplete="given-name" required>
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="mLastName">Last Name</label>
+            <input class="form__input" type="text" id="mLastName" name="lastName" placeholder="Last" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="mEmail">Email</label>
+          <input class="form__input" type="email" id="mEmail" name="email" placeholder="you@email.com" autocomplete="email" required>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="mPhone">Phone Number</label>
+          <input class="form__input" type="tel" id="mPhone" name="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="mPartySize">How many in your party?</label>
+          <select class="form__input form__select" id="mPartySize" name="partySize" required>
+            <option value="" disabled selected>Select guests</option>
+            <option value="1">Just me</option>
+            <option value="2">2 people</option>
+            <option value="3">3 people</option>
+            <option value="4">4 people</option>
+            <option value="5">5 people</option>
+            <option value="6+">6 or more</option>
+          </select>
+        </div>
+        <p class="form__error" id="mFormError"></p>
+        <button type="submit" class="form__submit">
+          <span id="mSubmitText">Secure Your Spot</span>
+        </button>
+      </form>
+
+      <div id="mRsvpSuccess" style="display:none" class="rsvp__success">
+        <div class="success__icon">✦</div>
+        <h2 class="rsvp__heading" id="mSuccessName"></h2>
+        <p class="rsvp__sub">You're on the list.</p>
+        <p class="rsvp__note">The address will be texted to you before June 19th.<br>See you there.</p>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Starfield — neon particles pulled from the mural palette
     const field = document.getElementById('starfield');
@@ -1333,6 +1470,60 @@
       } catch {
         btn.disabled = false;
         document.getElementById('submitText').textContent = 'Secure Your Spot';
+        err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
+      }
+    });
+
+    // ── RSVP MODAL ─────────────────────────────────────
+    const modal     = document.getElementById('rsvpModal');
+    const closeBtn  = document.getElementById('rsvpModalClose');
+    const backdrop  = document.getElementById('rsvpModalBackdrop');
+
+    function openModal()  { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; sessionStorage.setItem('rsvpSeen', '1'); }
+
+    // Show after 15s — only once per session
+    if (!sessionStorage.getItem('rsvpSeen')) {
+      setTimeout(openModal, 15000);
+    }
+
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    // Modal form submission (shares the same Apps Script endpoint)
+    document.getElementById('rsvpModalForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn  = form.querySelector('.form__submit');
+      const err  = document.getElementById('mFormError');
+      const firstName = form.firstName.value.trim();
+      const lastName  = form.lastName.value.trim();
+      const email     = form.email.value.trim();
+      const phone     = form.phone.value.trim();
+      const partySize = form.partySize.value;
+      err.style.display = 'none';
+      if (!firstName || !lastName || !email || !phone || !partySize) {
+        err.textContent = 'Please fill out all fields.'; err.style.display = 'block'; return;
+      }
+      if (!/\S+@\S+\.\S+/.test(email)) {
+        err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return;
+      }
+      btn.disabled = true;
+      document.getElementById('mSubmitText').textContent = 'Saving…';
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ firstName, lastName, email, phone, partySize, timestamp: new Date().toISOString() })
+        });
+        form.style.display = 'none';
+        document.getElementById('mSuccessName').textContent = `${firstName}, you're confirmed.`;
+        document.getElementById('mRsvpSuccess').style.display = 'block';
+        sessionStorage.setItem('rsvpSeen', '1');
+      } catch {
+        btn.disabled = false;
+        document.getElementById('mSubmitText').textContent = 'Secure Your Spot';
         err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
