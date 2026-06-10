@@ -866,6 +866,31 @@
       50%       { opacity: 0.12; }
     }
 
+    /* Guest names section */
+    .guest-names-section {
+      margin-top: 4px;
+      padding: 20px;
+      border: 1px solid rgba(232,0,138,0.2);
+      border-radius: 2px;
+      background: rgba(232,0,138,0.04);
+      margin-bottom: 18px;
+    }
+    .guest-names-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 14px;
+      display: block;
+    }
+    .guest-names-note {
+      font-size: 11px;
+      color: var(--cream-dim);
+      margin-bottom: 14px;
+      letter-spacing: 0.05em;
+    }
+
     /* ── RSVP MODAL ──────────────────────────── */
     .rsvp-modal {
       position: fixed;
@@ -1322,17 +1347,18 @@
             <input class="form__input" type="tel" id="phone" name="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
           </div>
           <div class="form__group">
-            <label class="form__label" for="partySize">How many in your party?</label>
-            <select class="form__input form__select" id="partySize" name="partySize" required>
+            <label class="form__label" for="partySize">How many adults in your party?</label>
+            <select class="form__input form__select" id="partySize" name="partySize" required onchange="buildGuestFields('guestNames','partySize')">
               <option value="" disabled selected>Select guests</option>
               <option value="1">Just me</option>
-              <option value="2">2 people</option>
-              <option value="3">3 people</option>
-              <option value="4">4 people</option>
-              <option value="5">5 people</option>
-              <option value="6+">6 or more</option>
+              <option value="2">2 adults</option>
+              <option value="3">3 adults</option>
+              <option value="4">4 adults</option>
+              <option value="5">5 adults</option>
+              <option value="6">6 adults</option>
             </select>
           </div>
+          <div id="guestNames"></div>
           <p class="form__error" id="formError"></p>
           <button type="submit" class="form__submit">
             <span id="submitText">Secure Your Spot</span>
@@ -1384,17 +1410,18 @@
           <input class="form__input" type="tel" id="mPhone" name="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
         </div>
         <div class="form__group">
-          <label class="form__label" for="mPartySize">How many in your party?</label>
-          <select class="form__input form__select" id="mPartySize" name="partySize" required>
+          <label class="form__label" for="mPartySize">How many adults in your party?</label>
+          <select class="form__input form__select" id="mPartySize" name="partySize" required onchange="buildGuestFields('mGuestNames','mPartySize')">
             <option value="" disabled selected>Select guests</option>
             <option value="1">Just me</option>
-            <option value="2">2 people</option>
-            <option value="3">3 people</option>
-            <option value="4">4 people</option>
-            <option value="5">5 people</option>
-            <option value="6+">6 or more</option>
+            <option value="2">2 adults</option>
+            <option value="3">3 adults</option>
+            <option value="4">4 adults</option>
+            <option value="5">5 adults</option>
+            <option value="6">6 adults</option>
           </select>
         </div>
+        <div id="mGuestNames"></div>
         <p class="form__error" id="mFormError"></p>
         <button type="submit" class="form__submit">
           <span id="mSubmitText">Secure Your Spot</span>
@@ -1462,7 +1489,7 @@
         await fetch(APPS_SCRIPT_URL, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ firstName, lastName, email, phone, partySize, timestamp: new Date().toISOString() })
+          body: JSON.stringify({ firstName, lastName, email, phone, partySize, guests: collectGuests('guestNames', parseInt(partySize)), timestamp: new Date().toISOString() })
         });
         document.getElementById('rsvpFormWrap').style.display = 'none';
         document.getElementById('successName').textContent = `${firstName}, you're confirmed.`;
@@ -1473,6 +1500,33 @@
         err.textContent = 'Something went wrong. Please try again.'; err.style.display = 'block';
       }
     });
+
+    // ── GUEST NAME FIELDS ───────────────────────────────
+    function buildGuestFields(containerId, selectId) {
+      const count     = parseInt(document.getElementById(selectId).value) || 0;
+      const container = document.getElementById(containerId);
+      if (count <= 1) { container.innerHTML = ''; return; }
+      let html = `<div class="guest-names-section">
+        <span class="guest-names-label">Additional Guests</span>
+        <p class="guest-names-note">Please add the full name of each adult in your party (kids don't need to be listed).</p>`;
+      for (let i = 2; i <= count; i++) {
+        html += `<div class="form__group">
+          <label class="form__label" for="${containerId}_g${i}">Guest ${i} Full Name</label>
+          <input class="form__input" type="text" id="${containerId}_g${i}" name="guest${i}" placeholder="Full name" required>
+        </div>`;
+      }
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function collectGuests(containerId, count) {
+      const names = [];
+      for (let i = 2; i <= count; i++) {
+        const el = document.getElementById(`${containerId}_g${i}`);
+        if (el) names.push(el.value.trim());
+      }
+      return names.join(', ');
+    }
 
     // ── RSVP MODAL ─────────────────────────────────────
     const modal     = document.getElementById('rsvpModal');
@@ -1515,7 +1569,7 @@
         await fetch(APPS_SCRIPT_URL, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ firstName, lastName, email, phone, partySize, timestamp: new Date().toISOString() })
+          body: JSON.stringify({ firstName, lastName, email, phone, partySize, guests: collectGuests('mGuestNames', parseInt(partySize)), timestamp: new Date().toISOString() })
         });
         form.style.display = 'none';
         document.getElementById('mSuccessName').textContent = `${firstName}, you're confirmed.`;
