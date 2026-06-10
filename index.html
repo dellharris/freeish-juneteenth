@@ -891,6 +891,193 @@
       letter-spacing: 0.05em;
     }
 
+    /* ── THE THREAD ──────────────────────────── */
+    .thread {
+      position: relative;
+      z-index: 1;
+      padding: 80px 24px 96px;
+      background: linear-gradient(180deg, transparent 0%, var(--deep) 15%, var(--deep) 100%);
+    }
+    .thread__inner { max-width: 620px; margin: 0 auto; }
+    .thread__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 900;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+    .thread__sub {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--magenta-dim);
+      margin-bottom: 40px;
+    }
+
+    /* Compose box */
+    .thread__compose {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(232,0,138,0.3);
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 36px;
+      display: none; /* shown after RSVP */
+    }
+    .thread__compose.visible { display: block; }
+    .thread__compose-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--magenta);
+      margin-bottom: 12px;
+    }
+    .thread__textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(232,0,138,0.25);
+      color: var(--cream);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      padding: 8px 0 12px;
+      resize: none;
+      outline: none;
+      min-height: 60px;
+    }
+    .thread__textarea::placeholder { color: rgba(255,240,248,0.25); }
+    .thread__media-preview {
+      margin: 12px 0;
+      display: none;
+    }
+    .thread__media-preview img {
+      max-width: 100%;
+      max-height: 200px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+    .thread__compose-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 14px;
+      gap: 12px;
+    }
+    .thread__gif-btn {
+      background: none;
+      border: 1px solid rgba(232,0,138,0.3);
+      color: var(--magenta);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .thread__gif-btn:hover { background: rgba(232,0,138,0.1); }
+    .thread__gif-input {
+      display: none;
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(232,0,138,0.2);
+      border-radius: 4px;
+      color: var(--cream);
+      font-size: 13px;
+      padding: 8px 12px;
+      outline: none;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    .thread__gif-input::placeholder { color: rgba(255,240,248,0.2); }
+    .thread__send {
+      padding: 10px 28px;
+      background: linear-gradient(135deg, #A80060, #E8008A 55%, #BF5FFF);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .thread__send:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(232,0,138,0.35); }
+    .thread__send:disabled { opacity: 0.5; transform: none; cursor: not-allowed; }
+
+    /* Comment cards */
+    .thread__feed { display: flex; flex-direction: column; gap: 16px; }
+    .thread__empty {
+      text-align: center;
+      padding: 48px 0;
+      font-size: 14px;
+      color: var(--magenta-dim);
+      letter-spacing: 0.15em;
+    }
+    .comment {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .comment__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: #080010;
+    }
+    .comment__body {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 14px 16px;
+    }
+    .comment__name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--magenta);
+      margin-bottom: 6px;
+    }
+    .comment__text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .comment__media {
+      margin-top: 10px;
+      max-width: 100%;
+    }
+    .comment__media img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: 4px;
+      object-fit: cover;
+      display: block;
+    }
+    .comment__time {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,240,248,0.2);
+      margin-top: 8px;
+    }
+
     /* ── RSVP MODAL ──────────────────────────── */
     .rsvp-modal {
       position: fixed;
@@ -1379,6 +1566,38 @@
     </div>
   </section>
 
+  <!-- THE THREAD -->
+  <section class="thread" id="thread" aria-label="The Thread">
+    <div class="thread__inner">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <h2 class="thread__heading reveal">The Thread</h2>
+      <p class="thread__sub reveal reveal-d1">RSVPed guests only &nbsp;·&nbsp; Keep the vibe going</p>
+
+      <!-- Compose — shown after RSVP -->
+      <div class="thread__compose" id="threadCompose">
+        <div class="thread__compose-name" id="threadComposeName"></div>
+        <textarea class="thread__textarea" id="threadText" placeholder="Drop your energy… 🔥" rows="2"></textarea>
+        <div class="thread__media-preview" id="threadMediaPreview">
+          <img id="threadMediaImg" src="" alt="">
+        </div>
+        <div class="thread__compose-bar">
+          <button class="thread__gif-btn" id="threadGifToggle">GIF / Meme</button>
+          <input class="thread__gif-input" id="threadGifUrl" placeholder="Paste image or GIF URL…">
+          <button class="thread__send" id="threadSend">Post</button>
+        </div>
+      </div>
+
+      <!-- Feed -->
+      <div class="thread__feed" id="threadFeed">
+        <div class="thread__empty" id="threadEmpty">RSVP to start the thread 🎉</div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <p>FREE&#8209;ISH &nbsp;·&nbsp; JUNETEENTH WEEKEND 2026 &nbsp;·&nbsp; ATLANTA, GA</p>
@@ -1498,6 +1717,7 @@
         });
         document.getElementById('rsvpFormWrap').style.display = 'none';
         document.getElementById('successName').textContent = `${firstName}, you're confirmed.`;
+        activateThread(firstName, lastName);
         document.getElementById('rsvpSuccess').style.display = 'block';
       } catch {
         btn.disabled = false;
@@ -1539,6 +1759,110 @@
       }
       return guests.join(', ');
     }
+
+    // ── THE THREAD ─────────────────────────────────────
+    const AVATAR_COLORS = ['#E8008A','#BF5FFF','#C6FF00','#00D4FF','#FF6B35','#7C3AED'];
+    function avatarColor(name) { let h=0; for(let c of name) h=(h+c.charCodeAt(0))%AVATAR_COLORS.length; return AVATAR_COLORS[h]; }
+    function initials(name) { return name.split(' ').map(w=>w[0]||'').join('').slice(0,2).toUpperCase(); }
+    function timeAgo(ts) {
+      const s = Math.floor((Date.now() - new Date(Number(ts)||ts).getTime()) / 1000);
+      if (s < 60) return 'just now';
+      if (s < 3600) return Math.floor(s/60) + 'm ago';
+      if (s < 86400) return Math.floor(s/3600) + 'h ago';
+      return Math.floor(s/86400) + 'd ago';
+    }
+
+    function renderComment(c) {
+      const col  = avatarColor(c.name);
+      const init = initials(c.name);
+      const media = c.media ? `<div class="comment__media"><img src="${c.media}" alt="" onerror="this.parentElement.style.display='none'"></div>` : '';
+      return `<div class="comment">
+        <div class="comment__avatar" style="background:${col}">${init}</div>
+        <div class="comment__body">
+          <div class="comment__name">${c.name}</div>
+          ${c.text ? `<div class="comment__text">${c.text.replace(/</g,'&lt;')}</div>` : ''}
+          ${media}
+          <div class="comment__time">${timeAgo(c.time)}</div>
+        </div>
+      </div>`;
+    }
+
+    async function loadComments() {
+      try {
+        const res  = await fetch(APPS_SCRIPT_URL, { method: 'GET' });
+        const data = await res.json();
+        const feed = document.getElementById('threadFeed');
+        const empty = document.getElementById('threadEmpty');
+        if (!data.length) { if(empty) empty.style.display='block'; return; }
+        if(empty) empty.style.display='none';
+        const html = data.map(renderComment).join('');
+        // Only update if content changed
+        if (feed.innerHTML !== html) feed.innerHTML = html;
+      } catch(err) { /* silent fail */ }
+    }
+
+    async function postComment(name, text, media) {
+      await fetch(APPS_SCRIPT_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ type: 'comment', name, text, media, timestamp: new Date().toISOString() })
+      });
+    }
+
+    function activateThread(firstName, lastName) {
+      const fullName = `${firstName} ${lastName}`.trim();
+      sessionStorage.setItem('threadName', fullName);
+      const compose = document.getElementById('threadCompose');
+      const label   = document.getElementById('threadComposeName');
+      compose.classList.add('visible');
+      label.textContent = `Posting as ${fullName}`;
+      setTimeout(() => document.getElementById('thread').scrollIntoView({ behavior: 'smooth', block: 'start' }), 600);
+    }
+
+    // Restore compose if already RSVP'd this session
+    const savedName = sessionStorage.getItem('threadName');
+    if (savedName) {
+      const compose = document.getElementById('threadCompose');
+      document.getElementById('threadComposeName').textContent = `Posting as ${savedName}`;
+      compose.classList.add('visible');
+    }
+
+    // GIF/media toggle
+    document.getElementById('threadGifToggle').addEventListener('click', () => {
+      const input = document.getElementById('threadGifUrl');
+      input.style.display = input.style.display === 'none' || !input.style.display ? 'block' : 'none';
+      if (input.style.display === 'block') input.focus();
+    });
+
+    // Media URL preview
+    document.getElementById('threadGifUrl').addEventListener('input', function() {
+      const url = this.value.trim();
+      const preview = document.getElementById('threadMediaPreview');
+      const img     = document.getElementById('threadMediaImg');
+      if (url) { img.src = url; preview.style.display = 'block'; }
+      else { preview.style.display = 'none'; }
+    });
+
+    // Post comment
+    document.getElementById('threadSend').addEventListener('click', async () => {
+      const name  = sessionStorage.getItem('threadName');
+      const text  = document.getElementById('threadText').value.trim();
+      const media = document.getElementById('threadGifUrl').value.trim();
+      if (!name || (!text && !media)) return;
+      const btn = document.getElementById('threadSend');
+      btn.disabled = true; btn.textContent = 'Posting…';
+      await postComment(name, text, media);
+      document.getElementById('threadText').value = '';
+      document.getElementById('threadGifUrl').value = '';
+      document.getElementById('threadMediaPreview').style.display = 'none';
+      document.getElementById('threadGifUrl').style.display = 'none';
+      btn.disabled = false; btn.textContent = 'Post';
+      setTimeout(loadComments, 1500);
+    });
+
+    // Load on page load + refresh every 30s
+    loadComments();
+    setInterval(loadComments, 30000);
 
     // ── RSVP MODAL ─────────────────────────────────────
     const modal     = document.getElementById('rsvpModal');
@@ -1585,6 +1909,7 @@
         });
         form.style.display = 'none';
         document.getElementById('mSuccessName').textContent = `${firstName}, you're confirmed.`;
+        activateThread(firstName, lastName);
         document.getElementById('mRsvpSuccess').style.display = 'block';
         sessionStorage.setItem('rsvpSeen', '1');
       } catch {
