@@ -2286,9 +2286,11 @@
     setInterval(loadComments, 30000);
 
     // ── CAROUSEL + GALLERY + LIGHTBOX ────────────────────
-    const PHOTOS = Array.from({length: 195}, (_, i) =>
+    const _raw = Array.from({length: 195}, (_, i) =>
       'photos/INNOUT-4.20.26-' + String(i+1).padStart(3,'0') + '.jpg'
     );
+    // Photo 041 (two women + inflatable) leads the gallery
+    const PHOTOS = [_raw[40], ..._raw.slice(0,40), ..._raw.slice(41)];
     const TOTAL = PHOTOS.length;
 
     // ── CAROUSEL ──────────────────────────────────────────
