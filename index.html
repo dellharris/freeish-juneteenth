@@ -1708,13 +1708,12 @@
   <!-- HERO -->
   <section class="hero" aria-label="Event hero">
     <div class="hero__video-wrap">
-      <iframe
-        src="https://www.youtube.com/embed/PJV1l3-QmFM?autoplay=1&mute=1&loop=1&playlist=PJV1l3-QmFM&controls=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
+      <video
+        autoplay muted loop playsinline
         aria-hidden="true"
-        title=""></iframe>
+        style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:56.25vw;min-height:100%;min-width:177.78vh;object-fit:cover;filter:brightness(0.45) saturate(0.65);">
+        <source src="mural-hero.mov" type="video/mp4">
+      </video>
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
@@ -2630,10 +2629,12 @@
     function openModal()  { modal.classList.add('open'); document.body.style.overflow = 'hidden'; }
     function closeModal() { modal.classList.remove('open'); document.body.style.overflow = ''; sessionStorage.setItem('rsvpSeen', '1'); }
 
-    // Show after 15s — only once per session
-    if (!sessionStorage.getItem('rsvpSeen')) {
-      setTimeout(openModal, 15000);
-    }
+    // ── RSVP MODAL — DISABLED (event is over) ──────────────────────────────
+    // To re-enable: uncomment the block below and remove the sessionStorage line
+    // if (!sessionStorage.getItem('rsvpSeen')) {
+    //   setTimeout(openModal, 15000);
+    // }
+    sessionStorage.setItem('rsvpSeen', '1'); // keeps modal permanently suppressed
 
     closeBtn.addEventListener('click', closeModal);
     backdrop.addEventListener('click', closeModal);
