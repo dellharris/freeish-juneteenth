@@ -3110,11 +3110,7 @@
       document.getElementById('promoDismiss').addEventListener('click', closePromo);
       document.getElementById('promoCta').addEventListener('click', () => {
         closePromo();
-        promoApplied = true;
-        document.getElementById('promoAppliedBanner').classList.add('active');
-        document.getElementById('poPrice').textContent = '$36';
-        selectTier('fam');
-        document.getElementById('preorder').scrollIntoView({ behavior: 'smooth' });
+        window.location.href = STRIPE_FLASH;
       });
     });
 
