@@ -3092,10 +3092,10 @@
 
     let promoApplied = false;
 
-    const promoOverlay = document.getElementById('promoOverlay');
-    function openPromo()  { promoOverlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    const promoOverlay = () => document.getElementById('promoOverlay');
+    function openPromo()  { promoOverlay().classList.add('open'); document.body.style.overflow = 'hidden'; }
     function closePromo() {
-      promoOverlay.classList.remove('open');
+      promoOverlay().classList.remove('open');
       document.body.style.overflow = '';
       sessionStorage.setItem('promoSeen', '1');
     }
@@ -3104,18 +3104,18 @@
       setTimeout(openPromo, 4000);
     }
 
-    document.getElementById('promoClose').addEventListener('click', closePromo);
-    document.getElementById('promoBackdrop').addEventListener('click', closePromo);
-    document.getElementById('promoDismiss').addEventListener('click', closePromo);
-
-    document.getElementById('promoCta').addEventListener('click', () => {
-      closePromo();
-      promoApplied = true;
-      // Show flash banner on the pre-order form and update the button price
-      document.getElementById('promoAppliedBanner').classList.add('active');
-      document.getElementById('poPrice').textContent = '$36';
-      selectTier('fam');
-      document.getElementById('preorder').scrollIntoView({ behavior: 'smooth' });
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('promoClose').addEventListener('click', closePromo);
+      document.getElementById('promoBackdrop').addEventListener('click', closePromo);
+      document.getElementById('promoDismiss').addEventListener('click', closePromo);
+      document.getElementById('promoCta').addEventListener('click', () => {
+        closePromo();
+        promoApplied = true;
+        document.getElementById('promoAppliedBanner').classList.add('active');
+        document.getElementById('poPrice').textContent = '$36';
+        selectTier('fam');
+        document.getElementById('preorder').scrollIntoView({ behavior: 'smooth' });
+      });
     });
 
   </script>
