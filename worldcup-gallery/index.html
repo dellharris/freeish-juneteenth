@@ -144,7 +144,6 @@
       background: linear-gradient(180deg, rgba(8,0,16,0.1) 0%, rgba(8,0,16,0.4) 55%, rgba(8,0,16,1) 100%);
     }
     .hero__content { position: relative; z-index: 2; padding: 0 24px; max-width: 800px; }
-    .hero__flag { font-size: clamp(36px, 8vw, 72px); margin-bottom: 16px; opacity: 0; animation: riseIn 0.8s ease forwards 0.2s; }
     .hero__eyebrow {
       font-size: 10px; font-weight: 700; letter-spacing: 0.5em; text-transform: uppercase;
       color: var(--gold); margin-bottom: 16px;
@@ -295,6 +294,54 @@
     footer a { color: inherit; text-decoration: none; }
 
     @keyframes riseIn { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+    /* ── FLAG CARD ── */
+    .match-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: riseIn 0.8s ease forwards 0.2s;
+    }
+    .match-card__team {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      width: clamp(80px, 18vw, 120px);
+    }
+    .match-card__flag {
+      width: clamp(56px, 12vw, 84px);
+      height: auto;
+      display: block;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
+    .match-card__name {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+    .match-card__divider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 0 clamp(16px, 4vw, 36px);
+    }
+    .match-card__vs {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(11px, 2.5vw, 14px);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: 0.25em;
+      color: var(--magenta);
+    }
+    .match-card__trophy { opacity: 0.7; }
+
   </style>
 </head>
 
@@ -305,7 +352,55 @@
     <div class="hero__bg"></div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <div class="hero__flag" aria-hidden="true">🇦🇷 🏆 🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+      <!-- Match card with SVG flags -->
+      <div class="match-card" aria-label="Argentina vs England">
+        <div class="match-card__team">
+          <!-- Argentina flag SVG -->
+          <svg class="match-card__flag" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Argentina">
+            <rect width="900" height="600" fill="#74ACDF"/>
+            <rect y="200" width="900" height="200" fill="#fff"/>
+            <circle cx="450" cy="300" r="60" fill="#F6B40E" stroke="#85340A" stroke-width="4"/>
+            <g fill="#F6B40E" stroke="#85340A" stroke-width="2">
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(0 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(30 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(60 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(90 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(120 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(150 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(180 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(210 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(240 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(270 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(300 450 300)"/>
+              <polygon points="450,220 456,244 480,244 461,258 468,282 450,268 432,282 439,258 420,244 444,244" transform="rotate(330 450 300)"/>
+            </g>
+            <circle cx="450" cy="300" r="36" fill="#74ACDF"/>
+            <ellipse cx="450" cy="300" rx="36" ry="24" fill="none" stroke="#85340A" stroke-width="3"/>
+          </svg>
+          <div class="match-card__name">Argentina</div>
+        </div>
+
+        <div class="match-card__divider">
+          <!-- Trophy icon -->
+          <svg class="match-card__trophy" width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 15c-3.31 0-6-2.69-6-6V3h12v6c0 3.31-2.69 6-6 6z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M6 5H3v2a3 3 0 003 3M18 5h3v2a3 3 0 01-3 3" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 15v4M8 21h8M10 19h4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="match-card__vs">vs</div>
+        </div>
+
+        <div class="match-card__team">
+          <!-- England flag SVG -->
+          <svg class="match-card__flag" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="England">
+            <rect width="900" height="600" fill="#fff"/>
+            <rect x="375" width="150" height="600" fill="#CF142B"/>
+            <rect y="225" width="900" height="150" fill="#CF142B"/>
+          </svg>
+          <div class="match-card__name">England</div>
+        </div>
+      </div>
+
       <p class="hero__eyebrow">FIFA World Cup 2026 · Atlanta, GA · July 15</p>
       <h1 class="hero__title" itemprop="name">
         Argentina<br><span class="hero__vs">vs</span><br>England
@@ -319,7 +414,14 @@
         <span class="hero__meta-sep">·</span>
         <span>UmmaSonoma</span>
       </div>
-      <div class="hero__badge">📸 &nbsp;155 Photos</div>
+      <div class="hero__badge">
+        <!-- Camera icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        155 Photos
+      </div>
     </div>
   </section>
 
