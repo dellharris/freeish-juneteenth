@@ -399,6 +399,43 @@
     .lightbox__prev { left: 16px; }
     .lightbox__next { right: 16px; }
 
+    /* ── PARTIFUL CTA ── */
+    .partiful-cta {
+      padding: 80px 24px 72px;
+      text-align: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(10,7,2,0.6) 40%, rgba(10,7,2,0.6) 60%, transparent 100%);
+    }
+    .partiful-cta__inner { max-width: 480px; margin: 0 auto; }
+    .partiful-cta__eyebrow {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 16px;
+    }
+    .partiful-cta__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 9vw, 60px); font-weight: 600;
+      color: var(--cream); line-height: 1.05; margin-bottom: 12px;
+    }
+    .partiful-cta__sub {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--cream-dim); margin-bottom: 40px;
+    }
+    .partiful-cta__btn {
+      display: inline-block;
+      padding: 18px 56px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase;
+      background: transparent;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 32px rgba(201,168,76,0.08);
+    }
+    .partiful-cta__btn:hover {
+      background: var(--gold);
+      color: var(--black);
+      box-shadow: 0 8px 48px rgba(201,168,76,0.25);
+    }
+
     /* ── RSVP ── */
     .rsvp {
       position: relative; z-index: 1;
@@ -666,6 +703,18 @@
     <button class="lightbox__nav lightbox__prev" id="lbPrev">&#8249;</button>
     <button class="lightbox__nav lightbox__next" id="lbNext">&#8250;</button>
   </div>
+
+  <!-- PARTIFUL RSVP CTA -->
+  <section class="partiful-cta" aria-label="RSVP">
+    <div class="partiful-cta__inner">
+      <p class="partiful-cta__eyebrow">You're invited</p>
+      <h2 class="partiful-cta__heading">The Flower Society</h2>
+      <p class="partiful-cta__sub">Private · 21+ · Atlanta · July 26</p>
+      <a class="partiful-cta__btn" href="https://partiful.com/e/a0SlIy8MDpVFva0ZgXA9" target="_blank" rel="noopener">
+        RSVP Here &nbsp;&#8594;
+      </a>
+    </div>
+  </section>
 
   <!-- RSVP -->
   <section class="rsvp" id="rsvp" aria-label="RSVP">
