@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Recap · In N Out Events · UmmaSonoma</title>
+  <meta name="description" content="A look back at the moments — FREE-ISH Juneteenth Weekend 2026, The Mural, The Mansion. By In N Out Podcast x UmmaSonoma.">
+  <meta property="og:title" content="The Recap · In N Out Events">
+  <meta property="og:description" content="FREE-ISH · Juneteenth 2026 · ATL · The best moments across the weekend.">
+  <meta property="og:image" content="recap/01-april20-umma-girls.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:     #080010;
+      --magenta:   #E8008A;
+      --magenta-dim:#7A003D;
+      --cream:     #FFF0F8;
+      --cream-dim: #C8A0B8;
+      --deep:      #0D0020;
+      --neon-pink: #FF1F8F;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--cream); font-family: 'Space Grotesk', system-ui, sans-serif; overflow-x: hidden; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 70svh; min-height: 480px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('recap/07-june19-night-girls.jpg');
+      background-size: cover; background-position: center 30%;
+      filter: brightness(0.35) saturate(0.8);
+    }
+    .hero__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(8,0,16,0.2) 0%, rgba(8,0,16,0.5) 60%, rgba(8,0,16,1) 100%);
+    }
+    .hero__content { position: relative; z-index: 2; padding: 0 24px; }
+    .hero__eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--magenta); margin-bottom: 18px;
+      opacity: 0; animation: riseIn 0.9s ease forwards 0.3s;
+    }
+    .hero__title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 14vw, 130px);
+      font-weight: 900; line-height: 0.9;
+      color: var(--cream);
+      opacity: 0; animation: riseIn 0.9s ease forwards 0.5s;
+      margin-bottom: 20px;
+    }
+    .hero__sub {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--magenta); opacity: 0; animation: riseIn 0.9s ease forwards 0.7s;
+      margin-bottom: 36px;
+    }
+    .hero__cta {
+      display: inline-block;
+      padding: 16px 44px;
+      background: linear-gradient(135deg, #A80060, #E8008A 55%, #BF5FFF);
+      color: #FFF0F8; text-decoration: none;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 0 48px rgba(232,0,138,0.3);
+      opacity: 0; animation: riseIn 0.9s ease forwards 0.9s;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero__cta:hover { transform: translateY(-3px); box-shadow: 0 10px 60px rgba(232,0,138,0.5); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap { overflow: hidden; background: var(--magenta); padding: 13px 0; }
+    .marquee { display: flex; width: max-content; animation: marqueeScroll 26s linear infinite; }
+    .marquee span { font-size: 10px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; color: #080010; white-space: nowrap; }
+    @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── GRID GALLERY ── */
+    .gallery { padding: 72px 12px 96px; max-width: 1100px; margin: 0 auto; }
+    .gallery__header { text-align: center; margin-bottom: 52px; }
+    .gallery__eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--magenta); margin-bottom: 12px; }
+    .gallery__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 7vw, 64px); font-weight: 900;
+      color: var(--cream); line-height: 1.05;
+    }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    @media (min-width: 640px) { .gallery__grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 900px) {
+      .gallery__grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 260px;
+      }
+      .gallery__item--feature { grid-column: span 2; grid-row: span 2; }
+    }
+
+    .gallery__item {
+      position: relative; overflow: hidden;
+      background: var(--deep); cursor: pointer;
+      border: 1px solid rgba(232,0,138,0.08);
+    }
+    .gallery__item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      aspect-ratio: 1 / 1;
+      filter: saturate(0.85) brightness(0.82);
+      transition: filter 0.45s ease, transform 0.55s ease;
+    }
+    @media (min-width: 900px) { .gallery__item img { aspect-ratio: unset; } }
+    .gallery__item:hover img { filter: saturate(1.1) brightness(1.05); transform: scale(1.04); }
+    .gallery__item__caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 10px 14px;
+      background: linear-gradient(to top, rgba(8,0,16,0.85), transparent);
+      font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--magenta); opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery__item:hover .gallery__item__caption { opacity: 1; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 9998;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .lightbox.open { opacity: 1; visibility: visible; }
+    .lightbox__backdrop { position: absolute; inset: 0; background: rgba(8,0,16,0.97); backdrop-filter: blur(14px); cursor: pointer; }
+    .lightbox__img {
+      position: relative; z-index: 2;
+      max-width: min(92vw, 1200px); max-height: 90svh;
+      object-fit: contain; display: block;
+      border: 1px solid rgba(232,0,138,0.2);
+      box-shadow: 0 0 80px rgba(232,0,138,0.12);
+    }
+    .lightbox__close {
+      position: absolute; top: 20px; right: 24px; z-index: 3;
+      background: rgba(8,0,16,0.7); border: 1px solid rgba(232,0,138,0.3);
+      color: var(--cream); font-size: 24px; width: 44px; height: 44px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox__close:hover { background: var(--magenta); }
+    .lightbox__nav {
+      position: absolute; z-index: 3; top: 50%; transform: translateY(-50%);
+      background: rgba(8,0,16,0.65); border: 1px solid rgba(232,0,138,0.3);
+      color: var(--cream); font-size: 26px; width: 48px; height: 48px;
+      border-radius: 50%; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .lightbox__nav:hover { background: rgba(232,0,138,0.25); }
+    .lightbox__prev { left: 16px; }
+    .lightbox__next { right: 16px; }
+    .lightbox__counter {
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 3;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--magenta-dim);
+    }
+
+    /* ── CTA BLOCK ── */
+    .cta-block {
+      text-align: center;
+      padding: 80px 24px 100px;
+      background: linear-gradient(180deg, transparent 0%, var(--deep) 30%, var(--deep) 80%, transparent 100%);
+    }
+    .cta-block__eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase; color: var(--magenta); margin-bottom: 16px; }
+    .cta-block__heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 8vw, 72px); font-weight: 900;
+      color: var(--cream); line-height: 1.05; margin-bottom: 14px;
+    }
+    .cta-block__sub { font-size: 14px; font-weight: 300; color: var(--cream-dim); margin-bottom: 44px; letter-spacing: 0.06em; }
+    .cta-block__btn {
+      display: inline-block;
+      padding: 20px 60px;
+      background: linear-gradient(135deg, #A80060, #E8008A 55%, #BF5FFF);
+      color: #FFF0F8; text-decoration: none;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 0 60px rgba(232,0,138,0.25);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .cta-block__btn:hover { transform: translateY(-3px); box-shadow: 0 12px 72px rgba(232,0,138,0.5); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 28px 24px 48px;
+      font-size: 10px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--magenta-dim); opacity: 0.7;
+    }
+    footer a { color: inherit; text-decoration: none; }
+
+    @keyframes riseIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="The Recap">
+    <div class="hero__bg"></div>
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">In N Out Events · UmmaSonoma · 2026</p>
+      <h1 class="hero__title">The<br>Recap</h1>
+      <p class="hero__sub">FREE&#8209;ISH · Juneteenth Weekend · Atlanta, GA</p>
+      <a class="hero__cta" href="https://events.innoutww.com">Visit events.innoutww.com &#8594;</a>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee">
+      <span>FREE&#8209;ISH &nbsp;✦&nbsp; JUNETEENTH 2026 &nbsp;✦&nbsp; THE MANSION &nbsp;✦&nbsp; THE MURAL &nbsp;✦&nbsp; BOOKSTORE GALLERY &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; ARRRTADDICT &nbsp;✦&nbsp; </span>
+      <span>FREE&#8209;ISH &nbsp;✦&nbsp; JUNETEENTH 2026 &nbsp;✦&nbsp; THE MANSION &nbsp;✦&nbsp; THE MURAL &nbsp;✦&nbsp; BOOKSTORE GALLERY &nbsp;✦&nbsp; ATLANTA, GA &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; ARRRTADDICT &nbsp;✦&nbsp; </span>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery" aria-label="Recap Gallery">
+    <div class="gallery__header">
+      <p class="gallery__eyebrow">The Moments</p>
+      <h2 class="gallery__heading">Juneteenth Weekend<br>2026</h2>
+    </div>
+    <div class="gallery__grid" id="galleryGrid">
+      <!-- injected by JS -->
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <div class="lightbox__backdrop" id="lbBackdrop"></div>
+    <img class="lightbox__img" id="lbImg" src="" alt="">
+    <button class="lightbox__close" id="lbClose">&#215;</button>
+    <button class="lightbox__nav lightbox__prev" id="lbPrev">&#8249;</button>
+    <button class="lightbox__nav lightbox__next" id="lbNext">&#8250;</button>
+    <div class="lightbox__counter" id="lbCounter"></div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-block" aria-label="Visit the site">
+    <p class="cta-block__eyebrow">See The Full Story</p>
+    <h2 class="cta-block__heading">Stay In<br>The Vibe</h2>
+    <p class="cta-block__sub">Pre-order the World Cup Vibes Tee · World Cup Tailgate · July 15 · ATL</p>
+    <a class="cta-block__btn" href="https://events.innoutww.com">events.innoutww.com &#8594;</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>In N Out Events &nbsp;·&nbsp; UmmaSonoma &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; 2026</p>
+    <p style="margin-top:8px"><a href="https://events.innoutww.com">events.innoutww.com</a></p>
+  </footer>
+
+  <script>
+    const PHOTOS = [
+      { src: 'recap/01-april20-umma-girls.jpg',      cap: 'April 20 · In N Out Podcast',    feature: true },
+      { src: 'recap/02-april20-orange-wig.jpg',       cap: 'April 20 · ATL Energy' },
+      { src: 'recap/03-april20-umma-shirt-night.jpg', cap: 'April 20 · UmmaSonoma Night' },
+      { src: 'recap/04-june19-kente-girl.jpg',        cap: 'June 19 · Juneteenth Mansion' },
+      { src: 'recap/05-june19-couple-steprepeat.jpg', cap: 'June 19 · 4th Annual' },
+      { src: 'recap/06-june19-peacock-fan.jpg',       cap: 'June 19 · Poolside' },
+      { src: 'recap/07-june19-night-girls.jpg',       cap: 'June 19 · Night Energy' },
+      { src: 'recap/08-june21-mural-scaffold.jpg',    cap: 'June 21 · Art in Motion' },
+      { src: 'recap/09-june21-mural-night.jpg',       cap: 'June 21 · The Mural' },
+      { src: 'recap/10-june19-night-crew.jpg',        cap: 'June 19 · The Crew' },
+    ];
+
+    const grid = document.getElementById('galleryGrid');
+    PHOTOS.forEach((p, i) => {
+      const item = document.createElement('div');
+      item.className = 'gallery__item' + (p.feature ? ' gallery__item--feature' : '');
+      item.dataset.index = i;
+      item.innerHTML = `
+        <img src="${p.src}" alt="${p.cap}" loading="${i < 4 ? 'eager' : 'lazy'}">
+        <div class="gallery__item__caption">${p.cap}</div>`;
+      item.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(item);
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg    = document.getElementById('lbImg');
+    const lbCtr    = document.getElementById('lbCounter');
+    let lbIdx      = 0;
+
+    function openLightbox(idx) {
+      lbIdx = ((idx % PHOTOS.length) + PHOTOS.length) % PHOTOS.length;
+      lbImg.src = PHOTOS[lbIdx].src;
+      lbCtr.textContent = (lbIdx + 1) + ' / ' + PHOTOS.length;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function lbNav(dir) {
+      lbIdx = ((lbIdx + dir + PHOTOS.length) % PHOTOS.length);
+      lbImg.src = PHOTOS[lbIdx].src;
+      lbCtr.textContent = (lbIdx + 1) + ' / ' + PHOTOS.length;
+    }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => lbNav(-1));
+    document.getElementById('lbNext').addEventListener('click', () => lbNav(1));
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbNav(-1);
+      if (e.key === 'ArrowRight') lbNav(1);
+    });
+    let touchX = null;
+    lightbox.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) < 40) return;
+      lbNav(dx < 0 ? 1 : -1);
+    }, { passive: true });
+  </script>
+</body>
+</html>
