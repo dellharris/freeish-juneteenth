@@ -697,6 +697,10 @@
             <label class="form__label" for="phone">Phone</label>
             <input class="form__input" type="tel" id="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
           </div>
+          <div class="form__group">
+            <label class="form__label" for="instagram">Instagram Handle</label>
+            <input class="form__input" type="text" id="instagram" placeholder="@yourhandle">
+          </div>
           <p class="form__error" id="formError"></p>
           <button type="submit" class="form__submit"><span id="submitText">Apply for Membership</span></button>
         </form>
@@ -852,6 +856,7 @@
       const lastName  = document.getElementById('lastName').value.trim();
       const email     = document.getElementById('email').value.trim();
       const phone     = document.getElementById('phone').value.trim();
+      const instagram = document.getElementById('instagram').value.trim();
       err.style.display = 'none';
       if (!firstName || !lastName || !email || !phone) {
         err.textContent = 'Please fill out all fields.'; err.style.display = 'block'; return;
@@ -865,7 +870,7 @@
         await fetch(APPS_SCRIPT_URL, {
           method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ type: 'flower-society-rsvp', firstName, lastName, email, phone, timestamp: new Date().toISOString() })
+          body: JSON.stringify({ type: 'flower-society-rsvp', firstName, lastName, email, phone, instagram, timestamp: new Date().toISOString() })
         });
         document.getElementById('rsvpWrap').style.display = 'none';
         document.getElementById('successName').textContent = `${firstName}, you're in.`;
