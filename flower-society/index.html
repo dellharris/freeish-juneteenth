@@ -676,7 +676,7 @@
         <div class="divider__line"></div>
       </div>
       <div id="rsvpWrap">
-        <h2 class="rsvp__heading reveal">Request<br>Your Invite</h2>
+        <h2 class="rsvp__heading reveal">Apply For<br>Membership</h2>
         <p class="rsvp__sub reveal reveal-d1">Private · 21+ · Atlanta · July 26</p>
         <form id="rsvpForm" novalidate>
           <div class="form__row">
@@ -698,13 +698,13 @@
             <input class="form__input" type="tel" id="phone" placeholder="(404) 555-0100" autocomplete="tel" required>
           </div>
           <p class="form__error" id="formError"></p>
-          <button type="submit" class="form__submit"><span id="submitText">Request My Invite</span></button>
+          <button type="submit" class="form__submit"><span id="submitText">Apply for Membership</span></button>
         </form>
       </div>
       <div id="rsvpSuccess" style="display:none" class="rsvp__success">
         <div class="rsvp__success-icon">✦</div>
         <div class="rsvp__success-name" id="successName"></div>
-        <p class="rsvp__success-note">You're on the list.<br>Details will be sent before July 26. See you in the garden.</p>
+        <p class="rsvp__success-note">Your application is in.<br>We'll be in touch before July 26. See you in the garden.</p>
       </div>
     </div>
   </section>
@@ -872,7 +872,7 @@
         document.getElementById('rsvpSuccess').style.display = 'block';
       } catch {
         btn.disabled = false;
-        document.getElementById('submitText').textContent = 'Request My Invite';
+        document.getElementById('submitText').textContent = 'Apply for Membership';
         err.textContent = 'Something went wrong. Try again.'; err.style.display = 'block';
       }
     });
