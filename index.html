@@ -2360,6 +2360,31 @@
     </div>
   </section>
 
+  <!-- CAROUSEL GALLERY 3 — World Cup Tailgate July 15 -->
+  <section class="carousel-section" id="worldcup" aria-label="World Cup Tailgate Gallery">
+    <div class="spotlight__marquee-wrap" aria-hidden="true" style="margin-bottom:0;">
+      <div class="spotlight__marquee">
+        <span>WORLD CUP TAILGATE &nbsp;✦&nbsp; JULY 15, 2026 &nbsp;✦&nbsp; BOOKSTORE GALLERY &nbsp;✦&nbsp; ATL &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; SOUNDS BY DELL HARRIS &nbsp;✦&nbsp; </span>
+        <span>WORLD CUP TAILGATE &nbsp;✦&nbsp; JULY 15, 2026 &nbsp;✦&nbsp; BOOKSTORE GALLERY &nbsp;✦&nbsp; ATL &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; SOUNDS BY DELL HARRIS &nbsp;✦&nbsp; </span>
+      </div>
+    </div>
+    <div class="carousel-section__inner" style="padding-top:56px;">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="section__eyebrow reveal">In N Out Podcast · July 15</p>
+      <h2 class="section__heading reveal reveal-d1">World Cup Tailgate</h2>
+      <div class="carousel-stage reveal reveal-d2" id="carouselStage3">
+        <button class="carousel-arrow carousel-arrow--prev" id="carouselPrev3" aria-label="Previous">&#8249;</button>
+        <button class="carousel-arrow carousel-arrow--next" id="carouselNext3" aria-label="Next">&#8250;</button>
+        <div class="carousel-counter" id="carouselCounter3">1 / 17</div>
+      </div>
+      <button class="carousel-view-btn reveal reveal-d3" id="viewAllBtn3">View All 17 Photos &#8594;</button>
+    </div>
+  </section>
+
   <!-- GALLERY MODAL (shared) -->
   <div class="gallery-modal" id="galleryModal" role="dialog" aria-modal="true" aria-label="All photos">
     <div class="gallery-modal__header">
@@ -3059,6 +3084,65 @@
     stage2.addEventListener('click', () => openLightbox(car2Idx, MANSION_PHOTOS));
     document.getElementById('viewAllBtn2').addEventListener('click', () =>
       openGallery(MANSION_PHOTOS, 'In N Out Podcast · Juneteenth Mansion Party · June 19 · 295 Photos')
+    );
+
+    // ── CAROUSEL 3 — WORLD CUP TAILGATE · JULY 15 ──────────────────
+    const WC_PHOTOS = [
+      'photos/wc715/INNOUT-7.15.26-010.jpg',
+      'photos/wc715/INNOUT-7.15.26-025.jpg',
+      'photos/wc715/INNOUT-7.15.26-030.jpg',
+      'photos/wc715/INNOUT-7.15.26-035.jpg',
+      'photos/wc715/INNOUT-7.15.26-040.jpg',
+      'photos/wc715/INNOUT-7.15.26-045.jpg',
+      'photos/wc715/INNOUT-7.15.26-050.jpg',
+      'photos/wc715/INNOUT-7.15.26-060.jpg',
+      'photos/wc715/INNOUT-7.15.26-080.jpg',
+      'photos/wc715/INNOUT-7.15.26-090.jpg',
+      'photos/wc715/INNOUT-7.15.26-095.jpg',
+      'photos/wc715/INNOUT-7.15.26-100.jpg',
+      'photos/wc715/INNOUT-7.15.26-110.jpg',
+      'photos/wc715/INNOUT-7.15.26-120.jpg',
+      'photos/wc715/INNOUT-7.15.26-130.jpg',
+      'photos/wc715/INNOUT-7.15.26-140.jpg',
+      'photos/wc715/INNOUT-7.15.26-150.jpg',
+    ];
+
+    let car3Idx = 0, car3Timer = null, car3Paused = false;
+    const stage3   = document.getElementById('carouselStage3');
+    const counter3 = document.getElementById('carouselCounter3');
+    const slides3  = [0, 1, 2].map(() => {
+      const s = document.createElement('div');
+      s.className = 'carousel-slide';
+      const img = document.createElement('img'); img.alt = '';
+      s.appendChild(img);
+      stage3.insertBefore(s, stage3.querySelector('.carousel-arrow--prev'));
+      return s;
+    });
+
+    function showSlide3(idx) {
+      car3Idx = ((idx % WC_PHOTOS.length) + WC_PHOTOS.length) % WC_PHOTOS.length;
+      slides3[0].querySelector('img').src = WC_PHOTOS[car3Idx];
+      slides3[0].classList.add('active');
+      slides3[1].classList.remove('active');
+      slides3[2].classList.remove('active');
+      counter3.textContent = (car3Idx + 1) + ' / ' + WC_PHOTOS.length;
+      preload(WC_PHOTOS[(car3Idx + 1) % WC_PHOTOS.length]);
+    }
+
+    showSlide3(0);
+    car3Timer = setInterval(() => { if (!car3Paused) showSlide3(car3Idx + 1); }, 4500);
+
+    document.getElementById('carouselPrev3').addEventListener('click', e => {
+      e.stopPropagation(); showSlide3(car3Idx - 1);
+      car3Paused = true; setTimeout(() => { car3Paused = false; }, 10000);
+    });
+    document.getElementById('carouselNext3').addEventListener('click', e => {
+      e.stopPropagation(); showSlide3(car3Idx + 1);
+      car3Paused = true; setTimeout(() => { car3Paused = false; }, 10000);
+    });
+    stage3.addEventListener('click', () => openLightbox(car3Idx, WC_PHOTOS));
+    document.getElementById('viewAllBtn3').addEventListener('click', () =>
+      openGallery(WC_PHOTOS, 'World Cup Tailgate · July 15 · 17 Photos')
     );
     document.getElementById('galleryModalClose').addEventListener('click', closeGallery);
 
