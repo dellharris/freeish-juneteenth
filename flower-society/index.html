@@ -465,6 +465,7 @@
     @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
     @keyframes pulse   { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+    @keyframes liveBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.12; } }
   </style>
 </head>
 
@@ -618,6 +619,27 @@
       </div>
       <p class="section__eyebrow reveal">The Archive</p>
       <h2 class="section__heading reveal reveal-d1">Budtender's Ball<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">Los Angeles</em></h2>
+
+      <!-- Recap video -->
+      <div class="reveal reveal-d2" style="
+        position:relative;width:100%;
+        aspect-ratio:16/9;
+        overflow:hidden;
+        border:1px solid rgba(201,168,76,0.3);
+        box-shadow:0 0 60px rgba(201,168,76,0.12);
+        margin-bottom:10px;">
+        <video autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;">
+          <source src="budtenders-recap.mp4" type="video/mp4">
+        </video>
+        <div style="position:absolute;top:14px;left:16px;display:flex;align-items:center;gap:8px;
+          font-size:9px;font-weight:700;letter-spacing:0.38em;text-transform:uppercase;
+          color:var(--cream);background:rgba(5,5,5,0.72);backdrop-filter:blur(10px);
+          padding:7px 16px;border-radius:100px;border:1px solid rgba(201,168,76,0.4);">
+          <span style="width:7px;height:7px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:liveBlink 1.4s ease-in-out infinite;display:inline-block;"></span>
+          Recap
+        </div>
+      </div>
+
       <div class="gal-stage reveal reveal-d2" id="galStage">
         <button class="gal-arrow gal-arrow--prev" id="galPrev" aria-label="Previous">&#8249;</button>
         <button class="gal-arrow gal-arrow--next" id="galNext" aria-label="Next">&#8250;</button>
