@@ -2292,7 +2292,7 @@
       </div>
       <p class="section__eyebrow reveal">FREE-ISH · Juneteenth 2026</p>
       <h2 class="section__heading reveal reveal-d1" style="margin-bottom:32px;">The Highlights</h2>
-      <div class="fan-stage reveal reveal-d2" id="fanStage">
+      <div class="fan-stage" id="fanStage">
         <!-- slides injected by JS -->
         <img class="fan-logo" src="umma-logo.jpg" alt="UmmaSonoma">
       </div>
@@ -3302,13 +3302,13 @@
       const slide = document.createElement('div');
       slide.className = 'fan-slide' + (i === 0 ? ' active' : '');
       slide.innerHTML = `
-        <img class="fan-slide__img" src="${s.src}" alt="${s.caption}" loading="${i < 2 ? 'eager' : 'lazy'}">
+        <img class="fan-slide__img" src="${s.src}" alt="${s.caption}" loading="${i < 2 ? 'eager' : 'lazy'}" onerror="this.style.display='none'">
         <div class="fan-slide__overlay"></div>
         <div class="fan-slide__caption">
           <div class="fan-slide__caption-text">${s.caption}</div>
           <div class="fan-slide__caption-event">${s.event}</div>
         </div>`;
-      fanStage.insertBefore(slide, fanStage.querySelector('.fan-logo'));
+      if (fanStage) fanStage.insertBefore(slide, fanStage.querySelector('.fan-logo'));
 
       const dot = document.createElement('div');
       dot.className = 'fan-dot' + (i === 0 ? ' active' : '');
