@@ -399,6 +399,111 @@
     .lightbox__prev { left: 16px; }
     .lightbox__next { right: 16px; }
 
+    /* ── FEATURED ARTIST ── */
+    .artist-feature {
+      padding: 80px 24px 72px;
+      background: linear-gradient(180deg, transparent 0%, rgba(8,5,0,0.7) 30%, rgba(8,5,0,0.7) 70%, transparent 100%);
+    }
+    .artist-feature__inner { max-width: 900px; margin: 0 auto; }
+    .artist-feature__header { text-align: center; margin-bottom: 52px; }
+    .artist-feature__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 14px;
+    }
+    .artist-feature__title {
+      font-family: 'Cinzel Decorative', 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 8vw, 72px); font-weight: 600;
+      background: linear-gradient(135deg, #E8D49A 0%, #C9A84C 50%, #F0E0A0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 24px rgba(201,168,76,0.3));
+      line-height: 1.05; margin-bottom: 10px;
+    }
+    .artist-feature__sub {
+      font-size: 11px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+    .artist-feature__body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 52px;
+      align-items: center;
+    }
+    @media (max-width: 680px) {
+      .artist-feature__body { grid-template-columns: 1fr; gap: 36px; }
+    }
+    .artist-feature__photo-wrap {
+      position: relative;
+    }
+    .artist-feature__photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border: 1px solid rgba(201,168,76,0.25);
+      pointer-events: none;
+    }
+    .artist-feature__photo {
+      width: 100%; display: block;
+      filter: brightness(0.92) contrast(1.05);
+    }
+    .artist-feature__bio {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(17px, 2.2vw, 22px);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--cream);
+      opacity: 0.88;
+      margin-bottom: 36px;
+    }
+
+    /* ── AUDIO PLAYER ── */
+    .artist-player {
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(8,5,0,0.6);
+      padding: 20px 22px;
+    }
+    .artist-player__track {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    }
+    .artist-player__album-art {
+      width: 52px; height: 52px; flex-shrink: 0;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .artist-player__album-art svg { display: block; }
+    .artist-player__meta { flex: 1; min-width: 0; }
+    .artist-player__song {
+      font-family: 'Cinzel', serif; font-size: 13px; font-weight: 600;
+      color: var(--cream); letter-spacing: 0.05em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .artist-player__artist {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold-dim); margin-top: 4px;
+    }
+    .artist-player__controls { display: flex; align-items: center; gap: 14px; }
+    .artist-player__btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: background 0.25s, box-shadow 0.25s;
+    }
+    .artist-player__btn:hover { background: rgba(201,168,76,0.25); box-shadow: 0 0 20px rgba(201,168,76,0.3); }
+    .artist-player__progress-wrap {
+      flex: 1; height: 3px; background: rgba(201,168,76,0.15);
+      cursor: pointer; position: relative;
+    }
+    .artist-player__progress-bar {
+      height: 100%; width: 0%; background: var(--gold);
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+    .artist-player__time {
+      font-family: 'Cinzel', serif; font-size: 10px;
+      color: var(--gold-dim); min-width: 32px; text-align: right;
+    }
+
     /* ── PARTIFUL CTA ── */
     .partiful-cta {
       padding: 80px 24px 72px;
@@ -703,6 +808,75 @@
     <button class="lightbox__nav lightbox__prev" id="lbPrev">&#8249;</button>
     <button class="lightbox__nav lightbox__next" id="lbNext">&#8250;</button>
   </div>
+
+  <!-- PARTIFUL RSVP CTA -->
+  <!-- FEATURED ARTIST -->
+  <section class="artist-feature" aria-label="Featured Artist">
+    <div class="artist-feature__inner">
+
+      <div class="artist-feature__header reveal">
+        <p class="artist-feature__eyebrow">Featured Performance</p>
+        <h2 class="artist-feature__title">Playa Poncho</h2>
+        <p class="artist-feature__sub">Atlanta Royalty · SoSoDef · Live at The Flower Society</p>
+      </div>
+
+      <div class="artist-feature__body reveal reveal-d1">
+        <div class="artist-feature__photo-wrap">
+          <img class="artist-feature__photo" src="playa-poncho.png" alt="Playa Poncho" loading="lazy">
+        </div>
+        <div class="artist-feature__info">
+          <p class="artist-feature__bio">
+            Before ATL had the whole world watching, Playa Poncho was already a legend in it.
+            A SoSoDef original — his voice is sewn into the fabric of Atlanta's golden era.
+            He doesn't just perform, he brings the whole block back.
+            If you know, you know. If you don't — Sunday is your education.
+          </p>
+
+          <!-- AUDIO PLAYER -->
+          <div class="artist-player">
+            <div class="artist-player__track">
+              <div class="artist-player__album">
+                <img src="../photos/wc715/INNOUT-7.15.26-010.jpg" alt="SoSoDef Bass All-Stars" style="display:none">
+                <!-- Album art placeholder — SoSoDef vibes -->
+                <div class="artist-player__album-art">
+                  <svg viewBox="0 0 80 80" width="80" height="80" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="80" height="80" fill="#1a1400"/>
+                    <circle cx="40" cy="40" r="28" fill="none" stroke="#C9A84C" stroke-width="1.5" opacity="0.6"/>
+                    <circle cx="40" cy="40" r="18" fill="#0a0800"/>
+                    <circle cx="40" cy="40" r="4" fill="#C9A84C" opacity="0.8"/>
+                    <text x="40" y="23" text-anchor="middle" font-size="5.5" fill="#C9A84C" font-family="sans-serif" font-weight="700" letter-spacing="1" opacity="0.8">SOSODEF</text>
+                    <text x="40" y="61" text-anchor="middle" font-size="4.5" fill="#C9A84C" font-family="sans-serif" opacity="0.6">BASS ALL-STARS</text>
+                  </svg>
+                </div>
+              </div>
+              <div class="artist-player__meta">
+                <div class="artist-player__song">Let It Burn</div>
+                <div class="artist-player__artist">Playa Poncho · SoSoDef Bass All-Stars</div>
+              </div>
+            </div>
+
+            <audio id="artistAudio" preload="none">
+              <source src="let-it-burn.mp3" type="audio/mpeg">
+            </audio>
+
+            <div class="artist-player__controls">
+              <button class="artist-player__btn" id="artistPlayBtn" aria-label="Play">
+                <svg id="playIcon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+              <div class="artist-player__progress-wrap" id="artistProgress">
+                <div class="artist-player__progress-bar" id="artistBar"></div>
+              </div>
+              <div class="artist-player__time" id="artistTime">0:00</div>
+            </div>
+          </div>
+          <!-- /AUDIO PLAYER -->
+
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- PARTIFUL RSVP CTA -->
   <section class="partiful-cta" aria-label="RSVP">
@@ -1054,6 +1228,44 @@
   </div>
 
   <script>
+    (function () {
+      const audio    = document.getElementById('artistAudio');
+      const playBtn  = document.getElementById('artistPlayBtn');
+      const playIcon = document.getElementById('playIcon');
+      const pauseIcon= document.getElementById('pauseIcon');
+      const bar      = document.getElementById('artistBar');
+      const timeEl   = document.getElementById('artistTime');
+      const progress = document.getElementById('artistProgress');
+      if (!audio || !playBtn) return;
+
+      function fmt(s) {
+        const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+      }
+
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) { audio.play(); playIcon.style.display = 'none'; pauseIcon.style.display = ''; }
+        else { audio.pause(); playIcon.style.display = ''; pauseIcon.style.display = 'none'; }
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        bar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        timeEl.textContent = fmt(audio.currentTime);
+      });
+
+      audio.addEventListener('ended', () => {
+        playIcon.style.display = ''; pauseIcon.style.display = 'none';
+        bar.style.width = '0%'; timeEl.textContent = '0:00';
+      });
+
+      progress.addEventListener('click', e => {
+        if (!audio.duration) return;
+        const rect = progress.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+      });
+    })();
+
     (function () {
       const flower = document.getElementById('floatFlower');
       const RSVP_URL = 'https://partiful.com/e/a0SlIy8MDpVFva0ZgXA9';
