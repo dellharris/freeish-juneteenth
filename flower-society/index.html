@@ -727,6 +727,60 @@
     <p class="about__tagline reveal">Luxury flower culture, softly introduced.</p>
   </section>
 
+  <!-- FEATURED ARTIST -->
+  <section class="artist-feature" aria-label="Featured Artist">
+    <div class="artist-feature__inner">
+
+      <div class="artist-feature__header reveal">
+        <p class="artist-feature__eyebrow">Featured Performance</p>
+        <h2 class="artist-feature__title">Playa Poncho</h2>
+        <p class="artist-feature__sub">Atlanta Royalty · SoSoDef · Live at The Flower Society</p>
+      </div>
+
+      <div class="artist-feature__body reveal reveal-d1">
+        <div class="artist-feature__info">
+          <p class="artist-feature__bio">
+            Before ATL had the whole world watching, Playa Poncho was already a legend in it.
+            A SoSoDef original — his voice is sewn into the fabric of Atlanta's golden era.
+            He doesn't just perform, he brings the whole block back.
+            If you know, you know. If you don't — Sunday is your education.
+          </p>
+
+          <!-- AUDIO PLAYER -->
+          <div class="artist-player" id="artistPlayer">
+            <div class="artist-player__cover"></div>
+            <div class="artist-player__overlay"></div>
+
+            <div class="artist-player__time" id="artistTime">0:00</div>
+
+            <div class="artist-player__center">
+              <button class="artist-player__btn" id="artistPlayBtn" aria-label="Play">
+                <svg id="playIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+            </div>
+
+            <div class="artist-player__meta">
+              <div class="artist-player__song">Let It Burn</div>
+              <div class="artist-player__artist">Playa Poncho · SoSoDef Bass All-Stars</div>
+            </div>
+
+            <audio id="artistAudio" preload="none">
+              <source src="let-it-burn.mp3" type="audio/mpeg">
+            </audio>
+
+            <div class="artist-player__progress-wrap" id="artistProgress">
+              <div class="artist-player__progress-bar" id="artistBar"></div>
+            </div>
+          </div>
+          <!-- /AUDIO PLAYER -->
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- PLAYLIST -->
   <section class="playlist" aria-label="Green Room Playlist">
     <div class="divider reveal">
@@ -831,60 +885,6 @@
   </div>
 
   <!-- PARTIFUL RSVP CTA -->
-  <!-- FEATURED ARTIST -->
-  <section class="artist-feature" aria-label="Featured Artist">
-    <div class="artist-feature__inner">
-
-      <div class="artist-feature__header reveal">
-        <p class="artist-feature__eyebrow">Featured Performance</p>
-        <h2 class="artist-feature__title">Playa Poncho</h2>
-        <p class="artist-feature__sub">Atlanta Royalty · SoSoDef · Live at The Flower Society</p>
-      </div>
-
-      <div class="artist-feature__body reveal reveal-d1">
-        <div class="artist-feature__info">
-          <p class="artist-feature__bio">
-            Before ATL had the whole world watching, Playa Poncho was already a legend in it.
-            A SoSoDef original — his voice is sewn into the fabric of Atlanta's golden era.
-            He doesn't just perform, he brings the whole block back.
-            If you know, you know. If you don't — Sunday is your education.
-          </p>
-
-          <!-- AUDIO PLAYER -->
-          <div class="artist-player" id="artistPlayer">
-            <div class="artist-player__cover"></div>
-            <div class="artist-player__overlay"></div>
-
-            <div class="artist-player__time" id="artistTime">0:00</div>
-
-            <div class="artist-player__center">
-              <button class="artist-player__btn" id="artistPlayBtn" aria-label="Play">
-                <svg id="playIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                <svg id="pauseIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-              </button>
-            </div>
-
-            <div class="artist-player__meta">
-              <div class="artist-player__song">Let It Burn</div>
-              <div class="artist-player__artist">Playa Poncho · SoSoDef Bass All-Stars</div>
-            </div>
-
-            <audio id="artistAudio" preload="none">
-              <source src="let-it-burn.mp3" type="audio/mpeg">
-            </audio>
-
-            <div class="artist-player__progress-wrap" id="artistProgress">
-              <div class="artist-player__progress-bar" id="artistBar"></div>
-            </div>
-          </div>
-          <!-- /AUDIO PLAYER -->
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- PARTIFUL RSVP CTA -->
   <section class="partiful-cta" aria-label="RSVP">
     <div class="partiful-cta__inner">
