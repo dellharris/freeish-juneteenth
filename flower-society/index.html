@@ -525,6 +525,56 @@
       color: rgba(201,168,76,0.6);
     }
 
+    /* ── PARTNER ── */
+    .partner {
+      padding: 72px 24px 80px;
+    }
+    .partner__inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .partner__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.52em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 14px;
+    }
+    .partner__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 7vw, 56px); font-weight: 600;
+      color: var(--cream); line-height: 1.1; margin-bottom: 32px;
+    }
+    .partner__heading em { color: var(--gold); font-style: italic; }
+    .partner__description {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 2.2vw, 20px); font-weight: 300;
+      line-height: 1.85; color: rgba(245,237,216,0.78);
+      margin-bottom: 44px;
+    }
+    .partner__description strong { color: var(--gold); font-weight: 400; }
+    .partner__flyer {
+      border: 1px solid rgba(201,168,76,0.2);
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .partner__flyer img { width: 100%; display: block; }
+    .partner__tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 3vw, 26px); font-style: italic; font-weight: 300;
+      color: var(--gold); letter-spacing: 0.06em;
+      margin-bottom: 28px;
+    }
+    .partner__link {
+      display: inline-block;
+      font-family: 'Cinzel', serif; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold);
+      padding: 14px 40px; text-decoration: none;
+      background: rgba(201,168,76,0.06);
+      transition: background 0.3s, box-shadow 0.3s;
+      margin-bottom: 20px;
+    }
+    .partner__link:hover { background: rgba(201,168,76,0.18); box-shadow: 0 0 36px rgba(201,168,76,0.25); }
+    .partner__social {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.35em;
+      color: var(--gold-dim); text-transform: uppercase;
+    }
+
     /* ── PARTIFUL CTA ── */
     .partiful-cta {
       padding: 80px 24px 72px;
@@ -884,7 +934,37 @@
     <button class="lightbox__nav lightbox__next" id="lbNext">&#8250;</button>
   </div>
 
-  <!-- PARTIFUL RSVP CTA -->
+  <!-- PARTNER SECTION — Tropical Express × Vinyl Paradise -->
+  <section class="partner" aria-label="Our Partners">
+    <div class="partner__inner">
+
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+
+      <p class="partner__eyebrow reveal">In Partnership With</p>
+      <h2 class="partner__heading reveal reveal-d1">Tropical Express<br><em>× Vinyl Paradise</em></h2>
+
+      <p class="partner__description reveal reveal-d2">
+        Tropical Express is more than a plant shop — it's a curated experience for lovers of plants, music, and good vibes. Specializing in premium indoor houseplants and botanical event styling, they're bringing a living indoor garden to The Flower Society. Inside their space you'll also find <strong>Vinyl Paradise</strong> — a collection of original vinyl records from legendary artists, bringing the authentic sound and quality that only original pressings can provide. Shop plants. Shop wax. All under one roof.
+      </p>
+
+      <div class="partner__flyer reveal reveal-d2">
+        <img src="tropical-express-flyer.png" alt="Tropical Express × Vinyl Paradise" loading="lazy">
+      </div>
+
+      <div class="partner__tagline reveal reveal-d3">The Plants. The Vinyl. All Under One Roof.</div>
+
+      <a class="partner__link reveal reveal-d3" href="http://tropicalexpressatl.com" target="_blank" rel="noopener">
+        Visit Tropical Express ATL &#8594;
+      </a>
+      <p class="partner__social reveal reveal-d3">&#64;TropicalExpressATL &nbsp;·&nbsp; Instagram &amp; Facebook</p>
+
+    </div>
+  </section>
+
   <!-- PARTIFUL RSVP CTA -->
   <section class="partiful-cta" aria-label="RSVP">
     <div class="partiful-cta__inner">
