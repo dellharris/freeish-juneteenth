@@ -1409,5 +1409,135 @@
     })();
   </script>
 
+  <!-- 21+ AGE GATE -->
+  <style>
+    .age-gate {
+      position: fixed; inset: 0; z-index: 99999;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.97);
+      backdrop-filter: blur(12px);
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .age-gate.open { opacity: 1; visibility: visible; }
+    .age-gate__box {
+      max-width: 420px; width: 90%;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: #080602;
+      padding: 52px 40px 44px;
+      text-align: center;
+      box-shadow: 0 0 80px rgba(201,168,76,0.08);
+    }
+    .age-gate__logo {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 32px;
+    }
+    .age-gate__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 6vw, 40px); font-weight: 600;
+      color: var(--cream); line-height: 1.1; margin-bottom: 10px;
+    }
+    .age-gate__sub {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--gold-dim);
+      margin-bottom: 36px;
+    }
+    .age-gate__label {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.45em;
+      text-transform: uppercase; color: var(--gold-dim);
+      margin-bottom: 12px; display: block;
+    }
+    .age-gate__input {
+      width: 100%;
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--cream);
+      font-family: 'Cinzel', serif; font-size: 15px;
+      letter-spacing: 0.1em;
+      padding: 14px 18px;
+      text-align: center;
+      outline: none;
+      margin-bottom: 24px;
+      -webkit-appearance: none;
+      color-scheme: dark;
+    }
+    .age-gate__input:focus { border-color: var(--gold); }
+    .age-gate__btn {
+      width: 100%;
+      padding: 16px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Cinzel', serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.25s, box-shadow 0.25s;
+      margin-bottom: 16px;
+    }
+    .age-gate__btn:hover { background: rgba(201,168,76,0.12); box-shadow: 0 0 32px rgba(201,168,76,0.2); }
+    .age-gate__error {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.25em;
+      text-transform: uppercase; color: #E8008A;
+      min-height: 18px; margin-bottom: 8px;
+      display: none;
+    }
+    .age-gate__disclaimer {
+      font-size: 9px; color: rgba(201,168,76,0.3);
+      letter-spacing: 0.2em; text-transform: uppercase;
+      line-height: 1.7;
+    }
+  </style>
+
+  <div class="age-gate" id="ageGate" role="dialog" aria-modal="true" aria-label="Age Verification">
+    <div class="age-gate__box">
+      <p class="age-gate__logo">The Flower Society · UmmaSonoma</p>
+      <h2 class="age-gate__heading">You must be<br>21 or older<br>to enter.</h2>
+      <p class="age-gate__sub">An Elevated 21+ Experience</p>
+      <label class="age-gate__label" for="ageDob">Enter your date of birth</label>
+      <input class="age-gate__input" type="date" id="ageDob" placeholder="MM/DD/YYYY" max="">
+      <div class="age-gate__error" id="ageError">You must be 21+ to enter.</div>
+      <button class="age-gate__btn" id="ageSubmit">Enter</button>
+      <p class="age-gate__disclaimer">By entering you confirm you are 21+<br>and agree to our terms.</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      if (sessionStorage.getItem('ageVerified')) return;
+
+      const gate    = document.getElementById('ageGate');
+      const dobEl   = document.getElementById('ageDob');
+      const errEl   = document.getElementById('ageError');
+      const btn     = document.getElementById('ageSubmit');
+
+      // Set max date to today (can't enter a future birthday)
+      const today = new Date();
+      dobEl.max = today.toISOString().split('T')[0];
+
+      setTimeout(() => { gate.classList.add('open'); document.body.style.overflow = 'hidden'; }, 5000);
+
+      btn.addEventListener('click', () => {
+        const dob = new Date(dobEl.value);
+        if (!dobEl.value) { errEl.style.display = 'block'; errEl.textContent = 'Please enter your date of birth.'; return; }
+        const ageDiff = today - dob;
+        const ageDate = new Date(ageDiff);
+        const age     = Math.abs(ageDate.getUTCFullYear() - 1970);
+        if (age < 21) {
+          errEl.style.display = 'block';
+          errEl.textContent   = 'You must be 21+ to enter.';
+          return;
+        }
+        sessionStorage.setItem('ageVerified', '1');
+        gate.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+
+      dobEl.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+    })();
+  </script>
+
 </body>
 </html>
