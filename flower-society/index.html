@@ -651,19 +651,28 @@
     .card-tiers__sub { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--gold-dim); margin-bottom: 52px; }
 
     .card-tiers__row {
-      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+      position: relative;
+      width: 300px;
+      height: 188px;
+      margin: 0 auto;
     }
-
-    /* Individual card */
     .mem-card {
       width: 300px; height: 188px;
-      border-radius: 10px; position: relative;
-      overflow: hidden; flex-shrink: 0;
+      border-radius: 10px; position: absolute;
+      top: 0; left: 0;
+      overflow: hidden;
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
+      opacity: 0;
+      transform: translateX(40px) scale(0.96);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+      pointer-events: none;
     }
-    .mem-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
+    .mem-card.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.55);
+    }
 
     .mem-card--founding { background: linear-gradient(135deg, #F0F0F0 0%, #C8C8C8 30%, #E8E8E8 55%, #A8A8A8 75%, #D4D4D4 100%); }
     .mem-card--vip      { background: linear-gradient(135deg, #E8D49A 0%, #C9A84C 45%, #F0DC8A 70%, #B8922A 100%); }
@@ -713,6 +722,24 @@
       font-family: 'Cinzel', serif; font-size: 6px; font-weight: 700;
       letter-spacing: 0.4em; text-transform: uppercase;
       color: rgba(6,4,10,0.35);
+    }
+
+    .card-tiers__dots {
+      display: flex; justify-content: center; gap: 10px;
+      margin-top: 24px;
+    }
+    .tier-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(201,168,76,0.25);
+      transition: background 0.4s, transform 0.4s;
+    }
+    .tier-dot.active { background: var(--gold); transform: scale(1.3); }
+    .card-tiers__active-label {
+      font-family: 'Cinzel', serif;
+      font-size: 9px; font-weight: 600;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold-dim); margin-top: 14px;
+      transition: opacity 0.4s;
     }
 
     /* ── RSVP ── */
@@ -1090,7 +1117,7 @@
       <div class="card-tiers__row reveal reveal-d2">
 
         <!-- FOUNDING — PLATINUM -->
-        <div class="mem-card mem-card--founding">
+        <div class="mem-card mem-card--founding active">
           <div class="mem-card__border"></div>
           <div class="mem-card__border-inner"></div>
           <div class="mem-card__corner mem-card__corner--tl">
@@ -1168,6 +1195,16 @@
         </div>
 
       </div>
+
+      <!-- Tier dots -->
+      <div class="card-tiers__dots" id="tierDots">
+        <div class="tier-dot active"></div>
+        <div class="tier-dot"></div>
+        <div class="tier-dot"></div>
+      </div>
+      <!-- Tier name label -->
+      <p class="card-tiers__active-label" id="tierActiveLabel">Platinum · Founding Member</p>
+
     </div>
   </section>
 
@@ -1730,6 +1767,36 @@
       });
 
       dobEl.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+    })();
+  </script>
+
+  <script>
+    // ── MEMBERSHIP CARD CAROUSEL ──────────────────────────────
+    (function () {
+      const cards  = document.querySelectorAll('.mem-card');
+      const dots   = document.querySelectorAll('.tier-dot');
+      const label  = document.getElementById('tierActiveLabel');
+      const labels = ['Platinum · Founding Member', 'Gold · VIP Member', 'General · Member'];
+      let current  = 0;
+
+      // Show first card immediately
+      cards[0].classList.add('active');
+
+      function goTo(idx) {
+        cards[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = idx;
+        cards[current].classList.add('active');
+        dots[current].classList.add('active');
+        label.style.opacity = '0';
+        setTimeout(() => { label.textContent = labels[current]; label.style.opacity = '1'; }, 200);
+      }
+
+      // Auto-cycle every 2.8s
+      setInterval(() => { goTo((current + 1) % cards.length); }, 2800);
+
+      // Tap dots to jump
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
     })();
   </script>
 
