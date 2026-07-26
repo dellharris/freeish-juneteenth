@@ -643,6 +643,78 @@
       box-shadow: 0 8px 48px rgba(201,168,76,0.25);
     }
 
+    /* ── MEMBERSHIP CARD TIERS ── */
+    .card-tiers { padding: 80px 24px 60px; text-align: center; }
+    .card-tiers__inner { max-width: 1100px; margin: 0 auto; }
+    .card-tiers__eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.52em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 12px; }
+    .card-tiers__heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 600; color: var(--cream); margin-bottom: 8px; }
+    .card-tiers__sub { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: var(--gold-dim); margin-bottom: 52px; }
+
+    .card-tiers__row {
+      display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* Individual card */
+    .mem-card {
+      width: 300px; height: 188px;
+      border-radius: 10px; position: relative;
+      overflow: hidden; flex-shrink: 0;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .mem-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 32px 80px rgba(0,0,0,0.6); }
+
+    .mem-card--founding { background: linear-gradient(135deg, #F0F0F0 0%, #C8C8C8 30%, #E8E8E8 55%, #A8A8A8 75%, #D4D4D4 100%); }
+    .mem-card--vip      { background: linear-gradient(135deg, #E8D49A 0%, #C9A84C 45%, #F0DC8A 70%, #B8922A 100%); }
+    .mem-card--general  { background: #06040A; }
+
+    .mem-card__border       { position: absolute; inset: 5px; border-radius: 5px; border: 1px solid rgba(6,4,10,0.3); pointer-events: none; z-index: 2; }
+    .mem-card--general .mem-card__border { border-color: rgba(201,168,76,0.35); }
+    .mem-card__border-inner { position: absolute; inset: 9px; border-radius: 4px; border: 1px solid rgba(6,4,10,0.14); pointer-events: none; z-index: 2; }
+    .mem-card--general .mem-card__border-inner { border-color: rgba(201,168,76,0.15); }
+
+    .mem-card__corner { position: absolute; z-index: 3; width: 28px; height: 28px; }
+    .mem-card__corner--tl { top: 2px; left: 2px; }
+    .mem-card__corner--tr { top: 2px; right: 2px; }
+    .mem-card__corner--bl { bottom: 2px; left: 2px; }
+    .mem-card__corner--br { bottom: 2px; right: 2px; }
+
+    .mem-card__content {
+      position: relative; z-index: 4;
+      height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 16px 24px 20px; text-align: center;
+    }
+    .mem-card__brand {
+      font-family: 'Cinzel', serif; font-size: 6px; font-weight: 700;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: rgba(6,4,10,0.45); margin-bottom: 5px;
+    }
+    .mem-card__title {
+      font-family: 'Cinzel Decorative', serif; font-size: 22px; font-weight: 700;
+      line-height: 0.92; color: #06040A; margin-bottom: 8px;
+      letter-spacing: 0.03em;
+    }
+    .mem-card__rule { display: flex; align-items: center; gap: 6px; width: 120px; margin-bottom: 6px; }
+    .mem-card__rule-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(6,4,10,0.3), transparent); }
+    .mem-card__rule-dot  { width: 4px; height: 4px; background: rgba(6,4,10,0.5); transform: rotate(45deg); flex-shrink: 0; }
+    .mem-card__tier {
+      font-family: 'Cinzel', serif; font-size: 7px; font-weight: 700;
+      letter-spacing: 0.45em; text-transform: uppercase;
+      color: rgba(6,4,10,0.7); margin-bottom: 4px;
+    }
+    .mem-card__no {
+      font-family: 'Cinzel', serif; font-size: 6px; font-weight: 600;
+      letter-spacing: 0.4em; color: rgba(6,4,10,0.35);
+    }
+    .mem-card__label {
+      position: absolute; bottom: 14px; right: 18px; z-index: 4;
+      font-family: 'Cinzel', serif; font-size: 6px; font-weight: 700;
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(6,4,10,0.35);
+    }
+
     /* ── RSVP ── */
     .rsvp {
       position: relative; z-index: 1;
@@ -1005,6 +1077,97 @@
       <a class="partiful-cta__btn" href="https://partiful.com/e/a0SlIy8MDpVFva0ZgXA9" target="_blank" rel="noopener">
         RSVP Here &nbsp;&#8594;
       </a>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP CARD TIERS -->
+  <section class="card-tiers" aria-label="Membership Tiers">
+    <div class="card-tiers__inner">
+      <p class="card-tiers__eyebrow reveal">Membership Tiers</p>
+      <h2 class="card-tiers__heading reveal reveal-d1">The Society Card</h2>
+      <p class="card-tiers__sub reveal reveal-d2">Three tiers. One society.</p>
+
+      <div class="card-tiers__row reveal reveal-d2">
+
+        <!-- FOUNDING — PLATINUM -->
+        <div class="mem-card mem-card--founding">
+          <div class="mem-card__border"></div>
+          <div class="mem-card__border-inner"></div>
+          <div class="mem-card__corner mem-card__corner--tl">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="rgba(6,4,10,0.25)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--tr">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleX(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="rgba(6,4,10,0.25)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--bl">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleY(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--br">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scale(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/></svg>
+          </div>
+          <div class="mem-card__content">
+            <p class="mem-card__brand">UmmaSonoma · Atlanta</p>
+            <div class="mem-card__title">Flower<br>Society</div>
+            <div class="mem-card__rule"><div class="mem-card__rule-line"></div><div class="mem-card__rule-dot"></div><div class="mem-card__rule-line"></div></div>
+            <p class="mem-card__tier">Founding Member</p>
+            <p class="mem-card__no">FS · 001 · 2026</p>
+          </div>
+          <p class="mem-card__label">Platinum</p>
+        </div>
+
+        <!-- VIP — GOLD -->
+        <div class="mem-card mem-card--vip">
+          <div class="mem-card__border"></div>
+          <div class="mem-card__border-inner"></div>
+          <div class="mem-card__corner mem-card__corner--tl">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="rgba(6,4,10,0.25)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--tr">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleX(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="rgba(6,4,10,0.25)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--bl">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleY(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--br">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scale(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="rgba(6,4,10,0.4)" stroke-width="0.8"/><circle cx="2" cy="2" r="2.5" fill="rgba(6,4,10,0.3)"/></svg>
+          </div>
+          <div class="mem-card__content">
+            <p class="mem-card__brand">UmmaSonoma · Atlanta</p>
+            <div class="mem-card__title">Flower<br>Society</div>
+            <div class="mem-card__rule"><div class="mem-card__rule-line"></div><div class="mem-card__rule-dot"></div><div class="mem-card__rule-line"></div></div>
+            <p class="mem-card__tier">VIP Member</p>
+            <p class="mem-card__no">FS · VIP · 2026</p>
+          </div>
+          <p class="mem-card__label">Gold</p>
+        </div>
+
+        <!-- GENERAL — BLACK -->
+        <div class="mem-card mem-card--general">
+          <div class="mem-card__border"></div>
+          <div class="mem-card__border-inner"></div>
+          <div class="mem-card__corner mem-card__corner--tl">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/><circle cx="2" cy="2" r="2.5" fill="#C9A84C" opacity="0.5"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="#C9A84C" opacity="0.4"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--tr">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleX(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/><circle cx="2" cy="2" r="2.5" fill="#C9A84C" opacity="0.5"/><path d="M15 5 Q20 2 22 8 Q17 8 15 5Z" fill="#C9A84C" opacity="0.4"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--bl">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scaleY(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/><circle cx="2" cy="2" r="2.5" fill="#C9A84C" opacity="0.5"/></svg>
+          </div>
+          <div class="mem-card__corner mem-card__corner--br">
+            <svg viewBox="0 0 40 40" fill="none" style="transform:scale(-1)"><path d="M2 38 L2 8 Q2 2 8 2 L38 2" stroke="#C9A84C" stroke-width="0.8" opacity="0.6"/><circle cx="2" cy="2" r="2.5" fill="#C9A84C" opacity="0.5"/></svg>
+          </div>
+          <div class="mem-card__content">
+            <p class="mem-card__brand" style="color:var(--gold-dim)">UmmaSonoma · Atlanta</p>
+            <div class="mem-card__title" style="color:var(--gold2)">Flower<br>Society</div>
+            <div class="mem-card__rule"><div class="mem-card__rule-line" style="background:linear-gradient(to right,transparent,var(--gold-dim),transparent)"></div><div class="mem-card__rule-dot" style="background:var(--gold)"></div><div class="mem-card__rule-line" style="background:linear-gradient(to right,transparent,var(--gold-dim),transparent)"></div></div>
+            <p class="mem-card__tier" style="color:var(--gold)">Member</p>
+            <p class="mem-card__no" style="color:rgba(201,168,76,0.4)">FS · GEN · 2026</p>
+          </div>
+          <p class="mem-card__label" style="color:var(--gold-dim)">General</p>
+        </div>
+
+      </div>
     </div>
   </section>
 
