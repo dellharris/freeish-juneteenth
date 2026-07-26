@@ -399,6 +399,37 @@
     .lightbox__prev { left: 16px; }
     .lightbox__next { right: 16px; }
 
+    /* ── DELL HARRIS SOUNDS ── */
+    .dh-sounds { padding: 72px 24px 80px; }
+    .dh-sounds__inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .dh-sounds__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.52em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 10px;
+    }
+    .dh-sounds__heading {
+      font-family: 'Cinzel Decorative', 'Cinzel', serif;
+      font-size: clamp(32px, 7vw, 56px); font-weight: 700;
+      background: linear-gradient(135deg, #E8D49A 0%, #C9A84C 50%, #F0E0A0 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 0 20px rgba(201,168,76,0.25));
+      margin-bottom: 10px;
+    }
+    .dh-sounds__sub {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 32px;
+    }
+    .dh-sounds__player {
+      border: 1px solid rgba(201,168,76,0.2);
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 0 60px rgba(201,168,76,0.06);
+    }
+    .dh-sounds__note {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-style: italic; font-weight: 300;
+      color: rgba(245,237,216,0.6); letter-spacing: 0.06em;
+    }
+
     /* ── FEATURED ARTIST ── */
     .artist-feature {
       padding: 80px 24px 72px;
@@ -775,6 +806,26 @@
       <div class="room-tag">The Blue Lobster Lounge</div>
     </div>
     <p class="about__tagline reveal">Luxury flower culture, softly introduced.</p>
+  </section>
+
+  <!-- DELL HARRIS — SOUNDS -->
+  <section class="dh-sounds" aria-label="Sounds by Dell Harris">
+    <div class="dh-sounds__inner">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="dh-sounds__eyebrow reveal">Sounds by</p>
+      <h2 class="dh-sounds__heading reveal reveal-d1">Dell Harris</h2>
+      <p class="dh-sounds__sub reveal reveal-d2">3.4K plays · As heard on 107.5 Atlanta · TGIF Soul Edit</p>
+      <div class="dh-sounds__player reveal reveal-d2">
+        <iframe width="100%" height="400" scrolling="no" frameborder="no" allow="autoplay; encrypted-media"
+          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2024867992&color=%23C9A84C&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+        </iframe>
+      </div>
+      <p class="dh-sounds__note reveal reveal-d3">Hear it live tonight · The Flower Society · West Midtown ATL</p>
+    </div>
   </section>
 
   <!-- FEATURED ARTIST -->
