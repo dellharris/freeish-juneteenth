@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Flower Society · An Elevated Smoke Social by UmmaSonoma</title>
-  <meta name="description" content="The Flower Society — A private 21+ outdoor/indoor lounge experience by UMMA Sonoma. Luxury flower culture, softly introduced. Sunday 7.26 · RSVP Only · 5PM–10PM · Atlanta">
+  <meta name="description" content="The Flower Society — Adult Swim. A private 21+ pool party. Sunday 8.30 · RSVP Only · 2PM–10PM · Private Location · Atlanta">
   <meta property="og:title" content="The Flower Society · UmmaSonoma">
   <meta property="og:description" content="Giving people their flowers. A private 21+ smoke social. Sunday 7.26 · ATL · RSVP Only">
   <meta property="og:image" content="poster.jpg">
@@ -849,6 +849,204 @@
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
 
+    /* ── NEXT EVENT (Adult Swim) ── */
+    .next-event {
+      position: relative; z-index: 1;
+      min-height: 90svh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden;
+    }
+    .next-event__bg {
+      position: absolute; inset: 0;
+      background: url('adult-swim-hero.jpg') center 40% / cover no-repeat;
+      filter: brightness(0.28) saturate(1.1);
+      transition: transform 8s ease;
+    }
+    .next-event:hover .next-event__bg { transform: scale(1.03); }
+    .next-event__overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(5,5,5,0.5) 0%,
+        rgba(5,5,5,0.1) 35%,
+        rgba(5,5,5,0.1) 60%,
+        rgba(5,5,5,0.85) 100%
+      );
+    }
+    .next-event__inner {
+      position: relative; z-index: 2;
+      max-width: 720px; padding: 80px 24px;
+    }
+    .next-event__badge {
+      display: inline-block; margin-bottom: 22px;
+      padding: 6px 22px;
+      background: var(--gold);
+      font-size: 9px; font-weight: 700; letter-spacing: 0.5em; text-transform: uppercase;
+      color: var(--black);
+    }
+    .next-event__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.55em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 16px;
+    }
+    .next-event__title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 18vw, 148px); font-weight: 600;
+      line-height: 0.86;
+      color: var(--gold-lt);
+      letter-spacing: -0.01em;
+      margin-bottom: 12px;
+      opacity: 0; animation: riseIn 1s ease forwards 0.2s;
+    }
+    .next-event__subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 4.5vw, 36px); font-style: italic; font-weight: 300;
+      color: var(--cream); letter-spacing: 0.06em; margin-bottom: 36px;
+    }
+    .next-event__meta {
+      display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+      gap: 12px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 16px;
+    }
+    .next-event__meta-sep { color: var(--gold-dim); }
+    .next-event__presented {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase;
+      color: rgba(245,239,224,0.5); margin-bottom: 44px;
+    }
+    .next-event__cta {
+      display: inline-block;
+      padding: 18px 60px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 32px rgba(201,168,76,0.1);
+    }
+    .next-event__cta:hover {
+      background: var(--gold); color: var(--black);
+      box-shadow: 0 8px 48px rgba(201,168,76,0.35);
+    }
+
+    /* ── PHOTO TEASER ── */
+    .photo-teaser { position: relative; z-index: 1; cursor: pointer; }
+    .photo-teaser__stage {
+      position: relative;
+      width: 100%; aspect-ratio: 4/3;
+      max-height: 88svh;
+      overflow: hidden;
+    }
+    @media (min-width: 600px) { .photo-teaser__stage { aspect-ratio: 16/9; } }
+    .photo-teaser__slide {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1.3s ease;
+      filter: brightness(0.72) saturate(1.08);
+    }
+    .photo-teaser__slide.active { opacity: 1; }
+    .photo-teaser__overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top,
+        rgba(5,5,5,0.92) 0%,
+        rgba(5,5,5,0.35) 45%,
+        rgba(5,5,5,0.05) 100%
+      );
+    }
+    .photo-teaser__content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px 24px 56px;
+      text-align: center; z-index: 2;
+    }
+    .photo-teaser__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.45em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 10px;
+    }
+    .photo-teaser__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 9vw, 72px); font-weight: 600;
+      color: var(--cream); line-height: 1.0; margin-bottom: 12px;
+    }
+    .photo-teaser__sub {
+      font-size: 11px; font-weight: 400; letter-spacing: 0.2em;
+      color: rgba(245,239,224,0.55); margin-bottom: 28px;
+    }
+    .photo-teaser__cta {
+      display: inline-block;
+      padding: 14px 44px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.38em; text-transform: uppercase;
+      background: rgba(5,5,5,0.55); backdrop-filter: blur(8px);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .photo-teaser__cta:hover { background: rgba(201,168,76,0.15); box-shadow: 0 4px 32px rgba(201,168,76,0.25); }
+    .photo-teaser__dots {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 9px; z-index: 3;
+    }
+    .photo-teaser__dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: rgba(201,168,76,0.28);
+      transition: background 0.4s, transform 0.4s;
+    }
+    .photo-teaser__dot.active { background: var(--gold); transform: scale(1.45); }
+
+    /* ── SPONSORS ── */
+    .sponsors {
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+    .sponsors__inner { max-width: 600px; margin: 0 auto; }
+    .sponsors__eyebrow {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.52em; text-transform: uppercase;
+      color: var(--gold-dim); margin-bottom: 14px;
+    }
+    .sponsors__heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3.5vw, 30px); font-weight: 400; font-style: italic;
+      color: var(--cream); margin-bottom: 44px;
+    }
+    .sponsors__row {
+      display: flex; align-items: stretch; justify-content: center; flex-wrap: wrap;
+    }
+    .sponsor-block {
+      flex: 1; min-width: 160px;
+      padding: 28px 24px;
+      border: 1px solid rgba(201,168,76,0.14);
+    }
+    .sponsor-block__name {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(13px, 2.2vw, 17px); font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--cream); margin-bottom: 8px; line-height: 1.25;
+    }
+    .sponsor-block__role {
+      font-size: 9px; font-weight: 600; letter-spacing: 0.38em; text-transform: uppercase;
+      color: var(--gold-dim);
+    }
+    .sponsors__x {
+      display: flex; align-items: center; padding: 0 6px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-style: italic;
+      color: rgba(201,168,76,0.28);
+      border-top: 1px solid rgba(201,168,76,0.14);
+      border-bottom: 1px solid rgba(201,168,76,0.14);
+    }
+
+    /* ── LIGHTBOX DOWNLOAD ── */
+    .lightbox__download {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 3;
+      background: rgba(5,5,5,0.8); border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold); font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 10px 28px; border-radius: 100px;
+      cursor: pointer; white-space: nowrap;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .lightbox__download:hover { background: rgba(201,168,76,0.18); box-shadow: 0 4px 24px rgba(201,168,76,0.2); }
+
     /* ── UTILS ── */
     @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
@@ -893,16 +1091,16 @@
     </div>
     <div class="hero__overlay"></div>
     <div class="hero__content">
-      <p class="hero__eyebrow">UmmaSonoma Presents</p>
+      <p class="hero__eyebrow">UmmaSonoma × In N Out Podcast Presents</p>
       <h1 class="hero__title">THE FLOWER<br>SOCIETY</h1>
       <p class="hero__title-sub">An Elevated Smoke Social</p>
       <p class="hero__tagline">Giving people their flowers.</p>
       <div class="hero__meta">
-        <span>Sunday 7.26</span>
+        <span>Sunday 8.30</span>
         <span class="hero__meta-sep">·</span>
-        <span>5PM – 10PM</span>
+        <span>2PM – 10PM</span>
         <span class="hero__meta-sep">·</span>
-        <span>Atlanta, GA</span>
+        <span>Private Location</span>
         <span class="hero__meta-sep">·</span>
         <span>RSVP Only</span>
       </div>
@@ -923,11 +1121,11 @@
     <div class="info__grid reveal reveal-d1">
       <div class="info__item">
         <div class="info__label">Date</div>
-        <div class="info__value">Sunday<br>July 26</div>
+        <div class="info__value">Sunday<br>Aug 30</div>
       </div>
       <div class="info__item">
         <div class="info__label">Hours</div>
-        <div class="info__value">5PM<br>to 10PM</div>
+        <div class="info__value">2PM<br>to 10PM</div>
       </div>
       <div class="info__item">
         <div class="info__label">Entry</div>
@@ -935,7 +1133,7 @@
       </div>
       <div class="info__item">
         <div class="info__label">Sounds</div>
-        <div class="info__value">Dell Harris<br>& Wis Major</div>
+        <div class="info__value">Dell Harris<br>& Wise Major<br><span style="font-size:0.72em;color:var(--gold-dim);letter-spacing:0.05em">+ Special Guests</span></div>
       </div>
     </div>
   </section>
@@ -943,89 +1141,84 @@
   <!-- MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
     <div class="marquee">
-      <span>THE FLOWER SOCIETY &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; GIVING PEOPLE THEIR FLOWERS &nbsp;✦&nbsp; RARE FLOWER · RARE ENERGY · RARE COMPANY &nbsp;✦&nbsp; ATLANTA &nbsp;✦&nbsp; JULY 26 &nbsp;✦&nbsp; RSVP ONLY &nbsp;✦&nbsp; 21+ &nbsp;✦&nbsp; </span>
-      <span>THE FLOWER SOCIETY &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; GIVING PEOPLE THEIR FLOWERS &nbsp;✦&nbsp; RARE FLOWER · RARE ENERGY · RARE COMPANY &nbsp;✦&nbsp; ATLANTA &nbsp;✦&nbsp; JULY 26 &nbsp;✦&nbsp; RSVP ONLY &nbsp;✦&nbsp; 21+ &nbsp;✦&nbsp; </span>
+      <span>THE FLOWER SOCIETY &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; GIVING PEOPLE THEIR FLOWERS &nbsp;✦&nbsp; ADULT SWIM &nbsp;✦&nbsp; LABOR DAY WEEKEND &nbsp;✦&nbsp; AUG 30 &nbsp;✦&nbsp; RARE FLOWER · RARE ENERGY · RARE COMPANY &nbsp;✦&nbsp; ATLANTA &nbsp;✦&nbsp; 21+ &nbsp;✦&nbsp; </span>
+      <span>THE FLOWER SOCIETY &nbsp;✦&nbsp; UMMA SONOMA &nbsp;✦&nbsp; IN N OUT PODCAST &nbsp;✦&nbsp; GIVING PEOPLE THEIR FLOWERS &nbsp;✦&nbsp; ADULT SWIM &nbsp;✦&nbsp; LABOR DAY WEEKEND &nbsp;✦&nbsp; AUG 30 &nbsp;✦&nbsp; RARE FLOWER · RARE ENERGY · RARE COMPANY &nbsp;✦&nbsp; ATLANTA &nbsp;✦&nbsp; 21+ &nbsp;✦&nbsp; </span>
     </div>
   </div>
 
+  <!-- ADULT SWIM — Next Event -->
+  <section class="next-event" id="adult-swim" aria-label="Next Event: Adult Swim">
+    <div class="next-event__bg"></div>
+    <div class="next-event__overlay"></div>
+    <div class="next-event__inner">
+      <div class="next-event__badge">Next Up · Labor Day Weekend</div>
+      <p class="next-event__eyebrow">The Flower Society Presents</p>
+      <h2 class="next-event__title">Adult<br>Swim</h2>
+      <p class="next-event__subtitle">A Labor Day Pool Party</p>
+      <div class="next-event__meta">
+        <span>Sunday, Aug 30</span>
+        <span class="next-event__meta-sep">·</span>
+        <span>Atlanta, GA</span>
+        <span class="next-event__meta-sep">·</span>
+        <span>21+</span>
+        <span class="next-event__meta-sep">·</span>
+        <span>RSVP Only</span>
+      </div>
+      <p class="next-event__presented">Presented by UmmaSonoma × In N Out Podcast</p>
+      <a class="next-event__cta" href="#rsvp">RSVP Coming Soon &nbsp;›</a>
+    </div>
+  </section>
+
+  <!-- PHOTO TEASER — Flower Society July 26 Gallery -->
+  <section class="photo-teaser" id="photoTeaser" aria-label="Flower Society Gallery Preview">
+    <div class="photo-teaser__stage" id="teaserStage">
+      <img class="photo-teaser__slide active" src="teaser-01.jpg" alt="The Flower Society · Atlanta">
+      <img class="photo-teaser__slide" src="teaser-02.jpg" alt="The Flower Society · Atlanta">
+      <img class="photo-teaser__slide" src="teaser-03.jpg" alt="The Flower Society · Atlanta">
+      <img class="photo-teaser__slide" src="teaser-04.jpg" alt="The Flower Society · Atlanta">
+      <img class="photo-teaser__slide" src="teaser-05.jpg" alt="The Flower Society · Atlanta">
+      <div class="photo-teaser__overlay"></div>
+      <div class="photo-teaser__content">
+        <p class="photo-teaser__eyebrow">The Flower Society · Atlanta · July 26</p>
+        <h3 class="photo-teaser__heading">Your Photos<br>Are Here</h3>
+        <p class="photo-teaser__sub">101 photos from the night — find yours &amp; download for free</p>
+        <a class="photo-teaser__cta" href="#gallery">View All 101 Photos &nbsp;&#8595;</a>
+      </div>
+      <div class="photo-teaser__dots" id="teaserDots">
+        <span class="photo-teaser__dot active"></span>
+        <span class="photo-teaser__dot"></span>
+        <span class="photo-teaser__dot"></span>
+        <span class="photo-teaser__dot"></span>
+        <span class="photo-teaser__dot"></span>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
-  <section class="about" aria-label="About The Flower Society">
-    <img class="about__poster reveal" src="poster.jpg" alt="The Flower Society — Sunday 7.26">
+  <section class="about" aria-label="About Adult Swim">
+    <img class="about__poster reveal" src="adult-swim-03.jpg" alt="Adult Swim · GA Forest Garden · Aug 30" style="max-width:100%;width:100%;margin-left:calc(-50vw + 50%);margin-right:calc(-50vw + 50%);width:100vw;max-width:100vw;object-fit:cover;max-height:60vh;">
     <div class="divider reveal">
       <div class="divider__line"></div>
       <div class="divider__mark">✦</div>
       <div class="divider__line"></div>
     </div>
-    <p class="section__eyebrow reveal">The Experience</p>
-    <h2 class="section__heading reveal reveal-d1">Step Inside<br>The Garden</h2>
+    <p class="section__eyebrow reveal">Adult Swim · The Experience</p>
+    <h2 class="section__heading reveal reveal-d1">Step Inside<br>The Forest Garden</h2>
     <p class="about__body reveal reveal-d2">
-      The Flower Society is a <strong>private 21+ outdoor/indoor lounge experience</strong>
-      introducing <strong>UMMA Sonoma</strong> to Atlanta — a night of <em>rare flower,
-      rare energy, and rare company.</em>
+      Adult Swim is <strong>The Flower Society's private 21+ Labor Day pool party</strong>
+      held at the <strong>GA Forest Garden</strong> — a lush, tucked-away estate
+      nestled deep in Atlanta's greenery. <em>The garden is the venue. The pool is the stage.</em>
       <br><br>
-      Expect curated music, soft blue lighting, floral installations,
-      signature mocktails, thoughtful art installs, and intimate brand storytelling.
+      Expect a full afternoon in the water, curated sounds from Dell Harris &amp; Wise Major,
+      shaded lounge spaces, signature drinks, and the rare company
+      you can only find when the guest list is intentional.
     </p>
     <div class="about__rooms reveal">
-      <div class="room-tag">The Garden Lounge</div>
-      <div class="room-tag">The Rare Air Room</div>
-      <div class="room-tag">The Blue Lobster Lounge</div>
+      <div class="room-tag">The Pool Deck</div>
+      <div class="room-tag">The Forest Lounge</div>
+      <div class="room-tag">The Garden Bar</div>
     </div>
-    <p class="about__tagline reveal">Luxury flower culture, softly introduced.</p>
-  </section>
-
-  <!-- FEATURED ARTIST -->
-  <section class="artist-feature" aria-label="Featured Artist">
-    <div class="artist-feature__inner">
-
-      <div class="artist-feature__header reveal">
-        <p class="artist-feature__eyebrow">Featured Performance</p>
-        <h2 class="artist-feature__title">Playa Poncho</h2>
-        <p class="artist-feature__sub">Atlanta Royalty · SoSoDef · Live at The Flower Society</p>
-      </div>
-
-      <div class="artist-feature__body reveal reveal-d1">
-        <div class="artist-feature__info">
-          <p class="artist-feature__bio">
-            Before ATL had the whole world watching, Playa Poncho was already a legend in it.
-            A SoSoDef original — his voice is sewn into the fabric of Atlanta's golden era.
-            He doesn't just perform, he brings the whole block back.
-            If you know, you know. If you don't — Sunday is your education.
-          </p>
-
-          <!-- AUDIO PLAYER -->
-          <div class="artist-player" id="artistPlayer">
-            <div class="artist-player__cover"></div>
-            <div class="artist-player__overlay"></div>
-
-            <div class="artist-player__time" id="artistTime">0:00</div>
-
-            <div class="artist-player__center">
-              <button class="artist-player__btn" id="artistPlayBtn" aria-label="Play">
-                <svg id="playIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                <svg id="pauseIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-              </button>
-            </div>
-
-            <div class="artist-player__meta">
-              <div class="artist-player__song">Let It Burn</div>
-              <div class="artist-player__artist">Playa Poncho · SoSoDef Bass All-Stars</div>
-            </div>
-
-            <audio id="artistAudio" preload="none">
-              <source src="let-it-burn.mp3" type="audio/mpeg">
-            </audio>
-
-            <div class="artist-player__progress-wrap" id="artistProgress">
-              <div class="artist-player__progress-bar" id="artistBar"></div>
-            </div>
-          </div>
-          <!-- /AUDIO PLAYER -->
-
-        </div>
-      </div>
-
-    </div>
+    <p class="about__tagline reveal">Where the forest meets the water.</p>
   </section>
 
   <!-- PLAYLIST -->
@@ -1073,16 +1266,64 @@
     <p class="playlist__note reveal reveal-d3">Curated by UmmaSonoma · ffm.to/ummagreenroom</p>
   </section>
 
-  <!-- GALLERY — Budtender's Ball LA -->
-  <section class="gallery" aria-label="Budtender's Ball LA Gallery">
+  <!-- FEATURED ARTIST -->
+  <section class="artist-feature" aria-label="Featured Artist">
+    <div class="artist-feature__inner">
+
+      <div class="artist-feature__header reveal">
+        <p class="artist-feature__eyebrow">Flower Society Recap · Live Performance</p>
+        <h2 class="artist-feature__title">Playa Poncho</h2>
+        <p class="artist-feature__sub">Atlanta Royalty · SoSoDef · He brought the whole block back.</p>
+      </div>
+
+      <div class="artist-feature__body reveal reveal-d1">
+        <div class="artist-feature__info">
+
+          <!-- AUDIO PLAYER -->
+          <div class="artist-player" id="artistPlayer">
+            <div class="artist-player__cover"></div>
+            <div class="artist-player__overlay"></div>
+
+            <div class="artist-player__time" id="artistTime">0:00</div>
+
+            <div class="artist-player__center">
+              <button class="artist-player__btn" id="artistPlayBtn" aria-label="Play">
+                <svg id="playIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                <svg id="pauseIcon" viewBox="0 0 24 24" width="28" height="28" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+              </button>
+            </div>
+
+            <div class="artist-player__meta">
+              <div class="artist-player__song">Let It Burn</div>
+              <div class="artist-player__artist">Playa Poncho · SoSoDef Bass All-Stars</div>
+            </div>
+
+            <audio id="artistAudio" preload="none">
+              <source src="let-it-burn.mp3" type="audio/mpeg">
+            </audio>
+
+            <div class="artist-player__progress-wrap" id="artistProgress">
+              <div class="artist-player__progress-bar" id="artistBar"></div>
+            </div>
+          </div>
+          <!-- /AUDIO PLAYER -->
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY — The Flower Society ATL -->
+  <section class="gallery" id="gallery" aria-label="The Flower Society Atlanta Gallery">
     <div class="gallery__inner">
       <div class="divider reveal">
         <div class="divider__line"></div>
         <div class="divider__mark">✦</div>
         <div class="divider__line"></div>
       </div>
-      <p class="section__eyebrow reveal">The Archive</p>
-      <h2 class="section__heading reveal reveal-d1">Budtender's Ball<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">Los Angeles</em></h2>
+      <p class="section__eyebrow reveal">First Look · Download Your Photos</p>
+      <h2 class="section__heading reveal reveal-d1">The Flower Society<br><em style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);">Atlanta · July 26</em></h2>
 
       <!-- Recap video -->
       <div class="reveal reveal-d2" style="
@@ -1109,14 +1350,14 @@
         <button class="gal-arrow gal-arrow--next" id="galNext" aria-label="Next">&#8250;</button>
         <div class="gal-counter" id="galCounter">1 / 10</div>
       </div>
-      <button class="gal-view-btn reveal reveal-d3" id="galViewAll">View All 10 Photos &#8594;</button>
+      <button class="gal-view-btn reveal reveal-d3" id="galViewAll">View All 101 Photos &amp; Download &#8594;</button>
     </div>
   </section>
 
   <!-- GALLERY MODAL -->
-  <div class="gal-modal" id="galModal" role="dialog" aria-modal="true" aria-label="Budtender's Ball LA — All Photos">
+  <div class="gal-modal" id="galModal" role="dialog" aria-modal="true" aria-label="The Flower Society Atlanta — All Photos">
     <div class="gal-modal__header">
-      <span class="gal-modal__title">Budtender's Ball · Los Angeles · 10 Photos</span>
+      <span class="gal-modal__title">The Flower Society · Atlanta · July 26 · 101 Photos</span>
       <button class="gal-modal__close" id="galModalClose" aria-label="Close">&#215;</button>
     </div>
     <div class="gal-modal__grid" id="galModalGrid"></div>
@@ -1129,10 +1370,35 @@
     <button class="lightbox__close" id="lbClose">&#215;</button>
     <button class="lightbox__nav lightbox__prev" id="lbPrev">&#8249;</button>
     <button class="lightbox__nav lightbox__next" id="lbNext">&#8250;</button>
+    <button class="lightbox__download" id="lbDownload">&#8595; Download Photo</button>
   </div>
 
-  <!-- PARTNER SECTION — Tropical Express × Vinyl Paradise -->
-  <section class="partner" aria-label="Our Partners">
+  <!-- SPONSORS -->
+  <section class="sponsors" aria-label="Presented By">
+    <div class="sponsors__inner">
+      <div class="divider reveal">
+        <div class="divider__line"></div>
+        <div class="divider__mark">✦</div>
+        <div class="divider__line"></div>
+      </div>
+      <p class="sponsors__eyebrow reveal">Presented By</p>
+      <p class="sponsors__heading reveal reveal-d1">The people who make it happen</p>
+      <div class="sponsors__row reveal reveal-d2">
+        <div class="sponsor-block">
+          <div class="sponsor-block__name">UmmaSonoma</div>
+          <div class="sponsor-block__role">Presenting Sponsor</div>
+        </div>
+        <div class="sponsors__x">&times;</div>
+        <div class="sponsor-block">
+          <div class="sponsor-block__name">In N Out<br>Podcast</div>
+          <div class="sponsor-block__role">Presenting Sponsor</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECAP — Tropical Express × Vinyl Paradise -->
+  <section class="partner" aria-label="Flower Society Recap — Tropical Express">
     <div class="partner__inner">
 
       <div class="divider reveal">
@@ -1141,18 +1407,18 @@
         <div class="divider__line"></div>
       </div>
 
-      <p class="partner__eyebrow reveal">In Partnership With</p>
+      <p class="partner__eyebrow reveal">Flower Society Recap · Vendor Shoutout</p>
       <h2 class="partner__heading reveal reveal-d1">Tropical Express<br><em>× Vinyl Paradise</em></h2>
 
       <p class="partner__description reveal reveal-d2">
-        Tropical Express is more than a plant shop — it's a curated experience for lovers of plants, music, and good vibes. Specializing in premium indoor houseplants and botanical event styling, they're bringing a living indoor garden to The Flower Society. Inside their space you'll also find <strong>Vinyl Paradise</strong> — a collection of original vinyl records from legendary artists, bringing the authentic sound and quality that only original pressings can provide. Shop plants. Shop wax. All under one roof.
+        They brought the garden to us. Plants, vinyl, and genuinely good people —
+        <strong>Tropical Express × Vinyl Paradise</strong> made the space feel alive.
+        Real ones. See them at the next one.
       </p>
 
-      <div class="partner__flyer reveal reveal-d2">
-        <img src="tropical-express-flyer.png" alt="Tropical Express × Vinyl Paradise" loading="lazy">
+      <div class="partner__flyer reveal reveal-d2" style="border-radius:2px;overflow:hidden;">
+        <img src="gallery/fs-002.jpg" alt="Tropical Express × Vinyl Paradise at The Flower Society" loading="lazy" style="width:100%;display:block;object-fit:cover;max-height:480px;">
       </div>
-
-      <div class="partner__tagline reveal reveal-d3">The Plants. The Vinyl. All Under One Roof.</div>
 
       <a class="partner__link reveal reveal-d3" href="http://tropicalexpressatl.com" target="_blank" rel="noopener">
         Visit Tropical Express ATL &#8594;
@@ -1167,7 +1433,7 @@
     <div class="partiful-cta__inner">
       <p class="partiful-cta__eyebrow">You're invited</p>
       <h2 class="partiful-cta__heading">The Flower Society</h2>
-      <p class="partiful-cta__sub">Private · 21+ · Atlanta · July 26</p>
+      <p class="partiful-cta__sub">Private · 21+ · Atlanta · Aug 30</p>
       <a class="partiful-cta__btn" href="https://partiful.com/e/a0SlIy8MDpVFva0ZgXA9" target="_blank" rel="noopener">
         RSVP Here &nbsp;&#8594;
       </a>
@@ -1285,7 +1551,7 @@
       </div>
       <div id="rsvpWrap">
         <h2 class="rsvp__heading reveal">Apply For<br>Membership</h2>
-        <p class="rsvp__sub reveal reveal-d1">Private · 21+ · Atlanta · July 26</p>
+        <p class="rsvp__sub reveal reveal-d1">Private · 21+ · Atlanta · Aug 30</p>
         <form id="rsvpForm" novalidate>
           <div class="form__row">
             <div class="form__group">
@@ -1316,15 +1582,16 @@
       <div id="rsvpSuccess" style="display:none" class="rsvp__success">
         <div class="rsvp__success-icon">✦</div>
         <div class="rsvp__success-name" id="successName"></div>
-        <p class="rsvp__success-note">Your application is in.<br>We'll be in touch before July 26. See you in the garden.</p>
+        <p class="rsvp__success-note">Your application is in.<br>We'll be in touch before Aug 30. See you poolside.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>The Flower Society &nbsp;·&nbsp; UmmaSonoma &nbsp;·&nbsp; Atlanta, GA &nbsp;·&nbsp; July 26, 2026</p>
-    <p style="margin-top:8px">Sounds by Dell Harris & Wis Major</p>
+    <p>The Flower Society &nbsp;·&nbsp; UmmaSonoma × In N Out Podcast &nbsp;·&nbsp; Atlanta, GA</p>
+    <p style="margin-top:8px">Sounds by Dell Harris & Wise Major + Special Guests</p>
+    <p style="margin-top:8px;opacity:0.5">Adult Swim · Labor Day Weekend · Aug 30, 2026</p>
   </footer>
 
   <script>
@@ -1345,7 +1612,7 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Gallery photos
-    const PHOTOS = Array.from({length: 10}, (_, i) => `photos/fs-${String(i+1).padStart(2,'0')}.jpg`);
+    const PHOTOS = Array.from({length: 101}, (_, i) => `gallery/fs-${String(i+1).padStart(3,'0')}.jpg`);
     const TOTAL  = PHOTOS.length;
 
     // Carousel
@@ -1397,7 +1664,7 @@
       if (gridBuilt) return; gridBuilt = true;
       PHOTOS.forEach((src, i) => {
         const item = document.createElement('div'); item.className = 'gal-modal__item'; item.dataset.index = i;
-        const img  = document.createElement('img'); img.loading = 'lazy'; img.src = src; img.alt = 'Budtender\'s Ball LA · ' + (i+1);
+        const img  = document.createElement('img'); img.loading = 'lazy'; img.src = src; img.alt = 'The Flower Society Atlanta · July 26 · ' + (i+1);
         item.appendChild(img); galGrid.appendChild(item);
       });
       galGrid.addEventListener('click', e => {
@@ -1436,6 +1703,23 @@
     document.getElementById('lbBackdrop').addEventListener('click', closeLightbox);
     document.getElementById('lbPrev').addEventListener('click', () => lbNav(-1));
     document.getElementById('lbNext').addEventListener('click', () => lbNav(1));
+
+    document.getElementById('lbDownload').addEventListener('click', async () => {
+      const src = PHOTOS[lbIndex];
+      try {
+        const resp = await fetch(src);
+        const blob = await resp.blob();
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href = url; a.download = src.split('/').pop();
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+      } catch {
+        const a = document.createElement('a');
+        a.href = src; a.download = src.split('/').pop();
+        a.target = '_blank'; a.click();
+      }
+    });
     document.addEventListener('keydown', e => {
       if (lightbox.classList.contains('open')) {
         if (e.key === 'Escape') closeLightbox();
@@ -1489,6 +1773,26 @@
         err.textContent = 'Something went wrong. Try again.'; err.style.display = 'block';
       }
     });
+
+    // Photo teaser rotation
+    (function () {
+      const slides = document.querySelectorAll('.photo-teaser__slide');
+      const dots   = document.querySelectorAll('.photo-teaser__dot');
+      if (!slides.length) return;
+      let cur = 0;
+      function goTo(i) {
+        slides[cur].classList.remove('active');
+        dots[cur].classList.remove('active');
+        cur = i % slides.length;
+        slides[cur].classList.add('active');
+        dots[cur].classList.add('active');
+      }
+      setInterval(() => goTo(cur + 1), 3800);
+      const stage = document.getElementById('teaserStage');
+      if (stage) stage.addEventListener('click', () => {
+        document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+      });
+    })();
   </script>
 
   <!-- ── FLOATING RSVP FLOWER ── -->
