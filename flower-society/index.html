@@ -2049,26 +2049,6 @@
       text-transform: uppercase; color: var(--gold-dim);
       margin-bottom: 36px;
     }
-    .age-gate__label {
-      font-size: 9px; font-weight: 700; letter-spacing: 0.45em;
-      text-transform: uppercase; color: var(--gold-dim);
-      margin-bottom: 12px; display: block;
-    }
-    .age-gate__input {
-      width: 100%;
-      background: rgba(201,168,76,0.06);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--cream);
-      font-family: 'Cinzel', serif; font-size: 15px;
-      letter-spacing: 0.1em;
-      padding: 14px 18px;
-      text-align: center;
-      outline: none;
-      margin-bottom: 24px;
-      -webkit-appearance: none;
-      color-scheme: dark;
-    }
-    .age-gate__input:focus { border-color: var(--gold); }
     .age-gate__btn {
       width: 100%;
       padding: 16px;
@@ -2101,10 +2081,7 @@
       <p class="age-gate__logo">The Flower Society · UmmaSonoma</p>
       <h2 class="age-gate__heading">You must be<br>21 or older<br>to enter.</h2>
       <p class="age-gate__sub">An Elevated 21+ Experience</p>
-      <label class="age-gate__label" for="ageDob">Enter your date of birth</label>
-      <input class="age-gate__input" type="date" id="ageDob" placeholder="MM/DD/YYYY" max="">
-      <div class="age-gate__error" id="ageError">You must be 21+ to enter.</div>
-      <button class="age-gate__btn" id="ageSubmit">Enter</button>
+      <button class="age-gate__btn" id="ageSubmit">I am 21+ &nbsp;·&nbsp; Enter</button>
       <p class="age-gate__disclaimer">By entering you confirm you are 21+<br>and agree to our terms.</p>
     </div>
   </div>
@@ -2113,34 +2090,16 @@
     (function () {
       if (sessionStorage.getItem('ageVerified')) return;
 
-      const gate    = document.getElementById('ageGate');
-      const dobEl   = document.getElementById('ageDob');
-      const errEl   = document.getElementById('ageError');
-      const btn     = document.getElementById('ageSubmit');
-
-      // Set max date to today (can't enter a future birthday)
-      const today = new Date();
-      dobEl.max = today.toISOString().split('T')[0];
+      const gate = document.getElementById('ageGate');
+      const btn  = document.getElementById('ageSubmit');
 
       setTimeout(() => { gate.classList.add('open'); document.body.style.overflow = 'hidden'; }, 5000);
 
       btn.addEventListener('click', () => {
-        const dob = new Date(dobEl.value);
-        if (!dobEl.value) { errEl.style.display = 'block'; errEl.textContent = 'Please enter your date of birth.'; return; }
-        const ageDiff = today - dob;
-        const ageDate = new Date(ageDiff);
-        const age     = Math.abs(ageDate.getUTCFullYear() - 1970);
-        if (age < 21) {
-          errEl.style.display = 'block';
-          errEl.textContent   = 'You must be 21+ to enter.';
-          return;
-        }
         sessionStorage.setItem('ageVerified', '1');
         gate.classList.remove('open');
         document.body.style.overflow = '';
       });
-
-      dobEl.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
     })();
   </script>
 
