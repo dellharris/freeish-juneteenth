@@ -34,50 +34,7 @@
 
     html { scroll-behavior: smooth; }
 
-    /* ── LOCATION BAR ── */
-    .location-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 9000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 11px 20px;
-      background: var(--gold);
-      color: #06040A;
-      text-decoration: none;
-      font-family: 'Cinzel', serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      transition: background 0.2s;
-    }
-    .location-bar:hover { background: #E8D49A; }
-    .location-bar__icon {
-      width: 18px; height: 18px;
-      flex-shrink: 0;
-      color: #06040A;
-    }
-    .location-bar__text {
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      opacity: 0.85;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .location-bar__cta {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      white-space: nowrap;
-      opacity: 1;
-      flex-shrink: 0;
-    }
     /* Push page content down so hero isn't hidden under bar */
-    body { padding-top: 42px; }
     body {
       background: var(--black);
       color: var(--cream);
@@ -1060,30 +1017,8 @@
 
 <body>
 
-  <!-- LOCATION BAR -->
-  <a class="location-bar" id="locationBar" href="#" aria-label="Get directions">
-    <svg class="location-bar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="currentColor" opacity="0.9"/>
-      <circle cx="12" cy="9" r="2.5" fill="#06040A"/>
-    </svg>
-    <span class="location-bar__text">961 Imagine Ave NW · Star Metals District · Atlanta</span>
-    <span class="location-bar__cta">Directions ›</span>
-  </a>
-
   <!-- PARTICLES -->
   <div id="particles" aria-hidden="true"></div>
-
-  <script>
-    // ── MAP LINK — Apple Maps on iOS, Google Maps everywhere else ──
-    (function () {
-      const bar     = document.getElementById('locationBar');
-      const address = '961+Imagine+Ave+NW+Atlanta+GA';
-      const isIOS   = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      bar.href = isIOS
-        ? 'https://maps.apple.com/?q=' + address
-        : 'https://www.google.com/maps/search/?api=1&query=' + address;
-    })();
-  </script>
 
   <!-- HERO -->
   <section class="hero" aria-label="The Flower Society">
