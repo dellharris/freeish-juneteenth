@@ -119,6 +119,19 @@
       background: var(--gold-lt);
       box-shadow: 0 8px 48px rgba(201,168,76,0.5);
     }
+    .hero__directions {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 16px;
+      padding: 14px 36px;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--gold);
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.35em; text-transform: uppercase;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .hero__directions:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
 
     /* ── DIVIDER ── */
     .divider {
@@ -390,11 +403,15 @@
         <span class="hero__meta-sep">·</span>
         <span>2PM – 10PM</span>
         <span class="hero__meta-sep">·</span>
-        <span>Private Location</span>
+        <span>111 Davis Rd · Stockbridge, GA</span>
         <span class="hero__meta-sep">·</span>
         <span>21+</span>
       </div>
       <a class="hero__rsvp" href="https://partiful.com/e/SsudaXaoQVd7SRqP96bj" target="_blank" rel="noopener">RSVP Here &nbsp;›</a>
+      <br>
+      <a class="hero__directions" id="directionsLink" href="#">
+        &#9679; Get Directions
+      </a>
     </div>
   </section>
 
@@ -566,6 +583,18 @@
   </div>
 
   <script>
+    // Directions — Apple Maps on iOS, Google Maps everywhere else
+    (function () {
+      const address = '111+Davis+Rd+Stockbridge+GA';
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const link = document.getElementById('directionsLink');
+      link.href = isIOS
+        ? 'https://maps.apple.com/?daddr=' + address
+        : 'https://www.google.com/maps/dir/?api=1&destination=' + address;
+      link.target = '_blank';
+      link.rel = 'noopener';
+    })();
+
     // Age gate
     (function () {
       if (sessionStorage.getItem('ageVerified')) return;
